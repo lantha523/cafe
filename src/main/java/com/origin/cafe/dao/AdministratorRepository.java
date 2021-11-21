@@ -8,6 +8,6 @@ import com.origin.cafe.entity.Administrator;
 
 public interface AdministratorRepository extends JpaRepository<Administrator, Integer>{
 	
-	public List<Administrator> findAllByOrderByLastNameAsc();
+	public List<Administrator> findAllByOrderByAdmAccountAsc();
 
 }

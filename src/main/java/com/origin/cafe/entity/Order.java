@@ -39,11 +39,11 @@ public class Order {
 	@Column(name = "MD_DATE")
 	private Date mdDate;
 	
-//	@ManyToOne
-//	@JoinColumn(name="MEM_NO")
-//	private Member member;
+	@ManyToOne
+	@JoinColumn(name="MEM_NO")
+	private Member member;
 
-	// 定義contructors
+	// 定義contructor
 
 	public Order() {
 
