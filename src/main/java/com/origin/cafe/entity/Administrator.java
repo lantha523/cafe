@@ -1,10 +1,14 @@
 package com.origin.cafe.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,29 +18,32 @@ public class Administrator {
 	//定義fields
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
-		@Column(name="ADM_NO")
+		@Column(name="adm_no")
 		private int admNo;
 		
-		@Column(name="ADM_ACCOUNT")
+		@Column(name="adm_account")
 		private String admAccount;
 		
-		@Column(name="ADM_PASWORD")
+		@Column(name="adm_pasword")
 		private String admPasword;
 		
-		@Column(name="ADM_NAME")
+		@Column(name="adm_name")
 		private String admName;
 		
-		@Column(name="ADM_ADDRESS")
+		@Column(name="adm_address")
 		private String admAddress;
 		
-		@Column(name="ADM_PHONE")
+		@Column(name="adm_phone")
 		private String admPhone;
 		
-		@Column(name="ADM_LEVEL")
+		@Column(name="adm_level")
 		private String admLevel;
 		
-		@Column(name="ADM_STATUS")
+		@Column(name="adm_status")
 		private byte admStatus;
+		
+		@OneToMany(mappedBy="administrator" , cascade=CascadeType.ALL)
+		private List<AdmAuthority> admAuthoritys;
 		
 	public Administrator() {
 		
