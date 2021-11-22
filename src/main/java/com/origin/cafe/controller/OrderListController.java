@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.origin.cafe.entity.Ord;
 import com.origin.cafe.entity.OrderList;
 import com.origin.cafe.service.OrdService;
 import com.origin.cafe.service.OrderListService;
+
 
 public class OrderListController {
 	
