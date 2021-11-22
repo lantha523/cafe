@@ -7,13 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ORDER")
-public class Order {
+@Table(name = "ORD")
+public class Ord {
 
 	// 定義fields
 	@Id
@@ -39,18 +37,15 @@ public class Order {
 	@Column(name = "MD_DATE")
 	private Date mdDate;
 	
-	@ManyToOne
-	@JoinColumn(name="MEM_NO")
-	private Member member;
 
 	// 定義contructor
 
-	public Order() {
+	public Ord() {
 
 	}
 
 
-	public Order(int ordNo, int memNo, Date ordTime, int ordPrice, byte ordStatus, Date crDate, Date mdDate) {
+	public Ord(int ordNo, int memNo, Date ordTime, int ordPrice, byte ordStatus, Date crDate, Date mdDate) {
 		super();
 		this.ordNo = ordNo;
 		this.memNo = memNo;

@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.origin.cafe.dao.AdministratorRepository;
 import com.origin.cafe.entity.Administrator;
+import com.origin.cafe.repository.AdministratorRepository;
 
 @Service
 public class AdministratorServiceImpl implements AdministratorService {

@@ -1,4 +1,4 @@
-package com.origin.cafe.dao;
+package com.origin.cafe.repository;
 
 import java.util.List;
 
@@ -11,3 +11,4 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 	public List<Administrator> findAllByOrderByAdmAccountAsc();
 
 }
+
