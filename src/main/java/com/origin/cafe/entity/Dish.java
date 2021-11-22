@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 	@Entity
-	@Table(name="DISH")
+	@Table(name="dish")
 public class Dish {
 		
 		//定義fields

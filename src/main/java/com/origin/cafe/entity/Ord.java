@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ORD")
+@Table(name = "ord")
 public class Ord {
 
 	// 定義fields
