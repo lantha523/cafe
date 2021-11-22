@@ -1,11 +1,14 @@
 package com.origin.cafe.entity;
 
+import com.origin.cafe.enums.DishType;
 import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,7 +50,8 @@ public class Dish {
 		private Date mdDate;
 		
 		@Column(name="dish_type")
-		private String dishType;
+		@Enumerated(EnumType.STRING)
+		private DishType dishType;
 		
 		@OneToMany(mappedBy="dish" , cascade=CascadeType.ALL)
 		private List<OrderList> orderLists;
@@ -60,9 +64,8 @@ public class Dish {
 		}
 
 
-		public Dish(int dishNo, String dishImg, String dishName, int dish_Price, String dishNote, byte dishStatus,
-				int dishQuantity, Date crDate, Date mdDate, String dishType) {
-			super();
+		public Dish(int dishNo, String dishImg, String dishName, int dish_Price, String dishNote, byte dishStatus, int dishQuantity, Date crDate,
+				Date mdDate, DishType dishType, List<OrderList> orderLists) {
 			this.dishNo = dishNo;
 			this.dishImg = dishImg;
 			this.dishName = dishName;
@@ -73,8 +76,8 @@ public class Dish {
 			this.crDate = crDate;
 			this.mdDate = mdDate;
 			this.dishType = dishType;
+			this.orderLists = orderLists;
 		}
-
 
 		public int getDishNo() {
 			return dishNo;
@@ -166,30 +169,36 @@ public class Dish {
 		}
 
 
-		public String getDishType() {
+		public DishType getDishType() {
 			return dishType;
 		}
 
-
-		public void setDishType(String dishType) {
+		public void setDishType(DishType dishType) {
 			this.dishType = dishType;
 		}
 
+		public List<OrderList> getOrderLists() {
+			return orderLists;
+		}
+
+		public void setOrderLists(List<OrderList> orderLists) {
+			this.orderLists = orderLists;
+		}
 
 		@Override
 		public String toString() {
-			return "Dish [dishNo=" + dishNo + ", dishImg=" + dishImg + ", dishName=" + dishName + ", dish_Price="
-					+ dish_Price + ", dishNote=" + dishNote + ", dishStatus=" + dishStatus + ", dishQuantity="
-					+ dishQuantity + ", crDate=" + crDate + ", mdDate=" + mdDate + ", dishType=" + dishType + "]";
+			return "Dish{" +
+					"dishNo=" + dishNo +
+					", dishImg='" + dishImg + '\'' +
+					", dishName='" + dishName + '\'' +
+					", dish_Price=" + dish_Price +
+					", dishNote='" + dishNote + '\'' +
+					", dishStatus=" + dishStatus +
+					", dishQuantity=" + dishQuantity +
+					", crDate=" + crDate +
+					", mdDate=" + mdDate +
+					", dishType=" + dishType +
+					", orderLists=" + orderLists +
+					'}';
 		}
-		
-		
-		
-
-		
-
-
-
-	
-
-}
+	}
