@@ -1,22 +1,26 @@
 package com.origin.cafe.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ADM_FUNCTION")
+@Table(name = "adm_function")
 public class AdmFunction {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "FUNCTION_NO")
+	@Column(name = "function_no")
 	private int functionNo;
 
-	@Column(name = "FUNCTION_DETAIL")
+	@Column(name = "function_detail")
 	private String functionDetail;
 	
 	
@@ -50,6 +54,9 @@ public class AdmFunction {
 	public void setFunctionDetail(String functionDetail) {
 		this.functionDetail = functionDetail;
 	}
+	
+	@OneToMany(mappedBy="admFunction" , cascade=CascadeType.ALL)
+	private List<AdmAuthority> admAuthoritys;
 
 
 	@Override

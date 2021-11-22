@@ -1,51 +1,57 @@
 package com.origin.cafe.entity;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 	@Entity
-	@Table(name="DISH")
+	@Table(name="dish")
 public class Dish {
 		
 		//定義fields
 		@Id
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
-		@Column(name="DISH_NO")
+		@Column(name="dish_no")
 		private int dishNo;
 		
-		@Column(name="DISH_IMG")
+		@Column(name="dish_img")
 		private String dishImg;
 		
-		@Column(name="DISH_NAME")
+		@Column(name="dish_name")
 		private String dishName;
 		
-		@Column(name="DISH_PRICE")
+		@Column(name="dish_price")
 		private int dish_Price;
 		
-		@Column(name="DISH_NOTE")
+		@Column(name="dish_note")
 		private String dishNote;
 		
-		@Column(name="DISH_STATUS")
+		@Column(name="dish_status")
 		private byte dishStatus;
 		
-		@Column(name="DISH_QUANTITY")
+		@Column(name="dish_quantity")
 		private int dishQuantity;
 		
-		@Column(name="CR_DATE")
+		@Column(name="cr_date")
 		private Date crDate;
 		
-		@Column(name="MD_DATE")
+		@Column(name="md_date")
 		private Date mdDate;
 		
-		@Column(name="DISH_TYPE")
+		@Column(name="dish_type")
 		private String dishType;
 		
+		@OneToMany(mappedBy="dish" , cascade=CascadeType.ALL)
+		private List<OrderList> orderLists;
+	
 		
 		//定義contructors
 		

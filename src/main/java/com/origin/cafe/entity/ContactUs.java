@@ -10,27 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CONTACT_US")
+@Table(name="contact_us")
 public class ContactUs {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="CON_NO")
+	@Column(name="con_no")
 	private int conNo;
 	
-	@Column(name="CON_NAME")
+	@Column(name="con_name")
 	private String conName;
 	
-	@Column(name="CON_EMAIL")
+	@Column(name="con_email")
 	private String conEmail;
 	
-	@Column(name="CON_PHONE")
+	@Column(name="con_phone")
 	private String conPhone;
 	
-	@Column(name="CON_MSG")
+	@Column(name="con_msg")
 	private String conMsg;
 	
-	@Column(name="CON_TIME")
+	@Column(name="con_time")
 	private Date conTime;
 	
 	

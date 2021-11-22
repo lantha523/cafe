@@ -1,43 +1,47 @@
 package com.origin.cafe.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ORDER_LIST")
+@Table(name = "order_list")
 public class OrderList {
 
 	// 定義fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ORD_NO")
+	@Column(name = "ord_no")
 	private int ordNo;
 
-	@Column(name = "DISH_NO")
-	private int dishNo;
+//	@Column(name = "DISH_NO")  欄位重複會出錯
+//	private int dishNo;
 
-	@Column(name = "ORD_QUANTITY")
+	@Column(name = "ord_quantity")
 	private int ordQuantity;
 
-	@Column(name = "ORD_PRICEEACH")
+	@Column(name = "ord_priceeach")
 	private int ordPriceEach;
+	
+	@ManyToOne
+	@JoinColumn(name="dish_no")
+	private Dish dish;
 	
 	public OrderList() {
 		
 	}
 
-	public OrderList(int ordNo, int dishNo, int ordQuantity, int ordPriceEach) {
+	public OrderList(int ordNo, int ordQuantity, int ordPriceEach, Dish dish) {
 		super();
 		this.ordNo = ordNo;
-		this.dishNo = dishNo;
 		this.ordQuantity = ordQuantity;
 		this.ordPriceEach = ordPriceEach;
+		this.dish = dish;
 	}
 
 	public int getOrdNo() {
@@ -46,14 +50,6 @@ public class OrderList {
 
 	public void setOrdNo(int ordNo) {
 		this.ordNo = ordNo;
-	}
-
-	public int getDishNo() {
-		return dishNo;
-	}
-
-	public void setDishNo(int dishNo) {
-		this.dishNo = dishNo;
 	}
 
 	public int getOrdQuantity() {
@@ -72,12 +68,20 @@ public class OrderList {
 		this.ordPriceEach = ordPriceEach;
 	}
 
+	public Dish getDish() {
+		return dish;
+	}
+
+	public void setDish(Dish dish) {
+		this.dish = dish;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderList [ordNo=" + ordNo + ", dishNo=" + dishNo + ", ordQuantity=" + ordQuantity + ", ordPriceEach="
-				+ ordPriceEach + "]";
+		return "OrderList [ordNo=" + ordNo + ", ordQuantity=" + ordQuantity + ", ordPriceEach=" + ordPriceEach
+				+ ", dish=" + dish + "]";
 	}
-	
+
 	
 
 	
