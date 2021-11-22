@@ -13,10 +13,10 @@ public class AdmFunction {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "FUNCTION_NO")
+	@Column(name = "function_no")
 	private int functionNo;
 
-	@Column(name = "FUNCTION_DETAIL")
+	@Column(name = "function_detail")
 	private String functionDetail;
 	
 	
