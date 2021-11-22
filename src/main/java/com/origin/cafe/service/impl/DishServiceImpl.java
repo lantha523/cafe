@@ -13,48 +13,5 @@ import com.origin.cafe.repository.DishRepository;
 
 @Service
 public class DishServiceImpl implements DishService {
-	
-	private DishRepository dishRepository;
-	
-	@Autowired //使用@Autowired注入dao的實例
-	public DishServiceImpl(DishRepository theDishRepository) {
-		
-		dishRepository = theDishRepository;
-	}
-
-	@Override
-	@Transactional
-	public List<Dish> findAll() {
-		// TODO Auto-generated method stub
-		return dishRepository.findAll();
-	}
-
-	@Override
-	@Transactional
-	public Dish findById(int theDishNo) {
-		// 圈選 administratorRepository.findById(theAdmNo);右鍵refactor-->extrack local variable重構成result 
-		Optional<Dish> result = dishRepository.findById(theDishNo);
-		
-		Dish theDish = null;
-		
-		if (result.isPresent()) {
-			theDish = result.get();
-		}else {
-			throw new RuntimeException("Did not find emp Id-" + theDishNo);
-		}
-		return theDish;
-	}
-	@Override
-	@Transactional
-	public void save(Dish theDish) {
-		dishRepository.save(theDish);
-	}
-
-	@Override
-	@Transactional
-	public void deleteById(int theDishNo) {
-		dishRepository.deleteById(theDishNo);
-
-	}
 
 }
