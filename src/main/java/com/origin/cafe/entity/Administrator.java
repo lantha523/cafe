@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="adminstrator")
+@Table(name="administrator")
 public class Administrator {
 	
 	//定義fields
