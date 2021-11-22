@@ -1,4 +1,4 @@
-package com.origin.cafe.dao;
+package com.origin.cafe.repository;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import com.origin.cafe.entity.Administrator;
 
 public interface AdministratorRepository extends JpaRepository<Administrator, Integer>{
 	
-	public List<Administrator> findAllByOrderByLastNameAsc();
+	public List<Administrator> findAllByOrderByAdmAccountAsc();
 
 }
+
