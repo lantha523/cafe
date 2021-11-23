@@ -13,7 +13,6 @@ public class ManagerViewController {
 
 	@GetMapping("/manager/add")
 	public String add(Model theModel) {
-		String userId = SecurityUserUtils.getUserId();
 		return "/manager/add";
 	}
 

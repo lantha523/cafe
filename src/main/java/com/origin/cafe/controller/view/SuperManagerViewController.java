@@ -13,7 +13,6 @@ public class SuperManagerViewController {
 
 	@GetMapping("/superManager/function")
 	public String fuction(Model theModel) {
-		String userId = SecurityUserUtils.getUserId();
 		return "/superManager/function";
 	}
 
