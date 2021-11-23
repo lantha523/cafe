@@ -1,6 +1,7 @@
 package com.origin.cafe.controller.view;
 
 
+import com.origin.cafe.config.SecurityUserUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,8 @@ public class ManagerViewController {
 
 	@GetMapping("/manager/add")
 	public String add(Model theModel) {
-			return "/manager/add";
+		String userId = SecurityUserUtils.getUserId();
+		return "/manager/add";
 	}
 
 	@GetMapping("/manager/checkMenu")

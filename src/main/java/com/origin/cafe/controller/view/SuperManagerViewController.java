@@ -1,6 +1,7 @@
 package com.origin.cafe.controller.view;
 
 
+import com.origin.cafe.config.SecurityUserUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ public class SuperManagerViewController {
 
 	@GetMapping("/superManager/function")
 	public String fuction(Model theModel) {
+		String userId = SecurityUserUtils.getUserId();
 		return "/superManager/function";
 	}
 
