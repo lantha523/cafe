@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/view")
 public class SuperManagerViewController {
 
-	@GetMapping("/superManager/fuction")
+	@GetMapping("/superManager/function")
 	public String fuction(Model theModel) {
-		return "/superManager/fuction";
+		return "/superManager/function";
 	}
 
 	@GetMapping("/superManager/qualification")
