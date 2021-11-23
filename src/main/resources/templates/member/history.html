@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - Brand</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Off-Canvas-Sidebar-Drawer-Navbar.css">
+    <link rel="stylesheet" href="../assets/css/Pretty-Search-Form.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="../assets/css/Table-With-Search.css">
+    <link rel="stylesheet" href="../assets/css/vanilla-zoom.min.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content" style="margin-top: 15%;margin-left: 10%;width: 80%;">
+                <div class="container-fluid" style="margin-right: auto;">
+                    <h3 class="text-dark mb-4">History</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">History Info</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                                <option value="10" selected="">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>&nbsp;</label></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"></label></div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>ORD_NO</strong></th>
+                                            <th><strong>ORD_TIME</strong></th>
+                                            <th>charge</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Rice</td>
+                                            <td>2008/11/28</td>
+                                            <td>$162,700</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rice Ramos</td>
+                                            <td>2009/10/09<br></td>
+                                            <td>$1,200,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rice Cox</td>
+                                            <td>2009/01/12<br></td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rice Greer</td>
+                                            <td>2012/10/13<br></td>
+                                            <td>$132,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Noodle Wagner</td>
+                                            <td>2011/06/07<br></td>
+                                            <td>$206,850</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Noodle Williamson</td>
+                                            <td>2012/12/02<br></td>
+                                            <td>$372,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Noodle Nash<br></td>
+                                            <td>2011/05/03<br></td>
+                                            <td>$163,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Noodle Vance</td>
+                                            <td>2011/12/12<br></td>
+                                            <td>$106,450</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Noodle Stevens</td>
+                                            <td>2011/12/06<br></td>
+                                            <td>$145,600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Noodle Kelly</td>
+                                            <td>2012/03/29<br></td>
+                                            <td>$433,060</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Date</strong></td>
+                                            <td><strong>charge</strong></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="#page-top">DEMO1</a>
+            <form class="search-form">
+                <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
+            </form><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto text-uppercase">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">MENU</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="#cart">CART</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../login.html">LOGIN</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">OTHER&nbsp;</a>
+                        <div class="dropdown-menu"><a class="dropdown-item" href="#hour">BUSSINESS HOUR</a><a class="dropdown-item" href="#contact">CONTACT US</a></div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="../login.html">MANGER</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js"></script>
+    <script src="../assets/js/agency.js"></script>
+    <script src="../assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js"></script>
+    <script src="../assets/js/Table-With-Search.js"></script>
+    <script src="../assets/js/theme.js"></script>
+</body>
+
+</html>
