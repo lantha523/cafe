@@ -35,7 +35,7 @@ public class User {
 
 	//會員資格
 	@Column(name="enabled")
-	private byte enabled;
+	private Byte enabled;
 
 	@ManyToOne
 	@JoinColumn(name="mem_no")

@@ -14,7 +14,10 @@ insert into `member`
 ('蔣淵和','0988777788','john321@gmail.com','台北市遼寧街24號','2000-01-01','img','1','2021-01-01','2021-01-01');
 insert into `member`
 (`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values
-('王和平','0988333788','john678@gmail.com','台北市遼寧街25號','2000-01-01','img','1','2021-01-01','2021-01-01');
+('金','0908766678','john321@gmail.com','台北市富錦街20號','2000-01-01','img','1','2021-01-01','2021-01-01');
+insert into `member`
+(`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values
+('王和平','0988333788','john321@gmail.com','台北市遼寧街25號','2000-01-01','img','1','2021-01-01','2021-01-01');
 
 insert into `dish` 
 (`dish_img`,`dish_name`,`dish_price`,`dish_note`,`dish_status`,`dish_quantity`,`cr_date`,`md_date`,`dish_type`) values
@@ -38,7 +41,8 @@ insert into `order_list`
 
 insert into `administrator`
 (`adm_name`,`adm_address`,`adm_phone`,`adm_level`,`adm_status`) values
-('金','台北市富錦街20號','0908766678','最高管理者','1');
+('金','台北市富錦街20號','0908766678','最高管理者','1'),
+('王和平','台北市遼寧街25號','0988333788','管理者','1');
 
 
 INSERT INTO `users`
@@ -47,8 +51,8 @@ VALUES
 ('lalao','{bcrypt}$2a$10$FPX2J7oCq.hk3rBC3OF0LuBbWqrwHlCoq0cN0ceOWDuK94paE.Mgi',1,2,null), -- 2225252
 ('babap','{bcrypt}$2a$10$GowEM0bEKA6wwxziGhudxO3F0ohr80brnFM83F1vyvIlyVBRAHX3y',1,3,null), -- 4445666
 ('bfbfq','{bcrypt}$2a$10$Rf4OXR44DfposMEyVuNo1e9Vk6TIqrtJeU1h98oKyLILMJFi7HvRO',1,4,null), -- 2234234
-('fgfgr','{bcrypt}$2a$10$PjcxkdlyY8xHw..WDqcCxOxuHJR1KTYSIx0VY2c7m3QeEtOAcRo/W',1,5,null), -- 1234456
-('king','{bcrypt}$2a$10$1EffUPfU0dVSG.fe.IhMBu/pjG1n9u7xzUqXV/7MPeZg6pSBt4LeG',1,null,1); -- 8785657
+('fgfgr','{bcrypt}$2a$10$PjcxkdlyY8xHw..WDqcCxOxuHJR1KTYSIx0VY2c7m3QeEtOAcRo/W',1,5,2), -- 1234456
+('king','{bcrypt}$2a$10$1EffUPfU0dVSG.fe.IhMBu/pjG1n9u7xzUqXV/7MPeZg6pSBt4LeG',1,6,1); -- 8785657
 
 
 insert into `adm_function`

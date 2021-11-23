@@ -35,14 +35,42 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Welcome Back!</h4>
                                     </div>
-                                    <form class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
+                                    <form th:action="@{/login}" method="POST" class="bg-img">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="username" placeholder="Enter username..." name="username"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password"></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                             </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
+                                        </div>
+                                        <div class="alert alert-danger col-xs-offset-1 col-xs-10" align="center" th:if="${param.error}">
+                                            帳密無效
+                                        </div>
+
+                                        <div class="alert alert-danger col-xs-offset-1 col-xs-10" align="center" th:if="${param.logout}">
+                                            您已經登出
+                                        </div>
+
+                                        <div align="center">
+                                            <button type="submit" class="btn btn-success">登入</button>
+                                        </div>
+                                        <div>
+                                            <br>會員：
+                                            <input type="button" name="" onclick="login1()"
+                                                   value="choco" style="background-color:#CCEEFF">
+                                            <input type="button" name="" onclick="login2()"
+                                                   value="lalao" style="background-color:#CCEEFF">
+                                            <input type="button" name="" onclick="login3()"
+                                                   value="babap" style="background-color:#CCEEFF">
+                                            <input type="button" name="" onclick="login4()"
+                                                   value="bfbfq" style="background-color:#CCEEFF">
+                                            <br>管理員：
+                                            <input type="button" name="" onclick="login5()"
+                                                   value="fgfgr" style="background-color:#CCEEFF">
+                                            <br>超級管理員：
+                                            <input type="button" name="" onclick="login6()"
+                                                   value="king" style="background-color:#CCEEFF">
+                                        </div>
                                         <hr><a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a><a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
                                         <hr>
                                     </form>
@@ -64,6 +92,32 @@
     <script th:src="@{/js/Table-With-Search.js}"></script>
     <script th:src="@{/js/theme.js}"></script>
 
+    <script type="text/javascript">
+        function login1() {
+            document.getElementById("username").value = "choco";
+            document.getElementById("password").value = "8825252";
+        }
+        function login2() {
+            document.getElementById("username").value = "lalao";
+            document.getElementById("password").value = "2225252";
+        }
+        function login3() {
+            document.getElementById("username").value = "babap";
+            document.getElementById("password").value = "4445666";
+        }
+        function login4() {
+            document.getElementById("username").value = "bfbfq";
+            document.getElementById("password").value = "2234234";
+        }
+        function login5() {
+            document.getElementById("username").value = "fgfgr";
+            document.getElementById("password").value = "1234456";
+        }
+        function login6() {
+            document.getElementById("username").value = "king";
+            document.getElementById("password").value = "8785657";
+        }
+    </script>
 </body>
 
 </html>
