@@ -21,6 +21,9 @@
 </head>
 
 <body id="page-top">
+
+   <div th:replace="block/navbar::nav-header"></div>
+
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content" style="margin-top: 15%;margin-left: 10%;width: 80%;">
@@ -142,26 +145,7 @@
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-        <div class="container"><a class="navbar-brand" href="#page-top">DEMO1</a>
-            <form class="search-form">
-                <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
-            </form><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto text-uppercase">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">MENU</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="#cart">CART</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../login.html">LOGIN</a></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">OTHER&nbsp;</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="#hour">BUSSINESS HOUR</a><a class="dropdown-item" href="#contact">CONTACT US</a></div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="../login.html">MANGER</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js"></script>
     <script src="../assets/js/agency.js"></script>
