@@ -56,7 +56,7 @@ CREATE TABLE `DISH`
 
 INSERT INTO `DISH` 
 (`DISH_IMG`,`DISH_NAME`,`DISH_PRICE`,`DISH_NOTE`,`DISH_STATUS`,`DISH_QUANTITY`,`CR_DATE`,`MD_DATE`,`DISH_TYPE`) VALUES 
-('https://images.pexels.com/photos/9700895/pexels-photo-9700895.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500','推薦菜單1','250','好吃的燉飯','1','100','1990-07-04','1990-07-04','推薦菜色');
+('https://images.pexels.com/photos/9700895/pexels-photo-9700895.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500','推薦菜單1','250','好吃的燉飯','1','100','1990-07-04','1990-07-04','RECOMMEND');
 
 -- ===========ORDER TABLE================
 DROP TABLE IF EXISTS `ORD`;
