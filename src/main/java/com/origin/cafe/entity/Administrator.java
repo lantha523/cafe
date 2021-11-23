@@ -20,13 +20,7 @@ public class Administrator {
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		@Column(name="adm_no")
 		private int admNo;
-		
-		@Column(name="adm_account")
-		private String admAccount;
-		
-		@Column(name="adm_pasword")
-		private String admPasword;
-		
+
 		@Column(name="adm_name")
 		private String admName;
 		
@@ -49,17 +43,15 @@ public class Administrator {
 		
 	}
 
-	public Administrator(int admNo, String admAccount, String admPasword, String admName, String admAddress,
-			String admPhone, String admLevel, byte admStatus) {
-		super();
+	public Administrator(int admNo, String admName, String admAddress, String admPhone, String admLevel, byte admStatus,
+			List<AdmAuthority> admAuthoritys) {
 		this.admNo = admNo;
-		this.admAccount = admAccount;
-		this.admPasword = admPasword;
 		this.admName = admName;
 		this.admAddress = admAddress;
 		this.admPhone = admPhone;
 		this.admLevel = admLevel;
 		this.admStatus = admStatus;
+		this.admAuthoritys = admAuthoritys;
 	}
 
 	public int getAdmNo() {
@@ -68,22 +60,6 @@ public class Administrator {
 
 	public void setAdmNo(int admNo) {
 		this.admNo = admNo;
-	}
-
-	public String getAdmAccount() {
-		return admAccount;
-	}
-
-	public void setAdmAccount(String admAccount) {
-		this.admAccount = admAccount;
-	}
-
-	public String getAdmPasword() {
-		return admPasword;
-	}
-
-	public void setAdmPasword(String admPasword) {
-		this.admPasword = admPasword;
 	}
 
 	public String getAdmName() {
@@ -128,12 +104,14 @@ public class Administrator {
 
 	@Override
 	public String toString() {
-		return "Administrator [admNo=" + admNo + ", admAccount=" + admAccount + ", admPasword=" + admPasword
-				+ ", admName=" + admName + ", admAddress=" + admAddress + ", admPhone=" + admPhone + ", admLevel="
-				+ admLevel + ", admStatus=" + admStatus + "]";
+		return "Administrator{" +
+				"admNo=" + admNo +
+				", admName='" + admName + '\'' +
+				", admAddress='" + admAddress + '\'' +
+				", admPhone='" + admPhone + '\'' +
+				", admLevel='" + admLevel + '\'' +
+				", admStatus=" + admStatus +
+				", admAuthoritys=" + admAuthoritys +
+				'}';
 	}
-	
-	
-	
-
 }

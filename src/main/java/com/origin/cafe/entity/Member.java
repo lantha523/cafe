@@ -22,12 +22,6 @@ public class Member {
 	@Column(name="mem_no")
 	private int memNo;
 	
-	@Column(name="mem_username")
-	private String memUserName;
-	
-	@Column(name="mem_password")
-	private String memPassword;
-	
 	@Column(name="mem_name")
 	private String memName;
 	
@@ -65,12 +59,10 @@ public class Member {
 	}
 
 
-	public Member(int memNo, String memUserName, String memPassword, String memName, String memPhone, String memEmail,
+	public Member(int memNo, String memName, String memPhone, String memEmail,
 			String memAddress, Date memBirth, String memImg, byte memStatus, Date crDate, Date mdDate) {
 		super();
 		this.memNo = memNo;
-		this.memUserName = memUserName;
-		this.memPassword = memPassword;
 		this.memName = memName;
 		this.memPhone = memPhone;
 		this.memEmail = memEmail;
@@ -90,26 +82,6 @@ public class Member {
 
 	public void setMemNo(int memNo) {
 		this.memNo = memNo;
-	}
-
-
-	public String getMemUserName() {
-		return memUserName;
-	}
-
-
-	public void setMemUserName(String memUserName) {
-		this.memUserName = memUserName;
-	}
-
-
-	public String getMemPassword() {
-		return memPassword;
-	}
-
-
-	public void setMemPassword(String memPassword) {
-		this.memPassword = memPassword;
 	}
 
 
@@ -205,15 +177,18 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [memNo=" + memNo + ", memUserName=" + memUserName + ", memPassword=" + memPassword + ", memName="
-				+ memName + ", memPhone=" + memPhone + ", memEmail=" + memEmail + ", memAddress=" + memAddress
-				+ ", memBirth=" + memBirth + ", memImg=" + memImg + ", memStatus=" + memStatus + ", crDate=" + crDate
-				+ ", mdDate=" + mdDate + "]";
+		return "Member{" +
+				"memNo=" + memNo +
+				", memName='" + memName + '\'' +
+				", memPhone='" + memPhone + '\'' +
+				", memEmail='" + memEmail + '\'' +
+				", memAddress='" + memAddress + '\'' +
+				", memBirth=" + memBirth +
+				", memImg='" + memImg + '\'' +
+				", memStatus=" + memStatus +
+				", crDate=" + crDate +
+				", mdDate=" + mdDate +
+				", ords=" + ords +
+				'}';
 	}
-	
-	
-	
-	
-	
-
 }

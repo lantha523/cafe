@@ -8,7 +8,7 @@ import com.origin.cafe.entity.Administrator;
 
 public interface AdministratorRepository extends JpaRepository<Administrator, Integer>{
 	
-	public List<Administrator> findAllByOrderByAdmAccountAsc();
+//	public List<Administrator> findAllByOrderByAdmAccountAsc();
 
 }
 

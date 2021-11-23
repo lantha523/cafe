@@ -1,25 +1,24 @@
 
 
 insert into `member`
-(`mem_username`,`mem_password`,`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values 
-('choco','8825252','黃淵和','0988877788','john323@gmail.com','台北市遼寧街22號','2000-01-01','img','1','2021-01-01','2021-01-01');
+(`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values
+('黃淵和','0988877788','john323@gmail.com','台北市遼寧街22號','2000-01-01','img','1','2021-01-01','2021-01-01');
 insert into `member`
-(`mem_username`,`mem_password`,`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values 
-('lalao','2225252','黃錢和','0988877218','john123@gmail.com','台北市遼寧街21號','2000-01-01','img','1','2021-01-01','2021-01-01');
+(`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values
+('黃錢和','0988877218','john123@gmail.com','台北市遼寧街21號','2000-01-01','img','1','2021-01-01','2021-01-01');
 insert into `member`
-(`mem_username`,`mem_password`,`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values 
-('babap','4445666','淵平和','0939877328','john567@gmail.com','台北市遼寧街23號','2000-01-01','img','1','2021-01-01','2021-01-01');
+(`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values
+('淵平和','0939877328','john567@gmail.com','台北市遼寧街23號','2000-01-01','img','1','2021-01-01','2021-01-01');
 insert into `member`
-(`mem_username`,`mem_password`,`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values 
-('bfbfq','2234234','蔣淵和','0988777788','john321@gmail.com','台北市遼寧街24號','2000-01-01','img','1','2021-01-01','2021-01-01');
+(`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values
+('蔣淵和','0988777788','john321@gmail.com','台北市遼寧街24號','2000-01-01','img','1','2021-01-01','2021-01-01');
 insert into `member`
-(`mem_username`,`mem_password`,`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values 
-('fgfgr','1234456','王和平','0988333788','john678@gmail.com','台北市遼寧街25號','2000-01-01','img','1','2021-01-01','2021-01-01');
-
+(`mem_name`,`mem_phone`,`mem_email`,`mem_address`,`mem_birth`,`mem_img`,`mem_status`,`cr_date`,`md_date`) values
+('王和平','0988333788','john678@gmail.com','台北市遼寧街25號','2000-01-01','img','1','2021-01-01','2021-01-01');
 
 insert into `dish` 
-(`dish_img`,`dish_name`,`dish_price`,`dish_note`,`dish_status`,`dish_quantity`,`cr_date`,`md_date`,`dish_type`) values 
-('https://images.pexels.com/photos/9700895/pexels-photo-9700895.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500','RECOMMEND','250','好吃的燉飯','1','100','1990-07-04','1990-07-04','推薦菜色');
+(`dish_img`,`dish_name`,`dish_price`,`dish_note`,`dish_status`,`dish_quantity`,`cr_date`,`md_date`,`dish_type`) values
+('https://images.pexels.com/photos/9700895/pexels-photo-9700895.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500','推薦菜單1','250','好吃的燉飯','1','100','1990-07-04','1990-07-04','RECOMMEND');
 
 insert into `ord`
 (`mem_no`,`ord_time`,`ord_price`,`ord_status`,`cr_date`,`md_date`) values 
@@ -38,8 +37,18 @@ insert into `order_list`
 
 
 insert into `administrator`
-(`adm_account`,`adm_pasword`,`adm_name`,`adm_address`,`adm_phone`,`adm_level`,`adm_status`) values 
-('king','8785657','金','台北市富錦街20號','0908766678','最高管理者','1');
+(`adm_name`,`adm_address`,`adm_phone`,`adm_level`,`adm_status`) values
+('金','台北市富錦街20號','0908766678','最高管理者','1');
+
+
+INSERT INTO `users`
+VALUES
+('choco','{bcrypt}$2a$10$456OJnARlH/LKc3ez.UB5.DiJGQGWcdWVtGr9DOkSz9mn/YJ8VK0i',1,1,null), -- 8825252
+('lalao','{bcrypt}$2a$10$FPX2J7oCq.hk3rBC3OF0LuBbWqrwHlCoq0cN0ceOWDuK94paE.Mgi',1,2,null), -- 2225252
+('babap','{bcrypt}$2a$10$GowEM0bEKA6wwxziGhudxO3F0ohr80brnFM83F1vyvIlyVBRAHX3y',1,3,null), -- 4445666
+('bfbfq','{bcrypt}$2a$10$Rf4OXR44DfposMEyVuNo1e9Vk6TIqrtJeU1h98oKyLILMJFi7HvRO',1,4,null), -- 2234234
+('fgfgr','{bcrypt}$2a$10$PjcxkdlyY8xHw..WDqcCxOxuHJR1KTYSIx0VY2c7m3QeEtOAcRo/W',1,5,null), -- 1234456
+('king','{bcrypt}$2a$10$1EffUPfU0dVSG.fe.IhMBu/pjG1n9u7xzUqXV/7MPeZg6pSBt4LeG',1,null,1); -- 8785657
 
 
 insert into `adm_function`

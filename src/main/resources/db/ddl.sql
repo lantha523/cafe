@@ -5,9 +5,7 @@
 -- ===========member table================
 drop table if exists `member`;
 create table member 
-(mem_no int(10) not null auto_increment comment '會員編號', 
-	mem_username varchar(255) not null comment '會員帳號',
-	mem_password varchar(255) not null comment '會員密碼', 
+(mem_no int(10) not null auto_increment comment '會員編號',
 	mem_name varchar(255) not null comment '會員姓名', 
 	mem_phone varchar(255) not null comment '會員手機號碼',  
 	mem_email varchar(255) not null comment '會員電子信箱', 
@@ -78,15 +76,30 @@ create table order_list (ord_no int(10) not null comment '訂單編號',
 -- ===========administrator table================
 drop table if exists `administrator`;
 create table administrator 
-(adm_no int(10) not null auto_increment comment '管理者編號', 
-	adm_account varchar(255) not null comment '管理者帳戶', 
-	adm_pasword varchar(255) not null comment '管理者密碼', 
+(adm_no int(10) not null auto_increment comment '管理者編號',
 	adm_name varchar(255) not null comment '管理者姓名', 
 	adm_address varchar(255) not null comment '管理者地址', 
 	adm_phone varchar(255) not null comment '管理者電話', 
 	adm_level varchar(255) not null comment '管理者階級', 
 	adm_status tinyint(3) not null comment '管理者狀態', 
 	primary key (adm_no));
+
+
+--
+-- Table structure for table `users` 會員帳密
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+                         username varchar(255) NOT NULL COMMENT '會員帳號',
+                         password char(68) NOT NULL COMMENT '會員密碼',
+                         enabled tinyint(1) NOT NULL COMMENT '會員資格',
+                         mem_no int(10) COMMENT '會員編號',
+                         adm_no int(10) COMMENT '管理員編號',
+                         PRIMARY KEY (username)  ,
+                         CONSTRAINT users_memfk_1 FOREIGN KEY (mem_no) REFERENCES member (mem_no),
+                         CONSTRAINT users_admfk_2 FOREIGN KEY (adm_no) REFERENCES administrator (adm_no)
+);
 
 -- ===========adm_function table================
 drop table if exists `adm_function`;
