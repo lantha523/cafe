@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - Brand</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome-all.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome5-overrides.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" th:href="@{/css/Off-Canvas-Sidebar-Drawer-Navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/Pretty-Search-Form.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search-1.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search.css}">
+    <link rel="stylesheet" th:href="@{/css/vanilla-zoom.min.css}">
+</head>
+
+<body id="page-top">
+
+<div th:replace="block/navbar::nav-header"></div>
+
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content" style="margin-top: 15%;margin-left: 10%;width: 80%;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><span>Manger</span></a></li>
+                                <li class="breadcrumb-item"><a href="#"><span>MyMenu</span></a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xxl-12 offset-xxl-0 search-table-col">
+                        <div class="form-group pull-left col-lg-3"><input type="text" class="search form-control" placeholder="Search menu here.."></div><span class="counter"><button class="btn btn-success pull-left" type="submit"><i class="fa fa-check" style="font-size: 15px;"></i></button></span><span><i class="fa fa-star" style="color: red;"></i></span><label class="form-label" style="margin-top: 8px;">菜單類型 :&nbsp;</label><select>
+                            <optgroup label="This is a group">
+                                <option value="12" selected="">This is item 1</option>
+                                <option value="13">This is item 2</option>
+                                <option value="14">This is item 3</option>
+                            </optgroup>
+                        </select><span><i class="fa fa-star" style="color: red;"></i></span><label class="form-label" style="margin-top: 8px;">上架狀態 :&nbsp;</label><select>
+                            <optgroup label="This is a group">
+                                <option value="12" selected="">This is item 1</option>
+                                <option value="13">This is item 2</option>
+                                <option value="14">This is item 3</option>
+                            </optgroup>
+                        </select><a class="btn btn-success" href="#" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">serach</a><a class="btn btn-info" href="manger/add.html" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">新增菜單</a>
+                        <div class="table-responsive table table-hover table-bordered results">
+                            <table class="table table-hover table-bordered">
+                                <thead class="bill-header cs">
+                                    <tr>
+                                        <th id="trs-hd" class="col-lg-1">DISH. No.</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH_NAME</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH_TYPE</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH_PRICE</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH數量</th>
+                                        <th id="trs-hd-1" class="col-lg-1">DH_STATUS</th>
+                                        <th id="trs-hd" class="col-lg-1">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="warning no-result">
+                                        <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                                    </tr>
+                                    <tr>
+                                        <td>01</td>
+                                        <td>rice</td>
+                                        <td>rice</td>
+                                        <td>Bootstrap Stuido</td>
+                                        <td>100</td>
+                                        <td>上架中</td>
+                                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit" onclick="&quot;location.href=&#39;manger/item.html&#39;&quot;"><i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;"><i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash" style="font-size: 15px;"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>01</td>
+                                        <td>rice</td>
+                                        <td>noodle</td>
+                                        <td>Bootstrap Stuido</td>
+                                        <td>100</td>
+                                        <td>下架中</td>
+                                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;"><i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash" style="font-size: 15px;"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>01</td>
+                                        <td>noodle</td>
+                                        <td>soup</td>
+                                        <td>Bootstrap Stuido</td>
+                                        <td>100</td>
+                                        <td>上架中</td>
+                                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;"><i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash" style="font-size: 15px;"></i></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar.js}"></script>
+    <script th:src="@{/js/agency.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js}"></script>
+    <script th:src="@{/js/Table-With-Search.js}"></script>
+    <script th:src="@{/js/theme.js}"></script>
+</body>
+
+</html>

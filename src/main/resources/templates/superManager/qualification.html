@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - Brand</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome-all.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome5-overrides.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" th:href="@{/css/Off-Canvas-Sidebar-Drawer-Navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/Pretty-Search-Form.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search-1.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search.css}">
+    <link rel="stylesheet" th:href="@{/css/vanilla-zoom.min.css}">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content" style="margin-top: 15%;margin-left: 10%;width: 80%;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><span>SuperManger</span></a></li>
+                                <li class="breadcrumb-item"><a href="#"><span>權限管理</span></a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xxl-12 offset-xxl-0 search-table-col">
+                        <div class="form-group pull-left col-lg-3"><input type="text" class="search form-control" placeholder="請輸入會員帳號或姓名"></div><span class="counter"></span><span class="counter"></span><label class="form-label" style="margin-top: 8px;">管理員狀態:&nbsp;</label><select>
+                            <optgroup label="This is a group">
+                                <option value="12" selected="">This is item 1</option>
+                                <option value="13">This is item 2</option>
+                                <option value="14">This is item 3</option>
+                            </optgroup>
+                        </select><a class="btn btn-success" href="#" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">查詢</a>
+                        <div class="table-responsive table table-hover table-bordered results">
+                            <table class="table table-hover table-bordered">
+                                <thead class="bill-header cs">
+                                    <tr>
+                                        <th id="trs-hd" class="col-lg-1">管理員等級</th>
+                                        <th id="trs-hd" class="col-lg-1">帳號</th>
+                                        <th id="trs-hd" class="col-lg-1">姓名</th>
+                                        <th id="trs-hd" class="col-lg-1">生日</th>
+                                        <th id="trs-hd-1" class="col-lg-1">身分證</th>
+                                        <th id="trs-hd" class="col-lg-1">手機</th>
+                                        <th id="trs-hd-2" class="col-lg-2">Email</th>
+                                        <th id="trs-hd-2" class="col-lg-3">地址</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="warning no-result">
+                                        <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                                    </tr>
+                                    <tr>
+                                        <td><select>
+                                                <optgroup label="This is a group">
+                                                    <option value="12" selected="">This is item 1</option>
+                                                    <option value="13">This is item 2</option>
+                                                    <option value="14">This is item 3</option>
+                                                </optgroup>
+                                            </select></td>
+                                        <td>mm</td>
+                                        <td>chocolate</td>
+                                        <td>19990101</td>
+                                        <td>A123456789</td>
+                                        <td>0900988777</td>
+                                        <td>lanlan@gmail.com</td>
+                                        <td>台北市松山區八德路二段100號</td>
+                                    </tr>
+                                    <tr>
+                                        <td><select>
+                                                <optgroup label="This is a group">
+                                                    <option value="12" selected="">This is item 1</option>
+                                                    <option value="13">This is item 2</option>
+                                                    <option value="14">This is item 3</option>
+                                                </optgroup>
+                                            </select></td>
+                                        <td>mm</td>
+                                        <td>chocolate</td>
+                                        <td>19990101</td>
+                                        <td>A123456789</td>
+                                        <td>0900988777</td>
+                                        <td>lanlan@gmail.com</td>
+                                        <td>台北市松山區八德路二段102號</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    		<div th:replace="block/footer::footer-bottom"></div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+
+    <div th:replace="block/navbar::nav-header"></div>
+    
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar.js}"></script>
+    <script th:src="@{/js/agency.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js}"></script>
+    <script th:src="@{/js/Table-With-Search.js}"></script>
+    <script th:src="@{/js/theme.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!--導覽列==========================================================================-->
+<body>
+
+	<div th:fragment="nav-header">
+
+		<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
+			<div class="container"><a class="navbar-brand" href="#page-top">DEMO1</a>
+				<form class="search-form">
+					<div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
+				</form><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ms-auto text-uppercase">
+						<li class="nav-item"></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/view/home}">MENU</a></li>
+						<li class="nav-item"></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/view/cart}">CART</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/view/login}">LOGIN</a></li>
+						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">OTHER&nbsp;</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#hour">BUSSINESS HOUR</a>
+								<a class="dropdown-item" href="#contact">CONTACT US</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">MEMBER&nbsp;</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:href="@{/view/member/account}">account</a>
+								<a class="dropdown-item" th:href="@{/view/member/history}">history</a>
+                <a class="dropdown-item" th:href="@{/view/member/order}">order</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">MANGER&nbsp;</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:href="@{/view/manager/add}">add</a>
+								<a class="dropdown-item" th:href="@{/view/manager/checkMenu}">check menu</a>
+								<a class="dropdown-item" th:href="@{/view/manager/checkOrder}">check order</a>
+								<a class="dropdown-item" th:href="@{/view/manager/item}">item</a>
+								<a class="dropdown-item" th:href="@{/view/manager/member}">member</a>
+								<a class="dropdown-item" th:href="@{/view/manager/modify}">modify</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">SUPERMANGER&nbsp;</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:href="@{/view/superManager/function}">function</a>
+								<a class="dropdown-item" th:href="@{/view/superManager/qualification}">qualification</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	</div>
+
+</body>
+
+</html>
