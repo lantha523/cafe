@@ -1,4 +1,4 @@
-package com.origin.cafe.controller;
+package com.origin.cafe.controller.view;
 
 
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/view")
-public class ViewController {
+public class HomeViewController {
 
 	@GetMapping("/home")
 	public String home(Model theModel) {
 			return "index";
 	}
+
+
 }

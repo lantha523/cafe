@@ -14,14 +14,39 @@
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ms-auto text-uppercase">
 						<li class="nav-item"></li>
-						<li class="nav-item"><a class="nav-link" href="#services">MENU</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/view/home}">MENU</a></li>
 						<li class="nav-item"></li>
-						<li class="nav-item"><a class="nav-link" href="#cart">CART</a></li>
-						<li class="nav-item"><a class="nav-link" href="login.html">LOGIN</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/view/cart}">CART</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/view/login}">LOGIN</a></li>
 						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">OTHER&nbsp;</a>
-							<div class="dropdown-menu"><a class="dropdown-item" href="#hour">BUSSINESS HOUR</a><a class="dropdown-item" href="#contact">CONTACT US</a></div>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#hour">BUSSINESS HOUR</a>
+								<a class="dropdown-item" href="#contact">CONTACT US</a>
+							</div>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="login.html">MANGER</a></li>
+						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">MEMBER&nbsp;</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:href="@{/view/member/account}">account</a>
+								<a class="dropdown-item" th:href="@{/view/member/history}">history</a>
+                <a class="dropdown-item" th:href="@{/view/member/order}">order</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">MANGER&nbsp;</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:href="@{/view/manager/add}">add</a>
+								<a class="dropdown-item" th:href="@{/view/manager/checkMenu}">check menu</a>
+								<a class="dropdown-item" th:href="@{/view/manager/checkOrder}">check order</a>
+								<a class="dropdown-item" th:href="@{/view/manager/item}">item</a>
+								<a class="dropdown-item" th:href="@{/view/manager/member}">member</a>
+								<a class="dropdown-item" th:href="@{/view/manager/modify}">modify</a>
+							</div>
+						</li>
+						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">SUPERMANGER&nbsp;</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" th:href="@{/view/superManager/fuction}">fuction</a>
+								<a class="dropdown-item" th:href="@{/view/superManager/qualification}">qualification</a>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>
