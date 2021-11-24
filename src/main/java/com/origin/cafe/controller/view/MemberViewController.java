@@ -14,7 +14,7 @@ public class MemberViewController {
 	@GetMapping("/member/account")
 	public String account(Model theModel) {
 		String userName = SecurityUserUtils.getUserName();
-		System.out.println("path:/view/member/account, userName:" + userName);
+		System.out.println("path:/view/member/account, userName:" + userName); //此行可以取得帳號
 		return "/member/account";
 	}
 

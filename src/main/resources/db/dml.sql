@@ -20,7 +20,7 @@ insert into `member`
 ('王和平','0988333788','john321@gmail.com','台北市遼寧街25號','2000-01-01','img','1','2021-01-01','2021-01-01');
 
 insert into `dish` 
-(`dish_img`,`dish_name`,`dish_price`,`dish_note`,`dish_status`,`dish_quantity`,`cr_date`,`md_date`,`dish_type`) values
+(`dish_img`,`dish_name`,`dish_price`,`dish_note`,`dish_status`,`dish_quantity`,`cr_date`,`md_date`,`dish_type`) values 
 ('https://images.pexels.com/photos/9700895/pexels-photo-9700895.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500','推薦菜單1','250','好吃的燉飯','1','100','1990-07-04','1990-07-04','RECOMMEND');
 
 insert into `ord`
@@ -41,8 +41,8 @@ insert into `order_list`
 
 insert into `administrator`
 (`adm_name`,`adm_address`,`adm_phone`,`adm_level`,`adm_status`) values
-('金','台北市富錦街20號','0908766678','最高管理者','1'),
-('王和平','台北市遼寧街25號','0988333788','管理者','1');
+('金','台北市富錦街20號','0908766678','master','1'),
+('王和平','台北市遼寧街25號','0988333788','servant','1');
 
 
 INSERT INTO `users`

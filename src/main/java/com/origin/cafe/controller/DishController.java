@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.origin.cafe.dto.DishDTO;
 import com.origin.cafe.entity.Dish;
 import com.origin.cafe.service.DishService;
 
@@ -21,23 +22,23 @@ public class DishController {
 	@Autowired
 	private DishService dishService;
 	
-//	@Autowired  可以省略建構式並且直接裝配
-//	public DishController(DishService theDishService) {
-//		dishService = theDishService;
-//	}
+	@Autowired  //可以省略建構式並且直接裝配
+	public DishController(DishService theDishService) {
+		dishService = theDishService;
+	}
 	
-	// expose "/employees" and return list of employees
+//	// expose "/employees" and return list of employees
 		@GetMapping("/dishs")
-		public List<Dish> findAll() {
+		public List<DishDTO> findAll() {
 			return dishService.findAll();
 		}
 
-		// add mapping for GET /dishs/{dishNo}
+//		// add mapping for GET /dishs/{dishNo}
 		
 		@GetMapping("/dishs/{dishNo}")
-		public Dish getDish(@PathVariable int dishNo) {
+		public DishDTO getDish(@PathVariable int dishNo) {
 			
-			Dish theDish = dishService.findById(dishNo);
+			DishDTO theDish = dishService.findById(dishNo);
 			
 			if (theDish == null) {
 				throw new RuntimeException("Dish id not found - " + dishNo);
@@ -49,45 +50,45 @@ public class DishController {
 		// add mapping for POST /Dishs - add new Dish
 		
 		@PostMapping("/dishs")
-		public Dish addDish(@RequestBody Dish theDish) {
+		public DishDTO addDish(@RequestBody DishDTO theDishDTO) {
 			
 			// also just in case they pass an id in JSON ... set id to 0
 			// this is to force a save of new item ... instead of update
 			
-			theDish.setDishNo(0);
+			theDishDTO.setDishNo(0);
 			
-			dishService.save(theDish);
+			dishService.save(theDishDTO);
 			
-			return theDish;
+			return theDishDTO;
 		}
 		
 		// add mapping for PUT /Dishs - update existing Dish
 		
-		@PutMapping("/dishs")
-		public Dish updateDish(@RequestBody Dish theDish) {
-			
-			dishService.save(theDish);
-			
-			return theDish;
-		}
+//		@PutMapping("/dishs")
+//		public Dish updateDish(@RequestBody Dish theDish) {
+//			
+//			dishService.save(theDish);
+//			
+//			return theDish;
+//		}
 		
 		// add mapping for DELETE /Dishs/{dishNo} - delete Dish
 		
-		@DeleteMapping("/dishs/{dishNo}")
-		public String deleteDish(@PathVariable int dishNo) {
-			
-			Dish tempDish = dishService.findById(dishNo);
-			
-			// throw exception if null
-			
-			if (tempDish == null) {
-				throw new RuntimeException("Dish id not found - " + dishNo);
-			}
-			
-			dishService.deleteById(dishNo);
-			
-			return "Deleted dish id - " + dishNo;
-		}
+//		@DeleteMapping("/dishs/{dishNo}")
+//		public String deleteDish(@PathVariable int dishNo) {
+//			
+//			Dish tempDish = dishService.findById(dishNo);
+//			
+//			// throw exception if null
+//			
+//			if (tempDish == null) {
+//				throw new RuntimeException("Dish id not found - " + dishNo);
+//			}
+//			
+//			dishService.deleteById(dishNo);
+//			
+//			return "Deleted dish id - " + dishNo;
+//		}
 		
 	
 }

@@ -32,7 +32,7 @@ public class Dish {
 		private String dishName;
 		
 		@Column(name="dish_price")
-		private int dish_Price;
+		private int dishPrice;
 		
 		@Column(name="dish_note")
 		private String dishNote;
@@ -64,12 +64,12 @@ public class Dish {
 		}
 
 
-		public Dish(int dishNo, String dishImg, String dishName, int dish_Price, String dishNote, byte dishStatus, int dishQuantity, Date crDate,
+		public Dish(int dishNo, String dishImg, String dishName, int dishPrice, String dishNote, byte dishStatus, int dishQuantity, Date crDate,
 				Date mdDate, DishType dishType, List<OrderList> orderLists) {
 			this.dishNo = dishNo;
 			this.dishImg = dishImg;
 			this.dishName = dishName;
-			this.dish_Price = dish_Price;
+			this.dishPrice = dishPrice;
 			this.dishNote = dishNote;
 			this.dishStatus = dishStatus;
 			this.dishQuantity = dishQuantity;
@@ -109,13 +109,13 @@ public class Dish {
 		}
 
 
-		public int getDish_Price() {
-			return dish_Price;
+		public int getDishPrice() {
+			return dishPrice;
 		}
 
 
-		public void setDish_Price(int dish_Price) {
-			this.dish_Price = dish_Price;
+		public void setDishPrice(int dishPrice) {
+			this.dishPrice = dishPrice;
 		}
 
 
@@ -191,7 +191,7 @@ public class Dish {
 					"dishNo=" + dishNo +
 					", dishImg='" + dishImg + '\'' +
 					", dishName='" + dishName + '\'' +
-					", dish_Price=" + dish_Price +
+					", dishPrice=" + dishPrice +
 					", dishNote='" + dishNote + '\'' +
 					", dishStatus=" + dishStatus +
 					", dishQuantity=" + dishQuantity +

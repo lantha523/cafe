@@ -1,33 +1,31 @@
 package com.origin.cafe.dto;
 
-import com.origin.cafe.entity.Dish;
+import java.sql.Date;
+
 import com.origin.cafe.enums.DishType;
 
 public class DishDTO {
 	
-	private Dish dish ;
-	
-	private String dishImg;
+	private int dishNo;
 	
 	private String dishName; 
 	
+	private DishType dishType;
+	
 	private int dishPrice;
-	
-	private String dishNote;
-	
-	private byte dishStatus;
 	
 	private int dishQuantity;
 	
-	private DishType dishType;
-
-	public Dish getDish() {
-		return dish;
-	}
-
-	public void setDish(Dish dish) {
-		this.dish = dish;
-	}
+	private byte dishStatus;
+	
+	private String dishImg;
+	
+	private Date crDate;
+	
+	private Date mdDate;
+	
+	
+	
 
 	public String getDishImg() {
 		return dishImg;
@@ -35,6 +33,30 @@ public class DishDTO {
 
 	public void setDishImg(String dishImg) {
 		this.dishImg = dishImg;
+	}
+
+	public Date getCrDate() {
+		return crDate;
+	}
+
+	public void setCrDate(Date crDate) {
+		this.crDate = crDate;
+	}
+
+	public Date getMdDate() {
+		return mdDate;
+	}
+
+	public void setMdDate(Date mdDate) {
+		this.mdDate = mdDate;
+	}
+
+	public int getDishNo() {
+		return dishNo;
+	}
+
+	public void setDishNo(int dishNo) {
+		this.dishNo = dishNo;
 	}
 
 	public String getDishName() {
@@ -45,28 +67,20 @@ public class DishDTO {
 		this.dishName = dishName;
 	}
 
+	public DishType getDishType() {
+		return dishType;
+	}
+
+	public void setDishType(DishType dishType) {
+		this.dishType = dishType;
+	}
+
 	public int getDishPrice() {
 		return dishPrice;
 	}
 
 	public void setDishPrice(int dishPrice) {
 		this.dishPrice = dishPrice;
-	}
-
-	public String getDishNote() {
-		return dishNote;
-	}
-
-	public void setDishNote(String dishNote) {
-		this.dishNote = dishNote;
-	}
-
-	public byte getDishStatus() {
-		return dishStatus;
-	}
-
-	public void setDishStatus(byte dishStatus) {
-		this.dishStatus = dishStatus;
 	}
 
 	public int getDishQuantity() {
@@ -77,14 +91,24 @@ public class DishDTO {
 		this.dishQuantity = dishQuantity;
 	}
 
-	public DishType getDishType() {
-		return dishType;
+	public byte getDishStatus() {
+		return dishStatus;
 	}
 
-	public void setDishType(DishType dishType) {
-		this.dishType = dishType;
+	public void setDishStatus(byte dishStatus) {
+		this.dishStatus = dishStatus;
 	}
+
+	@Override
+	public String toString() {
+		return "DishDTO [dishNo=" + dishNo + ", dishName=" + dishName + ", dishType=" + dishType + ", dishPrice="
+				+ dishPrice + ", dishQuantity=" + dishQuantity + ", dishStatus=" + dishStatus + ", dishImg=" + dishImg
+				+ ", crDate=" + crDate + ", mdDate=" + mdDate + "]";
+	}
+
+
 	
+
 	
 
 }

@@ -1,6 +1,8 @@
 package com.origin.cafe.service.impl;
 
 import com.origin.cafe.service.DishService;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.origin.cafe.dto.DishDTO;
 import com.origin.cafe.entity.Dish;
 import com.origin.cafe.repository.DishRepository;
 
@@ -22,13 +25,30 @@ public class DishServiceImpl implements DishService {
 	}
 
 	@Override
-	public List<Dish> findAll() {
-		// TODO Auto-generated method stub
-		return dishRepository.findAll();
+	public List<DishDTO> findAll() {
+	//先抓取list的資料
+	List<Dish> dishList = dishRepository.findAll();
+	//創造一個list的容器把上面的資料放進去迴圈裡add			
+	List<DishDTO> dishDTOList = new ArrayList<DishDTO>();
+	DishDTO dishDTO = null;
+	
+	for(Dish dish: dishList ) {	
+	
+		DishDTO dto = new DishDTO();
+		dto.setDishNo(dish.getDishNo());
+		dto.setDishName(dish.getDishName());
+		dto.setDishType(dish.getDishType());
+		dto.setDishPrice(dish.getDishPrice());
+		dto.setDishQuantity(dish.getDishQuantity());
+		dto.setDishStatus(dish.getDishStatus());
+		dishDTOList.add(dto);
+	}
+	System.out.println("dishDTOList"+dishDTOList);
+		return dishDTOList;
 	}
 
 	@Override //< Optional為了解決不要傳回null值的問題 這樣比較好除錯 > isPresent 假設有值則是True 不然就是False
-	public Dish findById(int dishNo) {
+	public DishDTO findById(int dishNo) {
 		
 		Optional<Dish> result = dishRepository.findById(dishNo);
 		
@@ -40,18 +60,39 @@ public class DishServiceImpl implements DishService {
 			throw new RuntimeException("not find No-"+dishNo);
 		}
 		
-		return theDish;
+		DishDTO dto = new DishDTO();
+		dto.setDishNo(theDish.getDishNo());
+		dto.setDishName(theDish.getDishName());
+		dto.setDishType(theDish.getDishType());
+		dto.setDishPrice(theDish.getDishPrice());
+		dto.setDishQuantity(theDish.getDishQuantity());
+		dto.setDishStatus(theDish.getDishStatus());
+		
+		
+		return dto;
 	}
+//
+//	@Override
+//	public void save(DishDTO theDishDTO) {
+//		dishRepository.save(theDishDTO);
+//		
+//	}
+//
+//	@Override
+//	public void deleteById(int dishNo) {
+//		dishRepository.deleteById(dishNo);		
+//	}
 
 	@Override
-	public void save(Dish theDish) {
-		dishRepository.save(theDish);
+	public void save(DishDTO theDishDTO) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteById(int dishNo) {
-		dishRepository.deleteById(dishNo);		
+		// TODO Auto-generated method stub
+		
 	}
 
 }
