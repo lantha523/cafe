@@ -21,12 +21,12 @@ import com.origin.cafe.service.DishService;
 public class DishController {
 	@Autowired
 	private DishService dishService;
-	
-	@Autowired  //可以省略建構式並且直接裝配
-	public DishController(DishService theDishService) {
-		dishService = theDishService;
-	}
-	
+//
+//	@Autowired  //可以省略建構式並且直接裝配
+//	public DishController(DishService theDishService) {
+//		dishService = theDishService;
+//	}
+//
 //	// expose "/employees" and return list of employees
 		@GetMapping("/dishs")
 		public List<DishDTO> findAll() {
@@ -39,10 +39,6 @@ public class DishController {
 		public DishDTO getDish(@PathVariable int dishNo) {
 			
 			DishDTO theDish = dishService.findById(dishNo);
-			
-			if (theDish == null) {
-				throw new RuntimeException("Dish id not found - " + dishNo);
-			}
 			
 			return theDish;
 		}

@@ -2,6 +2,7 @@ package com.origin.cafe.service.impl;
 
 import com.origin.cafe.service.DishService;
 
+import com.origin.cafe.transfer.DTOTransfer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -59,17 +60,10 @@ public class DishServiceImpl implements DishService {
 		}else {
 			throw new RuntimeException("not find No-"+dishNo);
 		}
-		
-		DishDTO dto = new DishDTO();
-		dto.setDishNo(theDish.getDishNo());
-		dto.setDishName(theDish.getDishName());
-		dto.setDishType(theDish.getDishType());
-		dto.setDishPrice(theDish.getDishPrice());
-		dto.setDishQuantity(theDish.getDishQuantity());
-		dto.setDishStatus(theDish.getDishStatus());
-		
-		
-		return dto;
+
+		DishDTO dishDTO = DTOTransfer.dishEntityTransferDishDTO(theDish);
+
+		return dishDTO;
 	}
 //
 //	@Override
@@ -86,12 +80,18 @@ public class DishServiceImpl implements DishService {
 	@Override
 	public void save(DishDTO theDishDTO) {
 		// TODO Auto-generated method stub
+
+		Dish dish = DTOTransfer.dishDTOEntityTransferDishEntity(theDishDTO);
+
+		dishRepository.save(dish);
 		
 	}
 
 	@Override
 	public void deleteById(int dishNo) {
 		// TODO Auto-generated method stub
+
+		dishRepository.deleteById(dishNo);
 		
 	}
 
