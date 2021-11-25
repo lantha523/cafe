@@ -1,6 +1,8 @@
 package com.origin.cafe.transfer;
 
 
+import java.sql.Date;
+
 import com.origin.cafe.dto.DishDTO;
 import com.origin.cafe.entity.Dish;
 
@@ -20,11 +22,22 @@ public class DTOTransfer {
 
   }
 
-  public static Dish dishDTOEntityTransferDishEntity(DishDTO dishDto) {
+  public static Dish dishDTOTransferDishEntity(DishDTO dishDTO) {
 
     Dish dish = new Dish();
-    dish.setDishNo(dishDto.getDishNo());
-    dish.setDishName();
+    dish.setDishNo(dishDTO.getDishNo());
+    dish.setDishImg(dishDTO.getDishImg());
+    dish.setDishName(dishDTO.getDishName());
+    dish.setDishPrice(dishDTO.getDishPrice());
+    dish.setDishNote(dishDTO.getDishNote());
+    dish.setDishStatus(dishDTO.getDishStatus());
+    dish.setDishQuantity(dishDTO.getDishQuantity());
+//    dish.setCrDate(new java.sql.Date(new java.util.Date().getTime()));
+//    dish.setMdDate(new java.sql.Date(new java.util.Date().getTime()));
+    dish.setCrDate(Date.valueOf(dishDTO.getCrDate()));
+    dish.setMdDate(Date.valueOf(dishDTO.getMdDate()));
+    dish.setDishType(dishDTO.getDishType());
+    
 
     return dish;
 

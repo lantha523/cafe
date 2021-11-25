@@ -2,9 +2,12 @@ package com.origin.cafe.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.origin.cafe.enums.DishType;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DishDTO {
+	
 	
 	private int dishNo;
 	
@@ -20,12 +23,22 @@ public class DishDTO {
 	
 	private String dishImg;
 	
-	private Date crDate;
+	private String crDate;
 	
-	private Date mdDate;
+	private String mdDate;
+	
+	private String dishNote;
 	
 	
 	
+
+	public String getDishNote() {
+		return dishNote;
+	}
+
+	public void setDishNote(String dishNote) {
+		this.dishNote = dishNote;
+	}
 
 	public String getDishImg() {
 		return dishImg;
@@ -35,19 +48,21 @@ public class DishDTO {
 		this.dishImg = dishImg;
 	}
 
-	public Date getCrDate() {
+
+
+	public String getCrDate() {
 		return crDate;
 	}
 
-	public void setCrDate(Date crDate) {
+	public void setCrDate(String crDate) {
 		this.crDate = crDate;
 	}
 
-	public Date getMdDate() {
+	public String getMdDate() {
 		return mdDate;
 	}
 
-	public void setMdDate(Date mdDate) {
+	public void setMdDate(String mdDate) {
 		this.mdDate = mdDate;
 	}
 
@@ -103,8 +118,10 @@ public class DishDTO {
 	public String toString() {
 		return "DishDTO [dishNo=" + dishNo + ", dishName=" + dishName + ", dishType=" + dishType + ", dishPrice="
 				+ dishPrice + ", dishQuantity=" + dishQuantity + ", dishStatus=" + dishStatus + ", dishImg=" + dishImg
-				+ ", crDate=" + crDate + ", mdDate=" + mdDate + "]";
+				+ ", crDate=" + crDate + ", mdDate=" + mdDate + ", dishNote=" + dishNote + "]";
 	}
+
+
 
 
 	

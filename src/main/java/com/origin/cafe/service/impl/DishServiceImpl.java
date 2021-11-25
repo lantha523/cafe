@@ -65,25 +65,19 @@ public class DishServiceImpl implements DishService {
 
 		return dishDTO;
 	}
-//
-//	@Override
-//	public void save(DishDTO theDishDTO) {
-//		dishRepository.save(theDishDTO);
-//		
-//	}
-//
-//	@Override
-//	public void deleteById(int dishNo) {
-//		dishRepository.deleteById(dishNo);		
-//	}
 
 	@Override
-	public void save(DishDTO theDishDTO) {
+	public DishDTO save(DishDTO theDishDTO) {
 		// TODO Auto-generated method stub
+	    
 
-		Dish dish = DTOTransfer.dishDTOEntityTransferDishEntity(theDishDTO);
+		Dish dish = DTOTransfer.dishDTOTransferDishEntity(theDishDTO);
 
-		dishRepository.save(dish);
+		dish = dishRepository.save(dish);
+		
+		DishDTO dishDTO = DTOTransfer.dishEntityTransferDishDTO(dish);
+		
+		return dishDTO;
 		
 	}
 

@@ -22,6 +22,7 @@
 
 <body id="page-top">
 
+<!-- 				NAV BAR -->
 <div th:replace="block/navbar::nav-header"></div>
 
     <div id="wrapper">
@@ -38,6 +39,7 @@
                 </div>
             </div>
             <div></div>
+<!--             add information -->
             <div class="container-fluid">
                 <h3 class="text-dark mb-4">新增菜單</h3>
                 <div class="row mb-3">
@@ -87,27 +89,32 @@
                                         <p class="text-primary m-0 fw-bold">DISH</p>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                     <form action="#" th:action="@{/api/list/addDish}"
+						 								 th:object="${dishsDTO}" method="post">
+										<!-- <input type="hidden" th:field="*{dishNo}" /> -->
                                             <div class="row">
                                                 <div class="col">
-                                                    <div class="mb-3"><label class="form-label" for="username"><strong>DISH_NAME</strong></label><input class="form-control" type="text" id="username" placeholder="義大利麵" name="dishname"></div>
+                                                    <div class="mb-3"><label class="form-label" for="dish_name"><strong>DISH_NAME</strong>
+                                                    </label><input class="form-control" type="text" th:field="*{dishName}" id="dish_name" placeholder="義大利麵" name="dishname"></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="mb-3"><label class="form-label" for="email"><strong>DISH_PRICE</strong><br></label><input class="form-control" type="email" id="email" placeholder="$1000" name="price"></div>
+                                                    <div class="mb-3"><label class="form-label" for="dish_price"><strong>DISH_PRICE</strong>
+                                                    <br></label><input class="form-control" type="number" th:field="*{dishPrice}" id="dish_price" placeholder="$1000" name="dishprice"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
-                                                    <div class="mb-3"><label class="form-label" for="first_name"><strong>DISH_TYPE</strong><br></label><select class="form-select">
+                                                    <div class="mb-3"><label class="form-label" for="dish_type"><strong>DISH_TYPE</strong>
+                                                    <br></label><select th:field="*{dishType}" class="form-select">
                                                             <optgroup label="This is a group">
-                                                                <option value="12" selected="">This is item 1</option>
-                                                                <option value="13">This is item 2</option>
-                                                                <option value="14">This is item 3</option>
+                                                                <option value="0" selected="">請選擇</option>
+                                                                <option th:each="tempDishType: ${dishType}" th:value="${tempDishType.dishType}" th:text="${tempDishType.dishType}"/>
                                                             </optgroup>
                                                         </select></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="mb-3"><label class="form-label" for="last_name"><strong>DISH_QUANTITY</strong></label><input class="form-control" type="text" id="last_name" placeholder="100" name="dishQuantity"></div>
+                                                    <div class="mb-3"><label class="form-label" for="last_name"><strong>DISH_QUANTITY</strong>
+                                                    </label><input class="form-control" type="number" th:field="*{dishQuantity}" id="dish_quantity" placeholder="100" name="dishQuantity"></div>
                                                 </div>
                                             </div>
                                             <div class="mb-3"></div>
@@ -126,8 +133,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <form>
-                                    <div class="mb-3"><label class="form-label" for="signature"><strong>Content</strong><br></label><textarea class="form-control" id="signature" rows="4" name="signature"></textarea></div>
+                                <form action="#" th:action="@{/api/list/addDish}"
+						 								 th:object="${dishsDTO}" method="post">
+                                    <div class="mb-3"><label class="form-label" for="*{dishNote}"><strong>Content</strong>
+                                    <br></label><textarea class="form-control" th:field="*{dishNote}" id="signature" rows="4" name="signature"></textarea></div>
                                     <div class="mb-3"></div>
                                     <div class="mb-3"></div>
                                 </form>
@@ -138,7 +147,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <div align="center"><button class="btn btn-primary btn-sm" type="submit">modify Settings</button></div>
+                    <div align="center"><button class="btn btn-primary btn-sm" type="submit">add Settings</button></div>
                 </div>
             </div>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>

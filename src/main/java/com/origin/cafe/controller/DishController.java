@@ -3,8 +3,11 @@ package com.origin.cafe.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,7 +19,8 @@ import com.origin.cafe.dto.DishDTO;
 import com.origin.cafe.entity.Dish;
 import com.origin.cafe.service.DishService;
 
-@RestController
+//@RestController
+@Controller
 @RequestMapping("/api")
 public class DishController {
 	@Autowired
@@ -45,7 +49,7 @@ public class DishController {
 		
 		// add mapping for POST /Dishs - add new Dish
 		
-		@PostMapping("/dishs")
+		@PostMapping("/dishs/add")
 		public DishDTO addDish(@RequestBody DishDTO theDishDTO) {
 			
 			// also just in case they pass an id in JSON ... set id to 0
@@ -53,9 +57,9 @@ public class DishController {
 			
 			theDishDTO.setDishNo(0);
 			
-			dishService.save(theDishDTO);
+			DishDTO newDishDTO = dishService.save(theDishDTO);
 			
-			return theDishDTO;
+			return newDishDTO;
 		}
 		
 		// add mapping for PUT /Dishs - update existing Dish
@@ -85,6 +89,43 @@ public class DishController {
 //			
 //			return "Deleted dish id - " + dishNo;
 //		}
+		@GetMapping("/dishLists")
+		public String listDishsDTO(Model theModel) {
+			
+			List<DishDTO> theDishsDTO = dishService.findAll();
+			
+			theModel.addAttribute("dishsDTO",theDishsDTO);
+			
+			return "manager/checkmenu";	
+			
+		}
+		
+		@GetMapping("/showDishFormForAdd")
+		public String showDishFormForAdd(Model theModel) {
+			
+			//create medel attribute to bind for data
+			DishDTO theDishDTO = new DishDTO();
+			
+			theModel.addAttribute("dishsDTO", theDishDTO);
+			
+			return "manager/add";		
+		}
+		
+//		@GetMapping("/showDishType")
+//		public String showDishType(Model theModel) {
+//			
+//			
+//		}
+		
+		
+		@PostMapping("/list/addDish")
+		public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
+			
+			dishService.save(theDishDTO);
+			
+			return "redirect:/api/dishLists";
+			
+		}
 		
 	
 }

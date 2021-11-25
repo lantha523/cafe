@@ -13,7 +13,7 @@ public interface DishService {
 	public DishDTO findById(int dishNo);
 	
 //	public void save(Dish theDish);
-	public void save(DishDTO theDishDTO);
+	public DishDTO save(DishDTO theDishDTO);
 	
 	public void deleteById(int dishNo);
 	

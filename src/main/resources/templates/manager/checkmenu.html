@@ -49,7 +49,10 @@
                                 <option value="13">This is item 2</option>
                                 <option value="14">This is item 3</option>
                             </optgroup>
-                        </select><a class="btn btn-success" href="#" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">serach</a><a class="btn btn-info" href="manger/add.html" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">新增菜單</a>
+                        </select><a class="btn btn-success" href="#" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">
+                        serach</a>
+                        <a class="btn btn-info" th:href="@{/api/showDishFormForAdd}" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">
+                        新增菜單</a>
                         <div class="table-responsive table table-hover table-bordered results">
                             <table class="table table-hover table-bordered">
                                 <thead class="bill-header cs">
@@ -64,36 +67,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="warning no-result">
+<!--                                     <tr class="warning no-result">
                                         <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                                    </tr> -->
+                                    <tr th:each="tempDishDTO : ${dishsDTO}">   <!-- ${dishsDTO}"來自theModel.addAttribute("dishsDTO", -->
+                                    
+                                        <td th:text="${tempDishDTO.dishNo}" />
+                                        <td th:text="${tempDishDTO.dishName}" />
+                                        <td th:text="${tempDishDTO.dishType}" />
+                                        <td th:text="${tempDishDTO.dishPrice}" />
+                                        <td th:text="${tempDishDTO.dishQuantity}" />
+                                        <td th:text="${tempDishDTO.dishStatus}" />
+                                        <td>
+                                        <button class="btn btn-success" style="margin-left: 5px;" type="submit" onclick="&quot;location.href=&#39;manger/item.html&#39;&quot;">
+                                        <i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;">
+                                        <i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit">
+                                        <i class="fa fa-trash" style="font-size: 15px;"></i></button>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>rice</td>
-                                        <td>rice</td>
-                                        <td>Bootstrap Stuido</td>
-                                        <td>100</td>
-                                        <td>上架中</td>
-                                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit" onclick="&quot;location.href=&#39;manger/item.html&#39;&quot;"><i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;"><i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash" style="font-size: 15px;"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>rice</td>
-                                        <td>noodle</td>
-                                        <td>Bootstrap Stuido</td>
-                                        <td>100</td>
-                                        <td>下架中</td>
-                                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;"><i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash" style="font-size: 15px;"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>noodle</td>
-                                        <td>soup</td>
-                                        <td>Bootstrap Stuido</td>
-                                        <td>100</td>
-                                        <td>上架中</td>
-                                        <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;"><i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash" style="font-size: 15px;"></i></button></td>
-                                    </tr>
+                                  
                                 </tbody>
                             </table>
                         </div>
