@@ -7,7 +7,7 @@ import com.origin.cafe.entity.Dish;
 
 public interface DishService {
 	
-	public List<DishDTO> findAll();
+//	public List<DishDTO> findAll();
 	
 //	public Dish findById(int dishNo);
 	public DishDTO findById(int dishNo);
@@ -17,5 +17,10 @@ public interface DishService {
 	
 	public void deleteById(int dishNo);
 	
+	//查詢餐點狀態
+	public List<DishDTO> findByStatus(int dishStatus);
+
+	//查詢餐點狀態和全部狀態
+	List<DishDTO> findAll(Integer dishStatus);
 
 }

@@ -33,7 +33,7 @@ create table `dish`
 	dish_type varchar(255) not null comment '餐點種類', 
 	primary key (dish_no));
 
--- 餐點狀態 0:下架 1:上架
+-- 餐點狀態 0:下架 1:上架 2:售完
 
 -- ===========order table================
 drop table if exists `ord`;
@@ -126,6 +126,31 @@ alter table `adm_authority` add constraint `adm_authority_ibfk_2` foreign key (f
 alter table `ord` add constraint ord_ibfk_1 foreign key (mem_no) references member (mem_no);
 alter table order_list add constraint order_list_ibfk_1 foreign key (ord_no) references `ord` (ord_no);
 alter table order_list add constraint order_list_ibfk_2 foreign key (dish_no) references dish (dish_no);
+
+
+
+
+-- ===========dish_category TABLE================
+DROP TABLE IF EXISTS `dish_category`;
+CREATE TABLE `dish_category` 
+(dish_type int(10) NOT NULL AUTO_INCREMENT COMMENT '餐點類型編號', 
+	dish_type_name varchar(255) COMMENT '餐點類型',
+    PRIMARY KEY (dish_category_no));
+    
+INSERT INTO `dish_category`
+(`dish_type`,`dish_type_name`) VALUES 
+('1','RICE');
+INSERT INTO `dish_category`
+(`dish_type`,`dish_type_name`) VALUES 
+('2','NOODLE');
+INSERT INTO `dish_category`
+(`dish_type`,`dish_type_name`) VALUES 
+('3','SOUP');
+INSERT INTO `dish_category`
+(`dish_type`,`dish_type_name`) VALUES 
+('4','RECOMMEND');
+
+alter table `dish` add constraint `dish_ibfk_1` foreign key (dish_type) references dish_category (dish_type);
 
 
 

@@ -32,10 +32,10 @@ public class DTOTransfer {
     dish.setDishNote(dishDTO.getDishNote());
     dish.setDishStatus(dishDTO.getDishStatus());
     dish.setDishQuantity(dishDTO.getDishQuantity());
-//    dish.setCrDate(new java.sql.Date(new java.util.Date().getTime()));
-//    dish.setMdDate(new java.sql.Date(new java.util.Date().getTime()));
-    dish.setCrDate(Date.valueOf(dishDTO.getCrDate()));
-    dish.setMdDate(Date.valueOf(dishDTO.getMdDate()));
+    dish.setCrDate(new java.sql.Date(new java.util.Date().getTime()));
+    dish.setMdDate(new java.sql.Date(new java.util.Date().getTime()));
+//    dish.setCrDate(Date.valueOf(dishDTO.getCrDate()));
+//    dish.setMdDate(Date.valueOf(dishDTO.getMdDate()));
     dish.setDishType(dishDTO.getDishType());
     
 

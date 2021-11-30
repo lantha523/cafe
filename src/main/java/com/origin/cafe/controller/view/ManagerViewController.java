@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/view")
@@ -34,11 +37,20 @@ public class ManagerViewController {
 	@GetMapping("/manager/checkMenu")
 	public String listDishsDTO(Model theModel) {
 		
-		List<DishDTO> theDishsDTO = dishService.findAll();
+		List<DishDTO> theDishsDTO = dishService.findAll(1);
 		
 		theModel.addAttribute("dishsDTO",theDishsDTO);
 		
 		return "manager/checkmenu";	
+		
+	}
+	
+	@PostMapping("/manager/add/addDish")
+	public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
+		
+		dishService.save(theDishDTO);
+		
+		return "redirect:/view/manager/add";
 		
 	}
 
@@ -59,9 +71,25 @@ public class ManagerViewController {
 	}
 
 	@GetMapping("/manager/modify")
-	public String modify(Model theModel) {
-		return "/manager/modify";
+	public String showDishFormForUpdate(Model theModel) {
+		
+		//create medel attribute to bind for data
+		DishDTO theDishDTO = new DishDTO();
+		
+		theModel.addAttribute("dishsDTO", theDishDTO);
+		
+		return "manager/modify";		
 	}
+//	@GetMapping("/manager/modify")
+//	public String showDishFormForUpdate(@RequestParam("dishDishNo") int theDishNo,Model theModel) {
+//		
+//		//create medel attribute to bind for data
+//		DishDTO theDishDTO =dishService.findById(theDishNo);
+//		
+//		theModel.addAttribute("dishsDTO", theDishDTO);
+//		
+//		return "manager/modify";		
+//	}
 
 
 }

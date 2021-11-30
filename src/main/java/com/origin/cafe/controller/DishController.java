@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.origin.cafe.dto.DishDTO;
@@ -31,36 +32,37 @@ public class DishController {
 //		dishService = theDishService;
 //	}
 //
-//	// expose "/employees" and return list of employees
-		@GetMapping("/dishs")
-		public List<DishDTO> findAll() {
-			return dishService.findAll();
-		}
-
-//		// add mapping for GET /dishs/{dishNo}
-		
-		@GetMapping("/dishs/{dishNo}")
-		public DishDTO getDish(@PathVariable int dishNo) {
-			
-			DishDTO theDish = dishService.findById(dishNo);
-			
-			return theDish;
-		}
-		
-		// add mapping for POST /Dishs - add new Dish
-		
-		@PostMapping("/dishs/add")
-		public DishDTO addDish(@RequestBody DishDTO theDishDTO) {
-			
-			// also just in case they pass an id in JSON ... set id to 0
-			// this is to force a save of new item ... instead of update
-			
-			theDishDTO.setDishNo(0);
-			
-			DishDTO newDishDTO = dishService.save(theDishDTO);
-			
-			return newDishDTO;
-		}
+//	// expose "/employees" and return list of employees  
+	//從這邊把取得的資料給ajex 再到checkmenu寫一段ajex呈現在畫面上 
+//		@GetMapping("/dishs")
+//		public List<DishDTO> findAll() {
+//			return dishService.findAll();
+//		}
+//
+////		// add mapping for GET /dishs/{dishNo}
+//		
+//		@GetMapping("/dishs/{dishNo}")
+//		public DishDTO getDish(@PathVariable int dishNo) {
+//			
+//			DishDTO theDish = dishService.findById(dishNo);
+//			
+//			return theDish;
+//		}
+//		
+//		// add mapping for POST /Dishs - add new Dish
+//		
+//		@PostMapping("/dishs/add")
+//		public DishDTO addDish(@RequestBody DishDTO theDishDTO) {
+//			
+//			// also just in case they pass an id in JSON ... set id to 0
+//			// this is to force a save of new item ... instead of update
+//			
+//			theDishDTO.setDishNo(0);
+//			
+//			DishDTO newDishDTO = dishService.save(theDishDTO);
+//			
+//			return newDishDTO;
+//		}
 		
 		// add mapping for PUT /Dishs - update existing Dish
 		
@@ -89,43 +91,55 @@ public class DishController {
 //			
 //			return "Deleted dish id - " + dishNo;
 //		}
-		@GetMapping("/dishLists")
-		public String listDishsDTO(Model theModel) {
-			
-			List<DishDTO> theDishsDTO = dishService.findAll();
-			
-			theModel.addAttribute("dishsDTO",theDishsDTO);
-			
-			return "manager/checkmenu";	
-			
-		}
+//		@GetMapping("/dishLists")
+//		public String listDishsDTO(Model theModel) {
+//	    //
+//			List<DishDTO> theDishsDTO = dishService.findAll();
+//			
+//			theModel.addAttribute("dishsDTO",theDishsDTO);
+//			
+//			return "manager/checkmenu";	
+//			
+//		}
+//		
+//		@GetMapping("/showDishFormForAdd")
+//		public String showDishFormForAdd(Model theModel) {
+//			
+//			//create medel attribute to bind for data
+//			DishDTO theDishDTO = new DishDTO();
+//			
+//			theModel.addAttribute("dishsDTO", theDishDTO);
+//			
+//			return "manager/add";		
+//		}
 		
-		@GetMapping("/showDishFormForAdd")
-		public String showDishFormForAdd(Model theModel) {
-			
-			//create medel attribute to bind for data
-			DishDTO theDishDTO = new DishDTO();
-			
-			theModel.addAttribute("dishsDTO", theDishDTO);
-			
-			return "manager/add";		
-		}
+//		@GetMapping("/showDishFormForUpdate")
+//		public String showDishFormForUpdate(@RequestParam("dishNo") int theDishNo, Model theModel) {
+//			
+//			//create medel attribute to bind for data
+//			DishDTO theDishDTO = new DishDTO();
+//			
+//			theModel.addAttribute("dishsDTO", theDishDTO);
+//			
+//			return "manager/modify";		
+//		}
 		
 //		@GetMapping("/showDishType")
 //		public String showDishType(Model theModel) {
 //			
 //			
+//			
 //		}
 		
 		
-		@PostMapping("/list/addDish")
-		public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
-			
-			dishService.save(theDishDTO);
-			
-			return "redirect:/api/dishLists";
-			
-		}
+//		@PostMapping("/list/addDish")
+//		public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
+//			
+//			dishService.save(theDishDTO);
+//			
+//			return "redirect:/api/dishLists";
+//			
+//		}
 		
 	
 }

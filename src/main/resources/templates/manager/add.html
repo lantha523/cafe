@@ -89,7 +89,7 @@
                                         <p class="text-primary m-0 fw-bold">DISH</p>
                                     </div>
                                     <div class="card-body">
-                                     <form action="#" th:action="@{/api/list/addDish}"
+                                     <form action="#" th:action="@{/view/manager/add/addDish}"
 						 								 th:object="${dishsDTO}" method="post">
 										<!-- <input type="hidden" th:field="*{dishNo}" /> -->
                                             <div class="row">
@@ -107,8 +107,11 @@
                                                     <div class="mb-3"><label class="form-label" for="dish_type"><strong>DISH_TYPE</strong>
                                                     <br></label><select th:field="*{dishType}" class="form-select">
                                                             <optgroup label="This is a group">
-                                                                <option value="0" selected="">請選擇</option>
-                                                                <option th:each="tempDishType: ${dishType}" th:value="${tempDishType.dishType}" th:text="${tempDishType.dishType}"/>
+                                                                <option value="" selected="">請選擇</option>
+                                                                <option value="RECOMMEND" selected="">RECOMMEND</option>
+                                                                <option value="RICE" selected="">RICE</option>
+                                                                <option value="NOODLE" selected="">NOODLE</option>
+                                                                <option value="SOUP" selected="">SOUP</option>  
                                                             </optgroup>
                                                         </select></div>
                                                 </div>
@@ -116,6 +119,16 @@
                                                     <div class="mb-3"><label class="form-label" for="last_name"><strong>DISH_QUANTITY</strong>
                                                     </label><input class="form-control" type="number" th:field="*{dishQuantity}" id="dish_quantity" placeholder="100" name="dishQuantity"></div>
                                                 </div>
+                                                <div class="col-md-6">                             
+                                    				<div class="mb-3"><label class="form-label" for="*{dishNote}"><strong>Content</strong>
+                                    					<br></label><textarea class="form-control" th:field="*{dishNote}" id="note" rows="4" name="note"></textarea></div>
+                                    						<div class="mb-3"></div>    
+                            					</div>
+                                                <div class="row">
+                									<div class="col">
+                    									<div align="center"><button class="btn btn-primary btn-sm" type="submit">add Settings</button></div>
+                									</div>
+            									</div>
                                             </div>
                                             <div class="mb-3"></div>
                                         </form>
@@ -126,7 +139,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow mb-5">
+                
+<!--                 <div class="card shadow mb-5">
                     <div class="card-header py-3">
                         <p class="text-primary m-0 fw-bold">DISH_NOTE</p>
                     </div>
@@ -149,7 +163,8 @@
                 <div class="col">
                     <div align="center"><button class="btn btn-primary btn-sm" type="submit">add Settings</button></div>
                 </div>
-            </div>
+            </div> -->
+            
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
 
@@ -159,6 +174,7 @@
     <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js}"></script>
     <script th:src="@{/js/Table-With-Search.js}"></script>
     <script th:src="@{/js/theme.js}"></script>
+    
 </body>
 
 </html>

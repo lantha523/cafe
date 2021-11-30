@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,26 +25,57 @@ public class DishServiceImpl implements DishService {
 	public DishServiceImpl(DishRepository theDishRepository) {
 		dishRepository = theDishRepository;
 	}
-
+//		@Override
+//		public List<DishDTO> findAll() {
+//		//先抓取list的資料
+//		List<Dish> dishList = dishRepository.findAll();
+//		//創造一個list的容器把上面的資料放進去迴圈裡add			
+//		List<DishDTO> dishDTOList = new ArrayList<DishDTO>();
+//		DishDTO dishDTO = null;
+//		
+//		for(Dish dish: dishList ) {	
+//		
+////			DishDTO dto = new DishDTO();
+////			dto.setDishNo(dish.getDishNo());
+////			dto.setDishName(dish.getDishName());
+////			dto.setDishType(dish.getDishType());
+////			dto.setDishPrice(dish.getDishPrice());
+////			dto.setDishQuantity(dish.getDishQuantity());
+////			dto.setDishStatus(dish.getDishStatus());
+//		DishDTO dto = DTOTransfer.dishEntityTransferDishDTO(dish);
+//			dishDTOList.add(dto);	
+//		}
+//		
+//		System.out.println("dishDTOList"+dishDTOList);
+//			return dishDTOList;
+//		}
 	@Override
-	public List<DishDTO> findAll() {
-	//先抓取list的資料
-	List<Dish> dishList = dishRepository.findAll();
+	public List<DishDTO> findAll(Integer dishStatus) {
+		List<Dish> dishList=null;
+		if(dishStatus==null) {
+			//先抓取list的資料
+			dishList = dishRepository.findAll();
+		}else {
+			dishList = dishRepository.findByDishStatus(dishStatus);
+		}
+	
 	//創造一個list的容器把上面的資料放進去迴圈裡add			
 	List<DishDTO> dishDTOList = new ArrayList<DishDTO>();
 	DishDTO dishDTO = null;
 	
 	for(Dish dish: dishList ) {	
 	
-		DishDTO dto = new DishDTO();
-		dto.setDishNo(dish.getDishNo());
-		dto.setDishName(dish.getDishName());
-		dto.setDishType(dish.getDishType());
-		dto.setDishPrice(dish.getDishPrice());
-		dto.setDishQuantity(dish.getDishQuantity());
-		dto.setDishStatus(dish.getDishStatus());
-		dishDTOList.add(dto);
+//		DishDTO dto = new DishDTO();
+//		dto.setDishNo(dish.getDishNo());
+//		dto.setDishName(dish.getDishName());
+//		dto.setDishType(dish.getDishType());
+//		dto.setDishPrice(dish.getDishPrice());
+//		dto.setDishQuantity(dish.getDishQuantity());
+//		dto.setDishStatus(dish.getDishStatus());
+	DishDTO dto = DTOTransfer.dishEntityTransferDishDTO(dish);
+		dishDTOList.add(dto);	
 	}
+	
 	System.out.println("dishDTOList"+dishDTOList);
 		return dishDTOList;
 	}
@@ -53,15 +85,15 @@ public class DishServiceImpl implements DishService {
 		
 		Optional<Dish> result = dishRepository.findById(dishNo);
 		
-		Dish theDish = null;
+		Dish theDishNo = null;
 		
 		if (result.isPresent()) {
-			theDish = result.get();
+			theDishNo = result.get();
 		}else {
 			throw new RuntimeException("not find No-"+dishNo);
 		}
 
-		DishDTO dishDTO = DTOTransfer.dishEntityTransferDishDTO(theDish);
+		DishDTO dishDTO = DTOTransfer.dishEntityTransferDishDTO(theDishNo);
 
 		return dishDTO;
 	}
@@ -89,4 +121,22 @@ public class DishServiceImpl implements DishService {
 		
 	}
 
+	@Override
+	public List<DishDTO> findByStatus(int dishStatus) {
+		List<Dish> dishList = dishRepository.findByDishStatus(dishStatus);
+		List<DishDTO> dishDTOList = new ArrayList<DishDTO>();
+		DishDTO dishDTO = null;
+		
+		for(Dish dish: dishList ) {
+			DishDTO dto = new DishDTO();
+			dto.setDishType(dish.getDishType());
+			dishDTOList.add(dto);
+			
+		}
+
+		return dishDTOList;
+	}
 }
+
+
+
