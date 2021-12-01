@@ -34,10 +34,10 @@ public class ManagerViewController {
 		return "manager/add";		
 	}
 
-	@GetMapping("/manager/checkMenu")
+	@GetMapping("/manager/checkmenu")
 	public String listDishsDTO(Model theModel) {
 		
-		List<DishDTO> theDishsDTO = dishService.findAll(1);
+		List<DishDTO> theDishsDTO = dishService.findAll(null);//??
 		
 		theModel.addAttribute("dishsDTO",theDishsDTO);
 		
@@ -45,14 +45,21 @@ public class ManagerViewController {
 		
 	}
 	
-	@PostMapping("/manager/add/addDish")
-	public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
-		
-		dishService.save(theDishDTO);
-		
-		return "redirect:/view/manager/add";
-		
-	}
+//	@PostMapping("/manager/add/addDish")
+//	public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
+//		
+//		dishService.save(theDishDTO);
+//		
+//		return "redirect:/view/manager/add";
+//		
+//	}
+	
+//	@GetMapping("/manager/add/addDish")
+//	public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
+//		
+//		return "manager/add";
+//		
+//	}
 
 
 	@GetMapping("/manager/checkOrder")
@@ -74,12 +81,13 @@ public class ManagerViewController {
 	public String showDishFormForUpdate(Model theModel) {
 		
 		//create medel attribute to bind for data
-		DishDTO theDishDTO = new DishDTO();
-		
-		theModel.addAttribute("dishsDTO", theDishDTO);
+//		DishDTO theDishDTO = new DishDTO();
+//		
+//		theModel.addAttribute("dishsDTO", theDishDTO);
 		
 		return "manager/modify";		
 	}
+	
 //	@GetMapping("/manager/modify")
 //	public String showDishFormForUpdate(@RequestParam("dishDishNo") int theDishNo,Model theModel) {
 //		

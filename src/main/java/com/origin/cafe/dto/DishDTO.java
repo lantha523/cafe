@@ -19,7 +19,7 @@ public class DishDTO {
 	
 	private int dishQuantity;
 	
-	private byte dishStatus;
+	private String dishStatus;
 	
 	private String dishImg;
 	
@@ -106,11 +106,11 @@ public class DishDTO {
 		this.dishQuantity = dishQuantity;
 	}
 
-	public byte getDishStatus() {
+	public String getDishStatus() {
 		return dishStatus;
 	}
 
-	public void setDishStatus(byte dishStatus) {
+	public void setDishStatus(String dishStatus) {
 		this.dishStatus = dishStatus;
 	}
 

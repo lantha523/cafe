@@ -18,7 +18,6 @@
     <link rel="stylesheet" th:href="@{/css/Table-With-Search-1.css}">
     <link rel="stylesheet" th:href="@{/css/Table-With-Search.css}">
     <link rel="stylesheet" th:href="@{/css/vanilla-zoom.min.css}">
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
   <!-- 以下兩行為csrf設定 https://blog.csdn.net/Dongguabai/article/details/81150989 -->
   <meta name="_csrf" th:content="${_csrf.token}" />
   <meta name="_csrf_header" th:content="${_csrf.headerName}" />
@@ -57,7 +56,7 @@
                             </optgroup>
                         </select><a class="btn btn-success" href="#" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">
                         serach</a>
-                        <a class="btn btn-info" th:href="@{/api/showDishFormForAdd}" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">
+                        <a class="btn btn-info" th:href="@{/api/add}" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">
                         新增菜單</a>
                         <div class="table-responsive table table-hover table-bordered results">
                             <table class="table table-hover table-bordered">
@@ -72,12 +71,60 @@
                                         <th id="trs-hd" class="col-lg-1">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody id="dishlist">
-                           
+                                <tbody>
+                             <!--    <tbody id="dishlist"> -->
+                                
+<!--               <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">會員資料修改</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						
+						 <form action="" id="" class="">
+							<div class="modal-body">
+								<label for="">DISH. No.</label><br>
+								<input type="text" id="dishNo" name="dishNo" class="form-control" disabled>
+								<label for="">DISH_NAME</label><br>
+								<input type="text" id="dishName" name="dishName" class="form-control">
+								<label for="">DISH_TYPE</label><br>
+								<input type="radio" name="dishType" value="0" id="status0">
+								<label for="status0">RICE</label>
+								<input type="radio" name="dishType" value="1" id="status1">
+								<label for="status1">NOODLE</label>
+								<input type="radio" name="dishType" value="2" id="status2">
+								<label for="status2">SOUP</label>
+								<input type="radio" name="dishType" value="2" id="status2">
+								<label for="status2">RECOMMEND</label><br>
+								
+								<label for="">DISH_PRICE</label><br> 
+								<input type="text" id="dishPrice" name="dishPrice" class="form-control">
+								<label for="">DISH數量</label><br>
+								<input type="text" id="dishQuantity" name="dishQuantity" class="form-control">
+								
+								<label for="">DH_STATUS</label><br>
+								<input type="radio" name="dishStatus" value="0" id="status0">
+								<label for="status0">下架</label>
+								<input type="radio" name="dishStatus" value="1" id="status1">							
+								<label for="status1">上架</label>
+								<input type="radio" name="dishStatus" value="2" id="status2">
+								<label for="status2">售完</label>
+							</div>
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+								<button type="button" class="btn btn-primary" id="formSubmit">修改</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div> -->
+	
 <!--                                     <tr class="warning no-result">
                                         <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
                                     </tr> -->
-<!--                                     <tr th:each="tempDishDTO : ${dishsDTO}">   ${dishsDTO}"來自theModel.addAttribute("dishsDTO",
+                                    <tr th:each="tempDishDTO : ${dishsDTO}">   <!-- ${dishsDTO}"來自theModel.addAttribute("dishsDTO", -->
                                     
                                         <td th:text="${tempDishDTO.dishNo}" />
                                         <td th:text="${tempDishDTO.dishName}" />
@@ -85,13 +132,28 @@
                                         <td th:text="${tempDishDTO.dishPrice}" />
                                         <td th:text="${tempDishDTO.dishQuantity}" />
                                         <td th:text="${tempDishDTO.dishStatus}" />
-                                        <td>
-                                        <button class="btn btn-success" style="margin-left: 5px;" type="submit" onclick="&quot;location.href=&#39;manger/item.html&#39;&quot;">
-                                        <i class="fa fa-search" style="font-size: 15px;"></i></button><button class="btn btn-primary" type="submit" style="margin-left: 5px;">
-                                        <i class="fa fa-wrench"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit">
+<!--                                    <td>
+                                        <button class="btn btn-success" style="margin-left: 5px;" type="submit" >
+                                        <i class="fa fa-search" style="font-size: 15px;"></i></button>
+                                        <button class="btn btn-primary" type="submit" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-memid="${tempDishDTO.dishNo}">
+                                        <i class="fa fa-wrench"></i></button>
+                                        <button class="btn btn-danger" style="margin-left: 5px;" type="submit" onclick="if(!(confirm('Are you shure you want to delete this dish?'))) return false">
                                         <i class="fa fa-trash" style="font-size: 15px;"></i></button>
-                                        </td>
-                                    </tr> -->
+                                        </td> -->
+                                        <td>
+										<!-- Add update button/link -->
+										<a th:href="@{/api/showDishFormForUpdate(dishDishNo=${tempDishDTO.dishNo})}" 
+										class="btn btn-info btn-sm">
+										UPDATE
+										</a>
+										<!-- Add delete button/link -->
+										<a th:href="@{/api/delete(dishDishNo=${tempDishDTO.dishNo})}" 
+										class="btn btn-danger btn-sm"
+										onclick="if(!(confirm('Are you shure you want to delete this employee?'))) return false">
+										DELETE
+										</a>
+										</td>
+                                    </tr> 
                                 
                                 </tbody>
                             </table>
@@ -112,24 +174,14 @@
     <script th:src="@{/js/theme.js}"></script>
         <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
-/*          $.ajax({
-            url: "https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=6",
-            type: "GET",
-            method: 'GET',
-   	     	dataType: 'json',
-            success:function(data) {
-                $("#demo").html(data);
-            }
-        });
-    });  */
-    
+ /*      
     var header = $("meta[name='_csrf_header']").attr("content");
 	var token = $("meta[name='_csrf']").attr("content");
 	
 	AjaxDishs(); //進入點
 
 /*     跟資料庫請求菜單列表 */
- function AjaxDishs() {
+/* function AjaxDishs() {
 		$.ajax({
    	     url: 'http://localhost:8083/orginalcafe/api/dishs',
    	     type: 'GET',
@@ -151,7 +203,7 @@
    	        	<td>${res[i].dishPrice}</td>
    	        	<td>${res[i].dishQuantity}</td>
    	        	<td>${distypeStr}</td>
-   	        	<td><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">編輯</button></td>
+   	        	<td><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-dishNo="${res[i].dishNo}" >編輯</button></td>
    	        	<tr>`
    	        $('#dishlist').append(tmp);
    	        }
@@ -161,20 +213,20 @@
    	    	 alert("error");
    	         },
    	 });
-   };
+   };   */
    
    /*     跟資料庫請求餐點上下架列表  秀出0,1,2*/
    
-   $.ajax({
+  /*  $.ajax({
        url:"" ,
        type: "GET" ,
        success: function(data) {
                showDishStatus(data);
        }
-   });
+   }); */
    
    //判斷上下架
-    function dishType(dishStatus){
+   /*  function dishType(dishStatus){
 	   console.log('dishStatus:'+dishStatus);
 
 	   if(dishStatus=='0'){
@@ -192,7 +244,7 @@
        for (i in status)
            txt += "<option value='" + status[i] + "'>" + status[i] +"</option>";
            $("#show").html(txt);
-   }
+   } */
    /*]]>*/
     </script>
 </body>

@@ -112,17 +112,46 @@ public class DishController {
 //			
 //			return "manager/add";		
 //		}
+	
+		@PostMapping("/addDish")
+		public String addDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
+			
+			dishService.save(theDishDTO);
+			
+			return "redirect:/view/manager/add";
+			
+		}
 		
-//		@GetMapping("/showDishFormForUpdate")
-//		public String showDishFormForUpdate(@RequestParam("dishNo") int theDishNo, Model theModel) {
-//			
-//			//create medel attribute to bind for data
-//			DishDTO theDishDTO = new DishDTO();
-//			
-//			theModel.addAttribute("dishsDTO", theDishDTO);
-//			
-//			return "manager/modify";		
-//		}
+		@GetMapping("/showDishFormForUpdate")
+		public String showDishFormForUpdate(@RequestParam("dishDishNo") int theDishNo, Model theModel) {
+			
+			//create medel attribute to bind for data
+
+			DishDTO theDishDTO = dishService.findById(theDishNo);
+			
+			theModel.addAttribute("dishsDTO", theDishDTO);
+			
+			return "manager/modify";		
+		}
+		
+		@PostMapping("/update")
+		public String updateDishList(@ModelAttribute("dishDTO") DishDTO theDishDTO) {
+			
+			dishService.save(theDishDTO);
+			
+			return "redirect:/view/manager/checkmenu";
+			
+		}
+		
+		@GetMapping("/delete")
+		public String delete(@RequestParam("dishDishNo") int theDishNo) {
+			
+			//delete the emp
+			dishService.deleteById(theDishNo);
+			
+			//redirect to employees/list
+			return "redirect:/view/manager/checkmenu";
+		}
 		
 //		@GetMapping("/showDishType")
 //		public String showDishType(Model theModel) {

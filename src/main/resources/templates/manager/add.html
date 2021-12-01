@@ -89,7 +89,7 @@
                                         <p class="text-primary m-0 fw-bold">DISH</p>
                                     </div>
                                     <div class="card-body">
-                                     <form action="#" th:action="@{/view/manager/add/addDish}"
+                                     <form action="#" th:action="@{/api/addDish}"
 						 								 th:object="${dishsDTO}" method="post">
 										<!-- <input type="hidden" th:field="*{dishNo}" /> -->
                                             <div class="row">
@@ -115,12 +115,24 @@
                                                             </optgroup>
                                                         </select></div>
                                                 </div>
+                                          <div class="col">
+                                                <div class="mb-3"><label class="form-label" for="dish_status"><strong>dish_status</strong>
+                                                    <br></label><select th:field="*{dishStatus}" class="form-select">
+                                                            <optgroup label="This is a group">
+                                                                <option value="" selected="">請選擇</option>
+                                                                <option value="0" selected="">0</option>
+                                                                <option value="1" selected="">1</option>
+                                                                <option value="2" selected="">2</option>
+                                                            </optgroup>
+                                                        </select></div>
+                                                </div> 
+                                                
                                                 <div class="col">
-                                                    <div class="mb-3"><label class="form-label" for="last_name"><strong>DISH_QUANTITY</strong>
+                                                    <div class="mb-3"><label class="form-label" for="dishQuantity"><strong>DISH_QUANTITY</strong>
                                                     </label><input class="form-control" type="number" th:field="*{dishQuantity}" id="dish_quantity" placeholder="100" name="dishQuantity"></div>
                                                 </div>
                                                 <div class="col-md-6">                             
-                                    				<div class="mb-3"><label class="form-label" for="*{dishNote}"><strong>Content</strong>
+                                    				<div class="mb-3"><label class="form-label" for="dishNote"><strong>Content</strong>
                                     					<br></label><textarea class="form-control" th:field="*{dishNote}" id="note" rows="4" name="note"></textarea></div>
                                     						<div class="mb-3"></div>    
                             					</div>

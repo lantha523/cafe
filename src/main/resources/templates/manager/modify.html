@@ -43,7 +43,42 @@
 					</div>
 				</div>
 			</div>
-			<div></div>
+			
+			<hr>
+		
+		<p class="h4 mb-4">Save dish</p>
+		
+		<form action="#" th:action="@{/api/update}"
+						 th:object="${dishDTO}" method="post">
+						 
+				<!-- Add hidden form field to handle update  -->
+				<input type="hidden" th:field="*{dishNo}" />
+						 
+				<input type="text" th:field="*{dishName}"
+					   class="form-control mb-4 col-4" placeholder="dishName">
+						 
+				<input type="text" th:field="*{dishPrice}"
+					   class="form-control mb-4 col-4" placeholder="dishPrice">
+				
+				<input type="text" th:field="*{dishType}"
+					   class="form-control mb-4 col-4" placeholder="dishPrice">
+					   
+				<input type="text" th:field="*{dishStatus}"
+					   class="form-control mb-4 col-4" placeholder="dishStatus">	   
+					   	   
+				<input type="text" th:field="*{dishQuantity}"
+					   class="form-control mb-4 col-4" placeholder="dishQuantity">	
+				
+				<input type="text" th:field="*{dishNote}"
+					   class="form-control mb-4 col-4" placeholder="dishNote">
+					   		   
+				<button type="submit" class="btn btn-info col-2">SAVE</button>   		 
+						 
+	    </form>
+	
+	<hr>
+			
+<!-- 			<div></div>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
@@ -64,7 +99,7 @@
 								<div class="mb-3">
 									<label class="form-label" for="last_name"><strong>DISH_QUANTITY</strong>
 									</label><input class="form-control" type="number"
-										 id="dish_quantity"
+										 id="dish_quantity" th:field="*{dishQuantity}"
 										placeholder="100" name="dishQuantity">
 								</div>
 							</div>
@@ -98,7 +133,7 @@
 							</button>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 			<a class="border rounded d-inline scroll-to-top" href="#page-top"><i
