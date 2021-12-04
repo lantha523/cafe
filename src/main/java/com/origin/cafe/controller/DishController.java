@@ -128,8 +128,8 @@ public class DishController {
 			//create medel attribute to bind for data
 
 			DishDTO theDishDTO = dishService.findById(theDishNo);
-			
-			theModel.addAttribute("dishsDTO", theDishDTO);
+
+			theModel.addAttribute("dishDTO", theDishDTO); //要注意對應名稱 不然會500
 			
 			return "manager/modify";		
 		}

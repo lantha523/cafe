@@ -59,16 +59,39 @@
 						 
 				<input type="text" th:field="*{dishPrice}"
 					   class="form-control mb-4 col-4" placeholder="dishPrice">
-				
-				<input type="text" th:field="*{dishType}"
-					   class="form-control mb-4 col-4" placeholder="dishPrice">
-					   
-				<input type="text" th:field="*{dishStatus}"
-					   class="form-control mb-4 col-4" placeholder="dishStatus">	   
-					   	   
+
+				<div class="col">
+					<div class="mb-3">
+						<label class="form-label" for="dish_type"><strong>DISH_TYPE</strong>
+							<br></label><select th:field="*{dishType}" class="form-select">
+							<optgroup label="This is a group">
+								<option value="" selected="">請選擇</option>
+								<option value="RECOMMEND" selected="">RECOMMEND</option>
+								<option value="RICE" selected="">RICE</option>
+								<option value="NOODLE" selected="">NOODLE</option>
+								<option value="SOUP" selected="">SOUP</option>
+							</optgroup>
+						</select>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="mb-3">
+						<label class="form-label" for="dish_status"><strong>dish_status</strong>
+							<br></label><select th:field="*{dishStatus}" class="form-select">
+							<optgroup label="This is a group">
+								<option value="" selected="">請選擇</option>
+								<option value="0" selected="">下架</option>
+								<option value="1" selected="">上架</option>
+								<option value="2" selected="">售完</option>
+							</optgroup>
+						</select>
+					</div>
+				</div>
+	<label class="form-label" for="dishQuantity"><strong>dishQuantity</strong><br></label>
 				<input type="text" th:field="*{dishQuantity}"
 					   class="form-control mb-4 col-4" placeholder="dishQuantity">	
-				
+	<label class="form-label" for="dishNote"><strong>dishNote</strong><br></label>
 				<input type="text" th:field="*{dishNote}"
 					   class="form-control mb-4 col-4" placeholder="dishNote">
 					   		   
@@ -78,7 +101,7 @@
 	
 	<hr>
 			
-<!-- 			<div></div>
+<!-- 	修改表單第二版		<div></div>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">

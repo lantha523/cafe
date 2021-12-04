@@ -131,8 +131,16 @@
                                         <td th:text="${tempDishDTO.dishType}" />
                                         <td th:text="${tempDishDTO.dishPrice}" />
                                         <td th:text="${tempDishDTO.dishQuantity}" />
-                                        <td th:text="${tempDishDTO.dishStatus}" />
-<!--                                    <td>
+                                       <!--  <td th:text="${tempDishDTO.dishStatus}" /> -->
+<!--                                         <td th:switch="${tempDishDTO.dishStatus}"/>
+										<p th:case="'0'">下架</p>
+										<p th:case="'1'">上架</p>
+										<p th:case="'2'">售出</p> -->
+										<td th:switch="${tempDishDTO.dishStatus}">
+											<p th:case="'0'">下架</p>
+											<p th:case="'1'">上架</p>
+											<p th:case="'2'">售完</p> <!-- * for default case -->
+											<p th:case="*">待開發</p> <!--                                    <td>
                                         <button class="btn btn-success" style="margin-left: 5px;" type="submit" >
                                         <i class="fa fa-search" style="font-size: 15px;"></i></button>
                                         <button class="btn btn-primary" type="submit" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-memid="${tempDishDTO.dishNo}">
@@ -140,7 +148,7 @@
                                         <button class="btn btn-danger" style="margin-left: 5px;" type="submit" onclick="if(!(confirm('Are you shure you want to delete this dish?'))) return false">
                                         <i class="fa fa-trash" style="font-size: 15px;"></i></button>
                                         </td> -->
-                                        <td>
+										<td>
 										<!-- Add update button/link -->
 										<a th:href="@{/api/showDishFormForUpdate(dishDishNo=${tempDishDTO.dishNo})}" 
 										class="btn btn-info btn-sm">
