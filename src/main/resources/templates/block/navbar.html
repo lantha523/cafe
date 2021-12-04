@@ -38,7 +38,8 @@
                 <a class="dropdown-item" th:href="@{/view/member/order}">order</a>
 							</div>
 						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">MANGER&nbsp;</a>
+						<li class="nav-item dropdown" sec:authorize="hasRole('MANAGER')"><a class="dropdown-toggle nav-link"
+																							aria-expanded="false" data-bs-toggle="dropdown" href="#">MANGER&nbsp;</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" th:href="@{/view/manager/checkmenu}">check menu</a>
 								<a class="dropdown-item" th:href="@{/view/manager/checkOrder}">check order</a>
@@ -46,7 +47,8 @@
 								<!-- <a class="dropdown-item" th:href="@{/view/manager/modify(dishDishNo=${tempDish.dishNo})}">modify</a> -->
 							</div>
 						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">SUPERMANGER&nbsp;</a>
+						<li class="nav-item dropdown" sec:authorize="hasRole('SURPERMANAGER')"><a class="dropdown-toggle nav-link"
+																							aria-expanded="false" data-bs-toggle="dropdown" href="#">SUPERMANGER&nbsp;</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" th:href="@{/view/superManager/function}">function</a>
 								<a class="dropdown-item" th:href="@{/view/superManager/qualification}">qualification</a>

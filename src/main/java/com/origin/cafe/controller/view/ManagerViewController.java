@@ -3,6 +3,7 @@ package com.origin.cafe.controller.view;
 
 import com.origin.cafe.config.SecurityUserUtils;
 import com.origin.cafe.dto.DishDTO;
+import com.origin.cafe.enums.Feature;
 import com.origin.cafe.service.DishService;
 
 import java.util.List;
@@ -36,6 +37,10 @@ public class ManagerViewController {
 
 	@GetMapping("/manager/checkmenu")
 	public String listDishsDTO(Model theModel) {
+
+    if (!SecurityUserUtils.getUserDetails().getFeatureNos().contains(Feature.MENU.getFeatureNo())) {
+			return "/access-denied";
+		}
 		
 		List<DishDTO> theDishsDTO = dishService.findAll(null);//??
 		
@@ -64,6 +69,10 @@ public class ManagerViewController {
 
 	@GetMapping("/manager/checkOrder")
 	public String checkOrder(Model theModel) {
+		if (!SecurityUserUtils.getUserDetails().getFeatureNos().contains(Feature.ORDED.getFeatureNo())) {
+		  return "/access-denied";
+	  }
+
 		return "/manager/checkorder";
 	}
 
@@ -74,6 +83,9 @@ public class ManagerViewController {
 
 	@GetMapping("/manager/member")
 	public String member(Model theModel) {
+		if (!SecurityUserUtils.getUserDetails().getFeatureNos().contains(Feature.MEMBER.getFeatureNo())) {
+			return "/access-denied";
+		}
 		return "/manager/member";
 	}
 

@@ -61,12 +61,6 @@ public class AdmAuthority {
 		this.admFunction = admFunction;
 	}
 
-	@Override
-	public String toString() {
-		return "AdmAuthority [admAuthorityNo=" + admAuthorityNo + ", administrator=" + administrator + ", admFunction="
-				+ admFunction + "]";
-	}
-	
 	
 
 

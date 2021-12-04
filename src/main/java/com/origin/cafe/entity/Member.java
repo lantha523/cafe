@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,6 +52,9 @@ public class Member {
 	
 	@OneToMany(mappedBy="member" , cascade=CascadeType.ALL)
 	private List<Ord> ords;
+
+	@OneToMany(mappedBy="member" , cascade=CascadeType.ALL)
+	private List<User> users;
 	
 	//定義contructors
 	
@@ -174,6 +178,21 @@ public class Member {
 		this.mdDate = mdDate;
 	}
 
+	public List<Ord> getOrds() {
+		return ords;
+	}
+
+	public void setOrds(List<Ord> ords) {
+		this.ords = ords;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
 	@Override
 	public String toString() {

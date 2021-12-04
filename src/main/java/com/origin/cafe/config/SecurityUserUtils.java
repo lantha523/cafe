@@ -1,21 +1,24 @@
 package com.origin.cafe.config;
 
 
-import java.util.Collection;
+import java.util.Set;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityUserUtils {
 
 
 	public static String getUserName() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		return authentication.getName();
+		return getUserDetails().getUsername();
 	}
 
-	public static Collection<? extends GrantedAuthority> getUserAuthorities() {
+	public static CafeUserDetails getUserDetails(){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		return authentication.getAuthorities();
+		CafeUserDetails cafeUserDetails =(CafeUserDetails)authentication.getPrincipal();
+		return cafeUserDetails;
+	}
+
+	public static Set<String> getAuthorities() {
+		return getUserDetails().getUserAuthorities();
 	}
 }

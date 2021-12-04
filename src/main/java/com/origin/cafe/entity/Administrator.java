@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,8 +37,11 @@ public class Administrator {
 		@Column(name="adm_status")
 		private byte admStatus;
 		
-		@OneToMany(mappedBy="administrator" , cascade=CascadeType.ALL)
+		@OneToMany(mappedBy="administrator")
 		private List<AdmAuthority> admAuthoritys;
+
+	@OneToMany(mappedBy="administrator" , cascade = CascadeType.ALL)
+	private List<User> users;
 		
 	public Administrator() {
 		
@@ -100,6 +104,22 @@ public class Administrator {
 
 	public void setAdmStatus(byte admStatus) {
 		this.admStatus = admStatus;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public List<AdmAuthority> getAdmAuthoritys() {
+		return admAuthoritys;
+	}
+
+	public void setAdmAuthoritys(List<AdmAuthority> admAuthoritys) {
+		this.admAuthoritys = admAuthoritys;
 	}
 
 	@Override
