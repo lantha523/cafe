@@ -3,7 +3,7 @@ package com.origin.cafe.enums;
 
 public enum Feature {
   MENU(1),
-  ORDED(2),
+  ORDEDR(2),
   MEMBER(3),
   ADMINISTRATOR(4);
 

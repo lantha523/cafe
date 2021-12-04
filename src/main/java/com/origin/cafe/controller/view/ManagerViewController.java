@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/view")
@@ -26,7 +23,9 @@ public class ManagerViewController {
 	
 	@GetMapping("/manager/add")
 	public String showDishFormForAdd(Model theModel) {
-		
+		if (!SecurityUserUtils.getUserDetails().getFeatureNos().contains(Feature.MENU.getFeatureNo())) {
+			return "/access-denied";
+		}
 		//create medel attribute to bind for data
 		DishDTO theDishDTO = new DishDTO();
 		
@@ -69,17 +68,14 @@ public class ManagerViewController {
 
 	@GetMapping("/manager/checkOrder")
 	public String checkOrder(Model theModel) {
-		if (!SecurityUserUtils.getUserDetails().getFeatureNos().contains(Feature.ORDED.getFeatureNo())) {
+		if (!SecurityUserUtils.getUserDetails().getFeatureNos().contains(Feature.ORDEDR.getFeatureNo())) {
 		  return "/access-denied";
 	  }
 
 		return "/manager/checkorder";
 	}
 
-	@GetMapping("/manager/item")
-	public String item(Model theModel) {
-		return "/manager/item";
-	}
+
 
 	@GetMapping("/manager/member")
 	public String member(Model theModel) {
@@ -89,16 +85,7 @@ public class ManagerViewController {
 		return "/manager/member";
 	}
 
-	@GetMapping("/manager/modify")
-	public String showDishFormForUpdate(Model theModel) {
-		
-		//create medel attribute to bind for data
-//		DishDTO theDishDTO = new DishDTO();
-//		
-//		theModel.addAttribute("dishsDTO", theDishDTO);
-		
-		return "manager/modify";		
-	}
+
 	
 //	@GetMapping("/manager/modify")
 //	public String showDishFormForUpdate(@RequestParam("dishDishNo") int theDishNo,Model theModel) {
