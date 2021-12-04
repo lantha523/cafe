@@ -129,29 +129,3 @@ alter table order_list add constraint order_list_ibfk_2 foreign key (dish_no) re
 
 
 
-
--- ===========dish_category TABLE================
-DROP TABLE IF EXISTS `dish_category`;
-CREATE TABLE `dish_category` 
-(dish_type int(10) NOT NULL AUTO_INCREMENT COMMENT '餐點類型編號', 
-	dish_type_name varchar(255) COMMENT '餐點類型',
-    PRIMARY KEY (dish_category_no));
-    
-INSERT INTO `dish_category`
-(`dish_type`,`dish_type_name`) VALUES 
-('1','RICE');
-INSERT INTO `dish_category`
-(`dish_type`,`dish_type_name`) VALUES 
-('2','NOODLE');
-INSERT INTO `dish_category`
-(`dish_type`,`dish_type_name`) VALUES 
-('3','SOUP');
-INSERT INTO `dish_category`
-(`dish_type`,`dish_type_name`) VALUES 
-('4','RECOMMEND');
-
-alter table `dish` add constraint `dish_ibfk_1` foreign key (dish_type) references dish_category (dish_type);
-
-
-
-
