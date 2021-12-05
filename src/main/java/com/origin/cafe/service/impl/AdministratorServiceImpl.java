@@ -7,7 +7,6 @@ import com.origin.cafe.entity.AdmAuthority;
 import com.origin.cafe.entity.AdmFunction;
 import com.origin.cafe.entity.Administrator;
 import com.origin.cafe.entity.Member;
-import com.origin.cafe.repository.AdmAuthorityRepository;
 import com.origin.cafe.repository.AdmFunctionRepository;
 import com.origin.cafe.repository.AdministratorRepository;
 import com.origin.cafe.repository.MemberRepository;
@@ -33,8 +32,6 @@ public class AdministratorServiceImpl implements AdministratorService {
   @Autowired
   private AdmFunctionRepository admFunctionRepository;
 
-  @Autowired
-  private AdmAuthorityRepository admAuthorityRepository;
 
   @Override
   public List<AdminFindResDTO> findAdministrators(AdminFindReqDTO adminFindReqDTO) {
@@ -103,9 +100,7 @@ public class AdministratorServiceImpl implements AdministratorService {
       if(optAdministrator.isPresent()){
         administrator = optAdministrator.get();
         administrator.setAdmLevel(adminSaveReqDTO.getLevel());
-        List<AdmAuthority> usersAuthoritys = administrator.getAdmAuthoritys();
-        administrator.getAdmAuthoritys().removeAll(usersAuthoritys);
-        admAuthorityRepository.deleteAll(usersAuthoritys);
+        administrator.getAdmAuthoritys().removeAll(administrator.getAdmAuthoritys());
         administrator = administratorRepository.save(administrator);
 
         admAuthorities = new ArrayList<>();
@@ -115,8 +110,8 @@ public class AdministratorServiceImpl implements AdministratorService {
           admAuthority.setAdmFunction(admFunction);
           admAuthorities.add(admAuthority);
         }
-
-        admAuthorityRepository.saveAll(admAuthorities);
+        administrator.getAdmAuthoritys().addAll(admAuthorities);
+        administratorRepository.save(administrator);
 
       }else{
         throw new RuntimeException("member not exist.");
