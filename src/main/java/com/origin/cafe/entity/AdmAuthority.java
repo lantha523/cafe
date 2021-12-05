@@ -8,7 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="adm_authority")
 public class AdmAuthority {
@@ -19,49 +27,15 @@ public class AdmAuthority {
 	private int admAuthorityNo;
 	
 	@ManyToOne
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@JoinColumn(name="adm_no")
 	private Administrator administrator;
 	
 	@ManyToOne
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@JoinColumn(name="function_no")
 	private AdmFunction admFunction;
-	
-	public AdmAuthority() {
-		
-	}
-
-	public AdmAuthority(int admAuthorityNo, Administrator administrator, AdmFunction admFunction) {
-		super();
-		this.admAuthorityNo = admAuthorityNo;
-		this.administrator = administrator;
-		this.admFunction = admFunction;
-	}
-
-	public int getAdmAuthorityNo() {
-		return admAuthorityNo;
-	}
-
-	public void setAdmAuthorityNo(int admAuthorityNo) {
-		this.admAuthorityNo = admAuthorityNo;
-	}
-
-	public Administrator getAdministrator() {
-		return administrator;
-	}
-
-	public void setAdministrator(Administrator administrator) {
-		this.administrator = administrator;
-	}
-
-	public AdmFunction getAdmFunction() {
-		return admFunction;
-	}
-
-	public void setAdmFunction(AdmFunction admFunction) {
-		this.admFunction = admFunction;
-	}
-
-	
-
 
 }

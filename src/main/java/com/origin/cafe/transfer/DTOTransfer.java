@@ -1,9 +1,9 @@
 package com.origin.cafe.transfer;
 
 
-import java.sql.Date;
-
+import com.origin.cafe.dto.AdminFindResDTO;
 import com.origin.cafe.dto.DishDTO;
+import com.origin.cafe.entity.Administrator;
 import com.origin.cafe.entity.Dish;
 
 public class DTOTransfer {
@@ -40,6 +40,19 @@ public class DTOTransfer {
     
 
     return dish;
+
+  }
+
+  public static AdminFindResDTO administratorEntityTransferAdminFindResDTO(Administrator administrator) {
+    AdminFindResDTO dto = new AdminFindResDTO();
+    dto.setAdmNo(administrator.getAdmNo());
+    dto.setName(administrator.getAdmName());
+    dto.setAddress(administrator.getAdmAddress());
+    dto.setPhone(administrator.getAdmPhone());
+    dto.setStatus(String.valueOf(administrator.getAdmStatus()));
+    dto.setLevel(administrator.getAdmLevel().name());
+
+    return dto;
 
   }
 

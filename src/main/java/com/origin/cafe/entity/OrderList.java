@@ -8,7 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "order_list")
 public class OrderList {
@@ -29,62 +37,9 @@ public class OrderList {
 	private int ordPriceEach;
 	
 	@ManyToOne
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@JoinColumn(name="dish_no")
 	private Dish dish;
-	
-	public OrderList() {
-		
-	}
-
-	public OrderList(int ordNo, int ordQuantity, int ordPriceEach, Dish dish) {
-		super();
-		this.ordNo = ordNo;
-		this.ordQuantity = ordQuantity;
-		this.ordPriceEach = ordPriceEach;
-		this.dish = dish;
-	}
-
-	public int getOrdNo() {
-		return ordNo;
-	}
-
-	public void setOrdNo(int ordNo) {
-		this.ordNo = ordNo;
-	}
-
-	public int getOrdQuantity() {
-		return ordQuantity;
-	}
-
-	public void setOrdQuantity(int ordQuantity) {
-		this.ordQuantity = ordQuantity;
-	}
-
-	public int getOrdPriceEach() {
-		return ordPriceEach;
-	}
-
-	public void setOrdPriceEach(int ordPriceEach) {
-		this.ordPriceEach = ordPriceEach;
-	}
-
-	public Dish getDish() {
-		return dish;
-	}
-
-	public void setDish(Dish dish) {
-		this.dish = dish;
-	}
-
-	@Override
-	public String toString() {
-		return "OrderList [ordNo=" + ordNo + ", ordQuantity=" + ordQuantity + ", ordPriceEach=" + ordPriceEach
-				+ ", dish=" + dish + "]";
-	}
-
-	
-
-	
-	
 
 }

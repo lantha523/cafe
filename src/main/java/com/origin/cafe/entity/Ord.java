@@ -10,7 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "ord")
 public class Ord {
@@ -40,92 +48,9 @@ public class Ord {
 	private Date mdDate;
 	
 	@ManyToOne
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	@JoinColumn(name="mem_no")
 	private Member member;
-
-	// 定義contructor
-
-	public Ord() {
-
-	}
-
-	public Ord(int ordNo, Date ordTime, int ordPrice, byte ordStatus, Date crDate, Date mdDate, Member member) {
-		super();
-		this.ordNo = ordNo;
-		this.ordTime = ordTime;
-		this.ordPrice = ordPrice;
-		this.ordStatus = ordStatus;
-		this.crDate = crDate;
-		this.mdDate = mdDate;
-		this.member = member;
-	}
-
-	public int getOrdNo() {
-		return ordNo;
-	}
-
-	public void setOrdNo(int ordNo) {
-		this.ordNo = ordNo;
-	}
-
-	public Date getOrdTime() {
-		return ordTime;
-	}
-
-	public void setOrdTime(Date ordTime) {
-		this.ordTime = ordTime;
-	}
-
-	public int getOrdPrice() {
-		return ordPrice;
-	}
-
-	public void setOrdPrice(int ordPrice) {
-		this.ordPrice = ordPrice;
-	}
-
-	public byte getOrdStatus() {
-		return ordStatus;
-	}
-
-	public void setOrdStatus(byte ordStatus) {
-		this.ordStatus = ordStatus;
-	}
-
-	public Date getCrDate() {
-		return crDate;
-	}
-
-	public void setCrDate(Date crDate) {
-		this.crDate = crDate;
-	}
-
-	public Date getMdDate() {
-		return mdDate;
-	}
-
-	public void setMdDate(Date mdDate) {
-		this.mdDate = mdDate;
-	}
-
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
-
-	@Override
-	public String toString() {
-		return "Ord [ordNo=" + ordNo + ", ordTime=" + ordTime + ", ordPrice=" + ordPrice + ", ordStatus=" + ordStatus
-				+ ", crDate=" + crDate + ", mdDate=" + mdDate + ", member=" + member + "]";
-	}
-
-	
-
-	
-	
-	
 
 }

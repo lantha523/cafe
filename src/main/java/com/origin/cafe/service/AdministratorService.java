@@ -1,9 +1,11 @@
 package com.origin.cafe.service;
 
+import com.origin.cafe.dto.AdminFindReqDTO;
+import com.origin.cafe.dto.AdminFindResDTO;
 import java.util.List;
 
-import com.origin.cafe.entity.Administrator;
-
 public interface AdministratorService {
+
+  List<AdminFindResDTO> findAdministrators(AdminFindReqDTO adminFindReqDTO);
 
 }

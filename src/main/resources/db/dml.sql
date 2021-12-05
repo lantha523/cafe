@@ -47,8 +47,8 @@ insert into `order_list`
 
 insert into `administrator`
 (`adm_no`,`adm_name`,`adm_address`,`adm_phone`,`adm_level`,`adm_status`) values
-(1,'金','台北市富錦街20號','0908766678','master','1'),
-(2,'王和平','台北市遼寧街25號','0988333788','servant','1');
+(1,'金','台北市富錦街20號','0908766678','SUPER_MANAGER','1'),
+(2,'王和平','台北市遼寧街25號','0988333788','MANAGER','1');
 
 
 INSERT INTO `users`
