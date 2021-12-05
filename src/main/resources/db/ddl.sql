@@ -113,7 +113,7 @@ create table adm_function
 drop table if exists `adm_authority`;
 create table `adm_authority` 
 (
-	adm_authority_no int(10) not null comment '管理員權限號碼',
+	adm_authority_no int(10) not null auto_increment comment '管理員權限號碼',
 	adm_no int(10) not null comment '管理者編號', 
 	function_no int(10) not null comment '功能編號', 
 	primary key (adm_authority_no));

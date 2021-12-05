@@ -20,35 +20,34 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="administrator")
+@Table(name = "administrator")
 public class Administrator {
-	
-	//定義fields
-		@Id
-		@GeneratedValue(strategy=GenerationType.IDENTITY)
-		@Column(name="adm_no")
-		private int admNo;
 
-		@Column(name="adm_name")
-		private String admName;
-		
-		@Column(name="adm_address")
-		private String admAddress;
-		
-		@Column(name="adm_phone")
-		private String admPhone;
-		
-		@Column(name="adm_level")
-	  @Enumerated(EnumType.STRING)
-	  private Level admLevel;
-		
-		@Column(name="adm_status")
-		private byte admStatus;
-		
-		@OneToMany(mappedBy="administrator")
-		private List<AdmAuthority> admAuthoritys;
+  // 定義fields
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "adm_no")
+  private int admNo;
 
-	@OneToMany(mappedBy="administrator" , cascade = CascadeType.ALL)
-	private List<User> users;
+  @Column(name = "adm_name")
+  private String admName;
 
+  @Column(name = "adm_address")
+  private String admAddress;
+
+  @Column(name = "adm_phone")
+  private String admPhone;
+
+  @Column(name = "adm_level")
+  @Enumerated(EnumType.STRING)
+  private Level admLevel;
+
+  @Column(name = "adm_status")
+  private byte admStatus;
+
+  @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<AdmAuthority> admAuthoritys;
+
+  @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL)
+  private List<User> users;
 }

@@ -3,8 +3,13 @@ package com.origin.cafe.transfer;
 
 import com.origin.cafe.dto.AdminFindResDTO;
 import com.origin.cafe.dto.DishDTO;
+import com.origin.cafe.dto.FeatureDTO;
+import com.origin.cafe.entity.AdmAuthority;
+import com.origin.cafe.entity.AdmFunction;
 import com.origin.cafe.entity.Administrator;
 import com.origin.cafe.entity.Dish;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DTOTransfer {
 
@@ -52,8 +57,24 @@ public class DTOTransfer {
     dto.setStatus(String.valueOf(administrator.getAdmStatus()));
     dto.setLevel(administrator.getAdmLevel().name());
 
+    List<FeatureDTO> featureDTOs = new ArrayList<>();
+    for (AdmAuthority adah : administrator.getAdmAuthoritys()) {
+      FeatureDTO featureDTO = admFunctionEntityTransferFeatureDTO(adah.getAdmFunction());
+      featureDTOs.add(featureDTO);
+    }
+    dto.setFeatures(featureDTOs);
+
     return dto;
 
   }
+
+  public static FeatureDTO admFunctionEntityTransferFeatureDTO(AdmFunction admFunction) {
+    FeatureDTO dto = new FeatureDTO();
+    dto.setFunctionNo(admFunction.getFunctionNo());
+    dto.setFunctionName(admFunction.getFunctionDetail());
+
+    return dto;
+  }
+
 
 }
