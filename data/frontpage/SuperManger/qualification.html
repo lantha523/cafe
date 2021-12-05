@@ -21,6 +21,58 @@
 </head>
 
 <body id="page-top">
+            <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
+            <div class="container"><a class="navbar-brand" href="#page-top">DEMO1</a>
+                <form class="search-form">
+                    <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
+                </form><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto text-uppercase">
+                        <li class="nav-item"></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/view/home}">MENU</a></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/view/cart}">CART</a></li>
+                        <li class="nav-item" sec:authorize="!isAuthenticated()"><a class="nav-link" th:href="@{/view/login}">LOGIN</a></li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <div class="nav-link" style="padding: 20px;text-align: right">
+                                <form th:action="@{/logout}" method="post">
+                                    <input type="submit"  value="LOGOUT" />
+                                </form>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">OTHER&nbsp;</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#hour">BUSSINESS HOUR</a>
+                                <a class="dropdown-item" href="#contact">CONTACT US</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">MEMBER&nbsp;</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/view/member/account}">account</a>
+                                <a class="dropdown-item" th:href="@{/view/member/history}">history</a>
+                <a class="dropdown-item" th:href="@{/view/member/order}">order</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" sec:authorize="hasRole('MANAGER')"><a class="dropdown-toggle nav-link"
+                                                                                            aria-expanded="false" data-bs-toggle="dropdown" href="#">MANGER&nbsp;</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/view/manager/checkmenu}">check menu</a>
+                                <a class="dropdown-item" th:href="@{/view/manager/checkOrder}">check order</a>
+                                <a class="dropdown-item" th:href="@{/view/manager/member}">member</a>
+                                <!-- <a class="dropdown-item" th:href="@{/view/manager/modify(dishDishNo=${tempDish.dishNo})}">modify</a> -->
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" sec:authorize="hasRole('SURPERMANAGER')"><a class="dropdown-toggle nav-link"
+                                                                                            aria-expanded="false" data-bs-toggle="dropdown" href="#">SUPERMANGER&nbsp;</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" th:href="@{/view/superManager/function}">function</a>
+                                <a class="dropdown-item" th:href="@{/view/superManager/qualification}">qualification</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     <div id="wrapper">
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content" style="margin-top: 15%;margin-left: 10%;width: 80%;">
@@ -34,25 +86,26 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-xxl-12 offset-xxl-0 search-table-col">
-                        <div class="form-group pull-left col-lg-3"><input type="text" class="search form-control" placeholder="請輸入會員帳號或姓名"></div><span class="counter"></span><span class="counter"></span><label class="form-label" style="margin-top: 8px;">管理員狀態:&nbsp;</label><select>
+                        <div class="form-group pull-left col-lg-3"><input type="text"
+                                                                          class="search form-control" placeholder="請輸入管理員相關資料"></div><span class="counter"></span><span class="counter"></span><label class="form-label" style="margin-top: 8px;">管理員狀態:&nbsp;</label><select>
                             <optgroup label="This is a group">
-                                <option value="12" selected="">This is item 1</option>
-                                <option value="13">This is item 2</option>
-                                <option value="14">This is item 3</option>
+                                <option value="12" selected="">請選擇</option>
+                                <option value="13">管理員</option>
+                                <option value="14">超級管理員</option>
                             </optgroup>
                         </select><a class="btn btn-success" href="#" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">查詢</a>
                         <div class="table-responsive table table-hover table-bordered results">
                             <table class="table table-hover table-bordered">
                                 <thead class="bill-header cs">
                                     <tr>
-                                        <th id="trs-hd" class="col-lg-1">管理員等級</th>
+                                        <th id="trs-hd" class="col-lg-1">管理員編號</th>
                                         <th id="trs-hd" class="col-lg-1">帳號</th>
                                         <th id="trs-hd" class="col-lg-1">姓名</th>
-                                        <th id="trs-hd" class="col-lg-1">生日</th>
-                                        <th id="trs-hd-1" class="col-lg-1">身分證</th>
                                         <th id="trs-hd" class="col-lg-1">手機</th>
-                                        <th id="trs-hd-2" class="col-lg-2">Email</th>
-                                        <th id="trs-hd-2" class="col-lg-3">地址</th>
+                                        <th id="trs-hd-2" class="col-lg-2">地址</th>
+                                        <th id="trs-hd" class="col-lg-1">等級</th>
+                                        <th id="trs-hd" class="col-lg-1">功能權限</th>
+                                        <th id="trs-hd" class="col-lg-1">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,36 +113,39 @@
                                         <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
                                     </tr>
                                     <tr>
-                                        <td><select>
-                                                <optgroup label="This is a group">
-                                                    <option value="12" selected="">This is item 1</option>
-                                                    <option value="13">This is item 2</option>
-                                                    <option value="14">This is item 3</option>
-                                                </optgroup>
-                                            </select></td>
-                                        <td>mm</td>
+                                        <td>1</td>
                                         <td>chocolate</td>
-                                        <td>19990101</td>
-                                        <td>A123456789</td>
+                                        <td>巧克力</td>
                                         <td>0900988777</td>
-                                        <td>lanlan@gmail.com</td>
                                         <td>台北市松山區八德路二段100號</td>
+                                        <td>超級管理員</td>
+                                        <td>
+                                            菜單管理<br>
+                                            訂單管理<br>
+                                            會員管理<br>
+                                            管理員管理<br>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-info btn-sm">修改</a>
+                                            <a href="" class="btn btn-danger btn-sm">移除</a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><select>
-                                                <optgroup label="This is a group">
-                                                    <option value="12" selected="">This is item 1</option>
-                                                    <option value="13">This is item 2</option>
-                                                    <option value="14">This is item 3</option>
-                                                </optgroup>
-                                            </select></td>
-                                        <td>mm</td>
-                                        <td>chocolate</td>
-                                        <td>19990101</td>
-                                        <td>A123456789</td>
-                                        <td>0900988777</td>
-                                        <td>lanlan@gmail.com</td>
-                                        <td>台北市松山區八德路二段102號</td>
+                                        <td>2</td>
+                                        <td>susan</td>
+                                        <td>劉小白</td>
+                                        <td>09056347928</td>
+                                        <td>台北市松山區八德路二段100號</td>
+                                        <td>管理員</td>
+                                        <td>
+                                            菜單管理<br>
+                                            訂單管理<br>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-info btn-sm">修改</a>
+                                            <br>
+                                            <a href="" class="btn btn-danger btn-sm">移除</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -97,39 +153,48 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2021</span></div>
-                </div>
-            </footer>
+            <div th:replace="block/footer::footer-bottom"></div>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-        <div class="container"><a class="navbar-brand" href="#page-top">DEMO1</a>
-            <form class="search-form">
-                <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
-            </form><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto text-uppercase">
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">MENU</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="#cart">CART</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../login.html">LOGIN</a></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">OTHER&nbsp;</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="#hour">BUSSINESS HOUR</a><a class="dropdown-item" href="#contact">CONTACT US</a></div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="../login.html">MANGER</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/Off-Canvas-Sidebar-Drawer-Navbar.js"></script>
     <script src="../assets/js/agency.js"></script>
     <script src="../assets/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js"></script>
     <script src="../assets/js/Table-With-Search.js"></script>
     <script src="../assets/js/theme.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        
+     const ajaxTargetUri = window.location.href.substring(0, window.location.href.lastIndexOf
+    ('/view')) + '/api/administrator/find';
+
+    $.ajax({
+      type: 'POST',
+      url: ajaxTargetUri,
+      headers: {
+        "Authorization": "Bearer " + getCookieByName("jwtBearerIdTokenCookie")
+      },
+      data: JSON.stringify({
+        id: id,
+        imageUrl: imageUrl,
+        name: modifiedName,
+        nickName: nickname,
+        email: email,
+        mobile: modifiedMobile,
+        gender: modifiedGender,
+        loginDate: loginDate
+      }),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (result) {
+        alert("Pass");
+        location.reload();
+      },
+      error: function (result) {
+        alert("Fail");
+      }
+    });
+    </script>
 </body>
 
 </html>
