@@ -17,6 +17,8 @@ public class AdminFindResDTO {
 
   private Integer admNo;
 
+  private Integer memNo;
+
   private String userName;
 
   private String name;

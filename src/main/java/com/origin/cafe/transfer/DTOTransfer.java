@@ -51,6 +51,7 @@ public class DTOTransfer {
   public static AdminFindResDTO administratorEntityTransferAdminFindResDTO(Administrator administrator) {
     AdminFindResDTO dto = new AdminFindResDTO();
     dto.setAdmNo(administrator.getAdmNo());
+    dto.setMemNo(administrator.getUsers().get(0).getMember().getMemNo());
     dto.setUserName(administrator.getUsers().get(0).getUsername());
     dto.setName(administrator.getAdmName());
     dto.setAddress(administrator.getAdmAddress());

@@ -49,11 +49,14 @@
                             </optgroup>
                         </select>
                         <button class="btn btn-success" id="findAdmin">查詢</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" id="insert-admin">新增管理員</button>
                         <div class="table-responsive table table-hover table-bordered results">
                             <table class="table table-hover table-bordered">
                                 <thead class="bill-header cs">
                                     <tr>
                                         <th id="trs-hd" class="col-lg-1">管理員編號</th>
+                                        <th id="trs-hd" class="col-lg-1">原會員編號</th>
                                         <th id="trs-hd" class="col-lg-1">帳號</th>
                                         <th id="trs-hd" class="col-lg-1">姓名</th>
                                         <th id="trs-hd" class="col-lg-1">手機</th>
@@ -64,25 +67,83 @@
                                     </tr>
                                 </thead>
                                 <tbody id = "admin_tbody">
-                                    <tr class="warning no-result">
-                                        <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
-                                    </tr>
-                                    <tr class="admin-result-tr">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="" class="btn btn-info btn-sm">修改</a>
-                                            <a href="" class="btn btn-danger btn-sm">移除</a>
-                                        </td>
-                                    </tr>
-
                                 </tbody>
                             </table>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="background-color:white">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-4">
+                                                    &nbsp;管理員編號:
+                                                </label>
+                                                <div class="col-sm-8" >
+                                                    <input type="number"
+                                                           class="form-control short" min="1"
+                                                           id="admNo"/>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-4">
+                                                    &nbsp;原會員編號:
+                                                </label>
+                                                <div class="col-sm-8" >
+                                                    <input type="number"
+                                                           class="form-control short" min="1"
+                                                           id="memNo"/>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    等級:
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <select>
+                                                        <option value="0" id="level_choice">請選擇
+                                                        </option>
+                                                        <option value="1" id="MANAGER">管理員</option>
+                                                        <option value="2" id="SUPER_MANAGER">超級管理員</option>
+                                                    </select> &nbsp;&nbsp;
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-4">
+                                                    &nbsp;功能權限:
+                                                </label>
+                                                <div class="col-sm-8" >
+                                                    <input type="checkbox" name="functionCheck"
+                                                           class="review_check"
+                                                           value="1">&nbsp;菜單管理<br>
+                                                    <input type="checkbox" name="functionCheck"
+                                                           class="review_check"
+                                                           value="2">&nbsp;訂單管理<br>
+                                                    <input type="checkbox" name="functionCheck"
+                                                           class="review_check"
+                                                           value="3">&nbsp;會員管理<br>
+                                                    <input type="checkbox" name="functionCheck"
+                                                           class="review_check"
+                                                           value="4">&nbsp;管理員管理
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">關閉</button>
+                                            <button type="button" class="btn btn-primary">存檔</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -106,12 +167,7 @@
         var header = $("meta[name='_csrf_header']").attr("content");
         var token = $("meta[name='_csrf']").attr("content");
 
-        initAdmin();
-        ajaxFindAdmin();
-
-        function initAdmin(){
-            document.getElementsByClassName("admin-result-tr")[0].style.display='none';
-        }
+        findAdmin();
 
         function findAdmin(){
             var inputKeyWord = document.getElementById("keyWord").value;
@@ -139,7 +195,6 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
-                    alert(result);
                     showResult(result);
                 },
                 error: function (result) {
@@ -149,26 +204,160 @@
         }
 
         function showResult(result){
+            var tbody = document.querySelector("#admin_tbody");
+            tbody.remove();
+
+            tbody = document.createElement("tbody");
+            tbody.id = "admin_tbody";
 
             for (let i = 0; i<result.length ; i++) {
-                var adminResultTr = document.getElementsByClassName("admin-result-tr")[0].cloneNode(true);
-                adminResultTr.style.display=null;
-                adminResultTr.childNodes[1].textContent = result[i].admNo;
-                adminResultTr.childNodes[3].textContent = result[i].userName;
-                adminResultTr.childNodes[5].textContent = result[i].name;
-                adminResultTr.childNodes[7].textContent = result[i].phone;
-                adminResultTr.childNodes[9].textContent = result[i].address;
-                adminResultTr.childNodes[11].textContent = result[i].level;
+                var newTr = document.createElement("tr");
+                newTr.className = "admin-result-tr";
+                newTr.appendChild(createNewTd(result[i].admNo));
+                newTr.appendChild(createNewTd(result[i].memNo));
+                newTr.appendChild(createNewTd(result[i].userName));
+                newTr.appendChild(createNewTd(result[i].name));
+                newTr.appendChild(createNewTd(result[i].phone));
+                newTr.appendChild(createNewTd(result[i].address));
+                newTr.appendChild(createNewTd(result[i].level));
+                newTr.appendChild(createFeatureTd(result[i].features));
 
-                var start_tbody = document.getElementById("admin_tbody");
-                start_tbody.insertBefore(adminResultTr, start_tbody.childNodes[1+i]);
+                newTr.appendChild(createActionTd(i));
+
+                tbody.appendChild(newTr);
             }
 
+            var table =
+                document.querySelector("#content > div > div.col-md-12.col-xxl-12.offset-xxl-0.search-table-col > div.table-responsive.table.table-hover.table-bordered.results > table");
+            table.appendChild(tbody);
+
+            for (let i = 0; i<result.length ; i++) {
+                document.getElementsByClassName("admin-update")[i].onclick = showUpdate;
+                document.getElementsByClassName("admin-delete")[i].onclick = showDelete;
+            }
 
         }
 
+        function createNewTd(text){
+            var newTd = document.createElement("td");
+            newTd.textContent = text;
+            return newTd;
+        }
+
+        function createFeatureTd(features){
+            var newTd = document.createElement("td");
+
+            for (let i = 0; i<features.length ; i++) {
+                var newDiv = document.createElement("div");
+
+                var newInputHiddenNo = document.createElement("input");
+                newInputHiddenNo.type = "hidden";
+                newInputHiddenNo.value = features[i].functionNo;
+                newDiv.appendChild(newInputHiddenNo);
+
+                var newSpan = document.createElement("span");
+                newSpan.innerHTML = features[i].functionName;
+                newDiv.appendChild(newSpan);
+
+                var newBr = document.createElement("br");
+                newDiv.appendChild(newBr);
+
+                newTd.appendChild(newDiv);
+            }
+
+
+            return newTd;
+        }
+
+        function createActionTd(i){
+
+            var newDiv = document.createElement("div");
+            newDiv.style.display = "inline";
+
+            var newUpdateButton = document.createElement("button");
+            newUpdateButton.className = "btn btn-info btn-sm admin-update";
+            newUpdateButton.id = "admin-update-"+i;
+            newUpdateButton.textContent = "修改";
+            newUpdateButton.setAttribute("data-bs-toggle", "modal");
+            newUpdateButton.setAttribute("data-bs-target", "#exampleModal");
+
+            newDiv.appendChild(newUpdateButton);
+
+            var newSpan = document.createElement("span");
+            newSpan.innerHTML = "&nbsp;";
+            newDiv.appendChild(newSpan);
+
+            var newDeleteButton = document.createElement("button");
+            newDeleteButton.className = "btn btn-danger btn-sm admin-delete";
+            newDeleteButton.id = "admin-delete-"+i;
+            newDeleteButton.textContent = "移除";
+
+            newDiv.appendChild(newDeleteButton);
+
+            var newTd = document.createElement("td");
+            newTd.appendChild(newDiv);
+
+            return newTd;
+        }
+
+        function showUpdate(event){
+            var modelTitle = document.getElementById("exampleModalLabel");
+            modelTitle.textContent = "修改管理員";
+            document.getElementById("admNo").setAttribute("readonly","true");
+            document.getElementById("memNo").setAttribute("readonly","true");
+
+            var updateButton = document.getElementById(event.target.id);
+            var tdNodes = updateButton.parentNode.parentNode.parentNode.childNodes;
+            var admNo = tdNodes[0].textContent;
+            var memNo = tdNodes[1].textContent;
+            var level = tdNodes[6].textContent;
+            var functionNodes = tdNodes[7].childNodes;
+
+            document.getElementById("admNo").value = admNo;
+            document.getElementById("memNo").value = memNo;
+            document.getElementById(level).selected = true;
+
+            clearFuctionCheckBox();
+
+            for (let i = 0; i<functionNodes.length ; i++) {
+                functionNo = functionNodes[i].childNodes[0].value;
+
+                functionChecks = document.getElementsByName("functionCheck");
+                for (let j = 0; j<functionChecks.length ; j++){
+                    if(functionChecks[j].value == functionNo){
+                        functionChecks[j].checked = true;
+                    }
+                }
+            }
+        }
+
+        function showDelete(event){
+            alert('確認要移除這位管理員嗎？');
+        }
+
+        function showInsert(){
+            var modelTitle = document.getElementById("exampleModalLabel");
+            modelTitle.textContent = "新增管理員";
+            document.getElementById("admNo").setAttribute("readonly","true");
+            document.getElementById("memNo").removeAttribute("readonly");
+            document.getElementById("admNo").value = null;
+            document.getElementById("memNo").value = null;
+            document.getElementById("level_choice").selected = true;
+
+            clearFuctionCheckBox();
+        }
+
+        function clearFuctionCheckBox(){
+            var functions = document.getElementsByName("functionCheck");
+            for (let i = 0; i<functions.length ; i++) {
+                functions[i].checked = false;
+            }
+        }
+
+
         window.addEventListener("load", function () {
             document.getElementById("findAdmin").onclick = findAdmin;
+            document.getElementById("insert-admin").onclick = showInsert;
         },false);
 
         /*]]>*/
