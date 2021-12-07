@@ -34,11 +34,11 @@ function ajaxFindAdmin(inputKeyWord, inputLevel){
       if(result.status=='OK'){
         showResult(result.data);
       }else{
-        alert(result.message);
+        showMsg(result.message);
       }
     },
     error: function (result) {
-      alert("系統出現異常");
+      showMsg("系統出現異常");
     }
   });
 }
@@ -174,11 +174,17 @@ function showUpdate(event){
 }
 
 function showDelete(event){
-  alert('確認要移除這位管理員嗎？');
-  var updateButton = document.getElementById(event.target.id);
-  var tdNodes = updateButton.parentNode.parentNode.parentNode.childNodes;
-  var admNo = tdNodes[0].textContent;
-  ajaxDeleteAdmin(admNo);
+  showConfirmMsg('確認要移除這位管理員嗎？',"deleteConfirmMsg");
+  document.getElementById('deleteConfirmMsg').addEventListener(
+      'click', function () {
+        document.getElementById("labelConfirmClose").click();
+
+        var updateButton = document.getElementById(event.target.id);
+        var tdNodes = updateButton.parentNode.parentNode.parentNode.childNodes;
+        var admNo = tdNodes[0].textContent;
+        ajaxDeleteAdmin(admNo);
+      }, false);
+
 }
 
 function showInsert(){
@@ -219,7 +225,7 @@ function saveAdministrator(){
   if (errorMsg ==""){
     ajaxSaveAdmin(admNo, memNo, level, functionNos);
   }else{
-    alert(errorMsg);
+    showMsg(errorMsg);
   }
 }
 
@@ -242,16 +248,23 @@ function ajaxSaveAdmin(admNo, memNo, level, functionNos){
     contentType: "application/json; charset=utf-8",
     success: function (result) {
       if(result.status=='OK'){
-        alert("存檔成功");
-        document.getElementById("closeSaveWindow").click();
-        findAdmin();
+
+        showConfirmMsg('存檔成功',"saveSuccessConfirmMsg");
+        document.getElementById('saveSuccessConfirmMsg').addEventListener(
+            'click', function () {
+              document.getElementById("labelConfirmClose").click();
+
+              document.getElementById("closeSaveWindow").click();
+              findAdmin();
+            }, false);
+
       }else{
-        alert(result.message);
+        showMsg(result.message);
       }
 
     },
     error: function (result) {
-      alert("系統出現異常");
+      showMsg("系統出現異常");
     }
   });
 }
@@ -269,14 +282,13 @@ function ajaxDeleteAdmin(admNo){
     contentType: "application/json; charset=utf-8",
     success: function (result) {
       if(result.status=='OK'){
-        alert("刪除成功");
         findAdmin();
       }else{
-        alert(result.message);
+        showMsg(result.message);
       }
     },
     error: function (result) {
-      alert("系統出現異常");
+      showMsg("系統出現異常");
     }
   });
 }
