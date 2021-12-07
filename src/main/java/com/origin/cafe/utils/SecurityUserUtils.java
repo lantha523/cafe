@@ -1,6 +1,7 @@
-package com.origin.cafe.config;
+package com.origin.cafe.utils;
 
 
+import com.origin.cafe.config.CafeUserDetails;
 import java.util.Set;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

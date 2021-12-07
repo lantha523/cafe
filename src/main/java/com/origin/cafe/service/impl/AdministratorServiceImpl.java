@@ -7,9 +7,11 @@ import com.origin.cafe.entity.AdmAuthority;
 import com.origin.cafe.entity.AdmFunction;
 import com.origin.cafe.entity.Administrator;
 import com.origin.cafe.entity.Member;
+import com.origin.cafe.entity.User;
 import com.origin.cafe.repository.AdmFunctionRepository;
 import com.origin.cafe.repository.AdministratorRepository;
 import com.origin.cafe.repository.MemberRepository;
+import com.origin.cafe.repository.UserRepository;
 import com.origin.cafe.service.AdministratorService;
 import com.origin.cafe.transfer.DTOTransfer;
 import java.util.ArrayList;
@@ -31,6 +33,9 @@ public class AdministratorServiceImpl implements AdministratorService {
 
   @Autowired
   private AdmFunctionRepository admFunctionRepository;
+
+  @Autowired
+  private UserRepository userRepository;
 
 
   @Override
@@ -67,8 +72,18 @@ public class AdministratorServiceImpl implements AdministratorService {
     List<AdmFunction> admFunctions = admFunctionRepository.findAllById(adminSaveReqDTO.getFunctionNos());
     Administrator administrator = null;
     List<AdmAuthority> admAuthorities = null;
+    List<User> users =null;
 
     if(adminSaveReqDTO.getAdmNo() == null){
+      Optional<User> optUser = userRepository.findByMemberMemNo(adminSaveReqDTO.getMemNo());
+      if(optUser.isPresent()){
+        if(optUser.get().getAdministrator() != null){
+          throw new RuntimeException("該會員帳號已經綁定成為管理員了唷.");
+        }
+      }else{
+        throw new RuntimeException("該會員帳號不存在喔.");
+      }
+
       Optional<Member> optMember = memberRepository.findById(adminSaveReqDTO.getMemNo());
       if(optMember.isPresent()){
         Member member = optMember.get();
@@ -88,11 +103,17 @@ public class AdministratorServiceImpl implements AdministratorService {
           admAuthorities.add(admAuthority);
         }
 
+        User user = member.getUsers().get(0);
+        user.setAdministrator(administrator);
+        users =new ArrayList<>();
+        users.add(user);
+        administrator.setUsers(users);
+
         administrator.setAdmAuthoritys(admAuthorities);
         administratorRepository.save(administrator);
 
       }else{
-        throw new RuntimeException("member not exist.");
+        throw new RuntimeException("該會員資料不存在喔.");
       }
 
     }else{
@@ -114,7 +135,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         administratorRepository.save(administrator);
 
       }else{
-        throw new RuntimeException("member not exist.");
+        throw new RuntimeException("該管理員資料不存在喔.");
       }
 
 

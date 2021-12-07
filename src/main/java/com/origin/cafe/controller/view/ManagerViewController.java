@@ -1,7 +1,7 @@
 package com.origin.cafe.controller.view;
 
 
-import com.origin.cafe.config.SecurityUserUtils;
+import com.origin.cafe.utils.SecurityUserUtils;
 import com.origin.cafe.dto.DishDTO;
 import com.origin.cafe.enums.Feature;
 import com.origin.cafe.service.DishService;

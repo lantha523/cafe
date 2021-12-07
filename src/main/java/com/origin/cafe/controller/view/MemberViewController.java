@@ -1,7 +1,7 @@
 package com.origin.cafe.controller.view;
 
 
-import com.origin.cafe.config.SecurityUserUtils;
+import com.origin.cafe.utils.SecurityUserUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

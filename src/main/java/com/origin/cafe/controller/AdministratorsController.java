@@ -3,6 +3,8 @@ package com.origin.cafe.controller;
 import com.origin.cafe.dto.AdminFindReqDTO;
 import com.origin.cafe.dto.AdminFindResDTO;
 import com.origin.cafe.dto.AdminSaveReqDTO;
+import com.origin.cafe.dto.CafeResponse;
+import com.origin.cafe.enums.CafeStatus;
 import com.origin.cafe.service.AdministratorService;
 import java.util.List;
 import javax.validation.Valid;
@@ -22,18 +24,41 @@ public class AdministratorsController {
   private AdministratorService administratorService;
 
   @PostMapping("/find")
-  public List<AdminFindResDTO> findAdministrators(@Valid @RequestBody AdminFindReqDTO adminFindReqDTO) {
-    return administratorService.findAdministrators(adminFindReqDTO);
+  public CafeResponse findAdministrators(@Valid @RequestBody AdminFindReqDTO adminFindReqDTO) {
+    try{
+      List<AdminFindResDTO> adminFindResDTOs = administratorService.findAdministrators(adminFindReqDTO);
+      return CafeResponse.body(CafeStatus.OK, adminFindResDTOs, "success");
+
+    }catch (Exception e){
+      return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+    }
   }
 
   @PostMapping("/save")
-  public void saveAdministrators(@Valid @RequestBody AdminSaveReqDTO adminSaveReqDTO) {
-     administratorService.saveAdministrator(adminSaveReqDTO);
+  public CafeResponse saveAdministrators(@Valid @RequestBody AdminSaveReqDTO adminSaveReqDTO) {
+    try{
+      administratorService.saveAdministrator(adminSaveReqDTO);
+      return CafeResponse.body(CafeStatus.OK, null, "success");
+
+    }catch (RuntimeException e){
+      return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+    }catch (Exception e){
+      return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+    }
   }
 
   @GetMapping("/delete")
-  public void deleteAdministrators(@RequestParam("admNo") Integer admNo) {
-    administratorService.deleteAdministrator(admNo);
+  public CafeResponse deleteAdministrators(@RequestParam("admNo") Integer admNo) {
+    try{
+      administratorService.deleteAdministrator(admNo);
+      return CafeResponse.body(CafeStatus.OK, null, "success");
+
+    }catch (RuntimeException e){
+      return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+    }catch (Exception e){
+      return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+    }
+
   }
 
 }
