@@ -14,34 +14,31 @@ function findAdmin(){
   ajaxFindAdmin(inputKeyWord, inputLevel);
 }
 
-function ajaxFindAdmin(inputKeyWord, inputLevel){
-  var ajaxTargetUri = window.location.href.substring(0, window.location.href.lastIndexOf
-  ('/view')) + '/api/administrator/find';
+function saveAdministrator(){
+  var admNo = document.getElementById("admNo").value;
+  var memNo = document.getElementById("memNo").value;
+  var level = document.getElementById("select-level").value;
+  var functionNos = [];
 
-  $.ajax({
-    type: 'POST',
-    url: ajaxTargetUri,
-    headers: {
-      'X-CSRF-TOKEN': token
-    },
-    data: JSON.stringify({
-      keyWord: inputKeyWord,
-      level: inputLevel
-    }),
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    success: function (result) {
-      if(result.status=='OK'){
-        showResult(result.data);
-      }else{
-        showMsg(result.message);
-      }
-    },
-    error: function (result) {
-      showMsg("系統出現異常");
+  var functionChecks = document.getElementsByName("functionCheck");
+  if(level=="MANAGER"){
+    functionChecks[3].checked = false;
+  }
+  for(var i=0; functionChecks[i]; ++i){
+    if(functionChecks[i].checked){
+      functionNos.push(parseInt(functionChecks[i].value));
     }
-  });
+  }
+
+  var errorMsg = verifyInputSaveData(memNo, level, functionNos);
+
+  if (errorMsg ==""){
+    ajaxSaveAdmin(admNo, memNo, level, functionNos);
+  }else{
+    showMsg(errorMsg);
+  }
 }
+
 
 function showResult(resultDatas){
   var tbody = document.querySelector("#admin_tbody");
@@ -75,68 +72,6 @@ function showResult(resultDatas){
     document.getElementsByClassName("admin-delete")[i].onclick = showDelete;
   }
 
-}
-
-function createNewTd(text){
-  var newTd = document.createElement("td");
-  newTd.textContent = text;
-  return newTd;
-}
-
-function createFeatureTd(features){
-  var newTd = document.createElement("td");
-
-  for (let i = 0; i<features.length ; i++) {
-    var newDiv = document.createElement("div");
-
-    var newInputHiddenNo = document.createElement("input");
-    newInputHiddenNo.type = "hidden";
-    newInputHiddenNo.value = features[i].functionNo;
-    newDiv.appendChild(newInputHiddenNo);
-
-    var newSpan = document.createElement("span");
-    newSpan.innerHTML = features[i].functionName;
-    newDiv.appendChild(newSpan);
-
-    var newBr = document.createElement("br");
-    newDiv.appendChild(newBr);
-
-    newTd.appendChild(newDiv);
-  }
-
-
-  return newTd;
-}
-
-function createActionTd(i){
-
-  var newDiv = document.createElement("div");
-  newDiv.style.display = "inline";
-
-  var newUpdateButton = document.createElement("button");
-  newUpdateButton.className = "btn btn-info btn-sm admin-update";
-  newUpdateButton.id = "admin-update-"+i;
-  newUpdateButton.textContent = "修改";
-  newUpdateButton.setAttribute("data-bs-toggle", "modal");
-  newUpdateButton.setAttribute("data-bs-target", "#exampleModal");
-
-  newDiv.appendChild(newUpdateButton);
-
-  var newSpan = document.createElement("span");
-  newSpan.innerHTML = "&nbsp;";
-  newDiv.appendChild(newSpan);
-
-  var newDeleteButton = document.createElement("button");
-  newDeleteButton.className = "btn btn-danger btn-sm admin-delete";
-  newDeleteButton.id = "admin-delete-"+i;
-  newDeleteButton.textContent = "移除";
-
-  newDiv.appendChild(newDeleteButton);
-
-  var newTd = document.createElement("td");
-  newTd.appendChild(newDiv);
-
-  return newTd;
 }
 
 function showUpdate(event){
@@ -176,12 +111,13 @@ function showDelete(event){
   showConfirmMsg('確認要移除這位管理員嗎？',"deleteConfirmMsg");
   document.getElementById('deleteConfirmMsg').addEventListener(
       'click', function () {
-        document.getElementById("labelConfirmClose").click();
 
         var updateButton = document.getElementById(event.target.id);
         var tdNodes = updateButton.parentNode.parentNode.parentNode.childNodes;
         var admNo = tdNodes[0].textContent;
         ajaxDeleteAdmin(admNo);
+
+        closeConfirmMsg();
       }, false);
 
 }
@@ -199,6 +135,68 @@ function showInsert(){
   document.getElementById("divFeatures").style.display="none";
 }
 
+function createNewTd(text){
+  var newTd = document.createElement("td");
+  newTd.textContent = text;
+  return newTd;
+}
+
+function createFeatureTd(features){
+  var newTd = document.createElement("td");
+
+  for (let i = 0; i<features.length ; i++) {
+    var newDiv = document.createElement("div");
+
+    var newInputHiddenNo = document.createElement("input");
+    newInputHiddenNo.type = "hidden";
+    newInputHiddenNo.value = features[i].functionNo;
+    newDiv.appendChild(newInputHiddenNo);
+
+    var newSpan = document.createElement("span");
+    newSpan.innerHTML = features[i].functionName;
+    newDiv.appendChild(newSpan);
+
+    var newBr = document.createElement("br");
+    newDiv.appendChild(newBr);
+
+    newTd.appendChild(newDiv);
+  }
+
+
+  return newTd;
+}
+
+function createActionTd(number){
+
+  var newDiv = document.createElement("div");
+  newDiv.style.display = "inline";
+
+  var newUpdateButton = document.createElement("button");
+  newUpdateButton.className = "btn btn-info btn-sm admin-update";
+  newUpdateButton.id = "admin-update-"+number;
+  newUpdateButton.textContent = "修改";
+  newUpdateButton.setAttribute("data-bs-toggle", "modal");
+  newUpdateButton.setAttribute("data-bs-target", "#exampleModal");
+
+  newDiv.appendChild(newUpdateButton);
+
+  var newSpan = document.createElement("span");
+  newSpan.innerHTML = "&nbsp;";
+  newDiv.appendChild(newSpan);
+
+  var newDeleteButton = document.createElement("button");
+  newDeleteButton.className = "btn btn-danger btn-sm admin-delete";
+  newDeleteButton.id = "admin-delete-"+number;
+  newDeleteButton.textContent = "移除";
+
+  newDiv.appendChild(newDeleteButton);
+
+  var newTd = document.createElement("td");
+  newTd.appendChild(newDiv);
+
+  return newTd;
+}
+
 function clearFuctionCheckBox(){
   var functions = document.getElementsByName("functionCheck");
   for (let i = 0; i<functions.length ; i++) {
@@ -206,29 +204,64 @@ function clearFuctionCheckBox(){
   }
 }
 
-function saveAdministrator(){
-  var admNo = document.getElementById("admNo").value;
-  var memNo = document.getElementById("memNo").value;
-  var level = document.getElementById("select-level").value;
-  var functionNos = [];
-
-  var functionChecks = document.getElementsByName("functionCheck");
-  if(level=="MANAGER"){
-    functionChecks[3].checked = false;
-  }
-  for(var i=0; functionChecks[i]; ++i){
-    if(functionChecks[i].checked){
-      functionNos.push(parseInt(functionChecks[i].value));
-    }
-  }
-
-  var errorMsg = verifyInputData(memNo, level, functionNos);
-
-  if (errorMsg ==""){
-    ajaxSaveAdmin(admNo, memNo, level, functionNos);
+function changeLevelFunction(){
+  var selectLevel = document.getElementById("select-level").value;
+  if(selectLevel == "MANAGER"){
+    document.getElementById("divFeatures").removeAttribute("style");
+    document.getElementsByName("functionCheck")[3].style.display="none";
+    document.getElementsByName("functionCheckName")[3].style.display="none";
+  }else if(selectLevel == "SUPER_MANAGER"){
+    document.getElementById("divFeatures").removeAttribute("style");
+    document.getElementsByName("functionCheck")[3].removeAttribute("style");
+    document.getElementsByName("functionCheckName")[3].removeAttribute("style");
   }else{
-    showMsg(errorMsg);
+    document.getElementById("divFeatures").style.display="none";
   }
+
+}
+
+function verifyInputSaveData(memNo, level, functionNos){
+  var errorMsg = "";
+  if(memNo == ""){
+    errorMsg = errorMsg + "請輸入原會員編號\n";
+  }
+  if(level == "請選擇"){
+    errorMsg = errorMsg + "請輸入等級\n";
+  }
+  if(level != "請選擇" && functionNos.length == 0 ){
+    errorMsg = errorMsg + "請輸入至少一個功能權限\n";
+  }
+  return errorMsg;
+}
+
+
+function ajaxFindAdmin(inputKeyWord, inputLevel){
+  var ajaxTargetUri = window.location.href.substring(0, window.location.href.lastIndexOf
+  ('/view')) + '/api/administrator/find';
+
+  $.ajax({
+    type: 'POST',
+    url: ajaxTargetUri,
+    headers: {
+      'X-CSRF-TOKEN': token
+    },
+    data: JSON.stringify({
+      keyWord: inputKeyWord,
+      level: inputLevel
+    }),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function (result) {
+      if(result.status=='OK'){
+        showResult(result.data);
+      }else{
+        showMsg(result.message);
+      }
+    },
+    error: function (result) {
+      showMsg("系統出現異常");
+    }
+  });
 }
 
 function ajaxSaveAdmin(admNo, memNo, level, functionNos){
@@ -254,10 +287,11 @@ function ajaxSaveAdmin(admNo, memNo, level, functionNos){
         showConfirmMsg('存檔成功',"saveSuccessConfirmMsg");
         document.getElementById('saveSuccessConfirmMsg').addEventListener(
             'click', function () {
-              document.getElementById("labelConfirmClose").click();
 
               document.getElementById("closeSaveWindow").click();
               findAdmin();
+
+              closeConfirmMsg();
             }, false);
 
       }else{
@@ -295,35 +329,6 @@ function ajaxDeleteAdmin(admNo){
   });
 }
 
-function changeLevelFunction(){
-  var selectLevel = document.getElementById("select-level").value;
-  if(selectLevel == "MANAGER"){
-    document.getElementById("divFeatures").removeAttribute("style");
-    document.getElementsByName("functionCheck")[3].style.display="none";
-    document.getElementsByName("functionCheckName")[3].style.display="none";
-  }else if(selectLevel == "SUPER_MANAGER"){
-    document.getElementById("divFeatures").removeAttribute("style");
-    document.getElementsByName("functionCheck")[3].removeAttribute("style");
-    document.getElementsByName("functionCheckName")[3].removeAttribute("style");
-  }else{
-    document.getElementById("divFeatures").style.display="none";
-  }
-
-}
-
-function verifyInputData(memNo, level, functionNos){
-  var errorMsg = "";
-  if(memNo == ""){
-    errorMsg = errorMsg + "請輸入原會員編號\n";
-  }
-  if(level == "請選擇"){
-    errorMsg = errorMsg + "請輸入等級\n";
-  }
-  if(level != "請選擇" && functionNos.length == 0 ){
-    errorMsg = errorMsg + "請輸入至少一個功能權限\n";
-  }
-  return errorMsg;
-}
 
 window.addEventListener("load", function () {
   document.getElementById("findAdmin").onclick = findAdmin;

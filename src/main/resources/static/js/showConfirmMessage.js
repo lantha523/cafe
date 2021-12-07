@@ -15,3 +15,7 @@
 			document.getElementById("showConfirmMessage").click();
 			document.getElementById("showConfirmMessageContent").innerText = message;
 		}
+
+		function closeConfirmMsg(){
+			document.getElementById("labelConfirmClose").click();
+		}
