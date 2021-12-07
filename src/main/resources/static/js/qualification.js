@@ -67,8 +67,7 @@ function showResult(resultDatas){
     tbody.appendChild(newTr);
   }
 
-  var table =
-      document.querySelector("#content > div > div.col-md-12.col-xxl-12.offset-xxl-0.search-table-col > div.table-responsive.table.table-hover.table-bordered.results > table");
+  var table = document.getElementById("adminQueryTable");
   table.appendChild(tbody);
 
   for (let i = 0; i<resultDatas.length ; i++) {
@@ -214,6 +213,9 @@ function saveAdministrator(){
   var functionNos = [];
 
   var functionChecks = document.getElementsByName("functionCheck");
+  if(level=="MANAGER"){
+    functionChecks[3].checked = false;
+  }
   for(var i=0; functionChecks[i]; ++i){
     if(functionChecks[i].checked){
       functionNos.push(parseInt(functionChecks[i].value));
