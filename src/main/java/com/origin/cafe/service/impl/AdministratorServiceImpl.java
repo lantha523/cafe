@@ -103,14 +103,12 @@ public class AdministratorServiceImpl implements AdministratorService {
           admAuthorities.add(admAuthority);
         }
 
+        administrator.setAdmAuthoritys(admAuthorities);
+        administrator = administratorRepository.save(administrator);
+
         User user = member.getUsers().get(0);
         user.setAdministrator(administrator);
-        users =new ArrayList<>();
-        users.add(user);
-        administrator.setUsers(users);
-
-        administrator.setAdmAuthoritys(admAuthorities);
-        administratorRepository.save(administrator);
+        userRepository.save(user);
 
       }else{
         throw new RuntimeException("該會員資料不存在喔.");
@@ -145,7 +143,19 @@ public class AdministratorServiceImpl implements AdministratorService {
   @Override
   @Transactional
   public void deleteAdministrator(Integer admNo) {
-    administratorRepository.deleteById(admNo);
+
+
+    Optional<User> optUser = userRepository.findByAdministratorAdmNo(admNo);
+    if(optUser.isPresent()){
+      User user = optUser.get();
+      user.setAdministrator(null);
+      userRepository.save(user);
+
+      administratorRepository.deleteById(admNo);
+    }else{
+      throw new RuntimeException("該管理員資料不存在喔.");
+    }
+
   }
 
 

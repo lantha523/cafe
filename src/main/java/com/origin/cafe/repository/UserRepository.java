@@ -8,5 +8,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
 	Optional<User> findByUsernameAndEnabled(String username, Byte enabled);
 
-	Optional<User> findByMemberMemNo(int memno);
+	Optional<User> findByMemberMemNo(int memNo);
+
+	Optional<User> findByAdministratorAdmNo(int admNo);
 }

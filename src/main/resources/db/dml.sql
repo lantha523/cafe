@@ -57,8 +57,8 @@ VALUES
 ('lalao','{bcrypt}$2a$10$FPX2J7oCq.hk3rBC3OF0LuBbWqrwHlCoq0cN0ceOWDuK94paE.Mgi',1,2,null), -- 2225252
 ('babap','{bcrypt}$2a$10$GowEM0bEKA6wwxziGhudxO3F0ohr80brnFM83F1vyvIlyVBRAHX3y',1,3,null), -- 4445666
 ('bfbfq','{bcrypt}$2a$10$Rf4OXR44DfposMEyVuNo1e9Vk6TIqrtJeU1h98oKyLILMJFi7HvRO',1,4,null), -- 2234234
-('fgfgr','{bcrypt}$2a$10$PjcxkdlyY8xHw..WDqcCxOxuHJR1KTYSIx0VY2c7m3QeEtOAcRo/W',1,5,2), -- 1234456
-('king','{bcrypt}$2a$10$1EffUPfU0dVSG.fe.IhMBu/pjG1n9u7xzUqXV/7MPeZg6pSBt4LeG',1,6,1); -- 8785657
+('fgfgr','{bcrypt}$2a$10$PjcxkdlyY8xHw..WDqcCxOxuHJR1KTYSIx0VY2c7m3QeEtOAcRo/W',1,6,2), -- 1234456
+('king','{bcrypt}$2a$10$1EffUPfU0dVSG.fe.IhMBu/pjG1n9u7xzUqXV/7MPeZg6pSBt4LeG',1,5,1); -- 8785657
 
 
 insert into `adm_function`
