@@ -1,11 +1,12 @@
 package com.origin.cafe.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,13 +41,13 @@ public class User {
 	@Column(name="enabled")
 	private Byte enabled;
 
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@JoinColumn(name="mem_no")
 	private Member member;
 
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@JoinColumn(name="adm_no")

@@ -8,6 +8,7 @@ import com.origin.cafe.entity.AdmAuthority;
 import com.origin.cafe.entity.AdmFunction;
 import com.origin.cafe.entity.Administrator;
 import com.origin.cafe.entity.Dish;
+import com.origin.cafe.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,11 +49,11 @@ public class DTOTransfer {
 
   }
 
-  public static AdminFindResDTO administratorEntityTransferAdminFindResDTO(Administrator administrator) {
+  public static AdminFindResDTO administratorEntityTransferAdminFindResDTO(Administrator administrator, User user) {
     AdminFindResDTO dto = new AdminFindResDTO();
     dto.setAdmNo(administrator.getAdmNo());
-    dto.setMemNo(administrator.getUsers().get(0).getMember().getMemNo());
-    dto.setUserName(administrator.getUsers().get(0).getUsername());
+    dto.setMemNo(user.getMember().getMemNo());
+    dto.setUserName(user.getUsername());
     dto.setName(administrator.getAdmName());
     dto.setAddress(administrator.getAdmAddress());
     dto.setPhone(administrator.getAdmPhone());

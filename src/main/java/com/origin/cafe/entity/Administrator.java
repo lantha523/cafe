@@ -48,6 +48,4 @@ public class Administrator {
   @OneToMany(mappedBy = "administrator", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<AdmAuthority> admAuthoritys;
 
-  @OneToMany(mappedBy = "administrator")
-  private List<User> users;
 }

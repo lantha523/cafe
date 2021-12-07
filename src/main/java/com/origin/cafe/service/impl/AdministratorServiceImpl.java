@@ -10,7 +10,6 @@ import com.origin.cafe.entity.Member;
 import com.origin.cafe.entity.User;
 import com.origin.cafe.repository.AdmFunctionRepository;
 import com.origin.cafe.repository.AdministratorRepository;
-import com.origin.cafe.repository.MemberRepository;
 import com.origin.cafe.repository.UserRepository;
 import com.origin.cafe.service.AdministratorService;
 import com.origin.cafe.transfer.DTOTransfer;
@@ -27,9 +26,6 @@ public class AdministratorServiceImpl implements AdministratorService {
 
   @Autowired
   private AdministratorRepository administratorRepository;
-
-  @Autowired
-  private MemberRepository memberRepository;
 
   @Autowired
   private AdmFunctionRepository admFunctionRepository;
@@ -58,7 +54,11 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     List<AdminFindResDTO> adminFindResDTOs = new ArrayList<>();
     for (Administrator admin : administrators) {
-      AdminFindResDTO adminFindResDTO = DTOTransfer.administratorEntityTransferAdminFindResDTO(admin);
+      Optional<User> optUser = userRepository.findByAdministratorAdmNo(admin.getAdmNo());
+      if(!optUser.isPresent()){
+        throw new RuntimeException("該會員帳號不存在喔.admNo:" + admin.getAdmNo());
+      }
+      AdminFindResDTO adminFindResDTO = DTOTransfer.administratorEntityTransferAdminFindResDTO(admin, optUser.get());
       adminFindResDTOs.add(adminFindResDTO);
     }
 
@@ -84,9 +84,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         throw new RuntimeException("該會員帳號不存在喔.");
       }
 
-      Optional<Member> optMember = memberRepository.findById(adminSaveReqDTO.getMemNo());
-      if(optMember.isPresent()){
-        Member member = optMember.get();
+        Member member = optUser.get().getMember();
 
         administrator = new Administrator();
         administrator.setAdmName(member.getMemName());
@@ -106,13 +104,11 @@ public class AdministratorServiceImpl implements AdministratorService {
         administrator.setAdmAuthoritys(admAuthorities);
         administrator = administratorRepository.save(administrator);
 
-        User user = member.getUsers().get(0);
+        User user = optUser.get();
         user.setAdministrator(administrator);
         userRepository.save(user);
 
-      }else{
-        throw new RuntimeException("該會員資料不存在喔.");
-      }
+
 
     }else{
       Optional<Administrator> optAdministrator = administratorRepository.findById(adminSaveReqDTO.getAdmNo());
