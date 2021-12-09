@@ -1,5 +1,6 @@
 package com.origin.cafe.controller;
 
+import com.origin.cafe.CafeException;
 import com.origin.cafe.dto.AdminFindReqDTO;
 import com.origin.cafe.dto.AdminFindResDTO;
 import com.origin.cafe.dto.AdminSaveReqDTO;
@@ -8,6 +9,7 @@ import com.origin.cafe.enums.CafeStatus;
 import com.origin.cafe.service.AdministratorService;
 import java.util.List;
 import javax.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api/administrator")
 @RestController
+@Slf4j
 public class AdministratorsController {
 
   @Autowired
@@ -29,8 +32,11 @@ public class AdministratorsController {
       List<AdminFindResDTO> adminFindResDTOs = administratorService.findAdministrators(adminFindReqDTO);
       return CafeResponse.body(CafeStatus.OK, adminFindResDTOs, "success");
 
-    }catch (Exception e){
+    }catch (CafeException e){
       return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+    }catch (Exception e){
+      log.error(e.getMessage());
+      return CafeResponse.body(CafeStatus.ERROR, null, "系統錯誤，請找客服人員！");
     }
   }
 
@@ -40,10 +46,11 @@ public class AdministratorsController {
       administratorService.saveAdministrator(adminSaveReqDTO);
       return CafeResponse.body(CafeStatus.OK, null, "success");
 
-    }catch (RuntimeException e){
+    }catch (CafeException e){
       return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
     }catch (Exception e){
-      return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+      log.error(e.getMessage());
+      return CafeResponse.body(CafeStatus.ERROR, null, "系統錯誤，請找客服人員！");
     }
   }
 
@@ -53,10 +60,11 @@ public class AdministratorsController {
       administratorService.deleteAdministrator(admNo);
       return CafeResponse.body(CafeStatus.OK, null, "success");
 
-    }catch (RuntimeException e){
+    }catch (CafeException e){
       return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
     }catch (Exception e){
-      return CafeResponse.body(CafeStatus.ERROR, null, e.getMessage());
+      log.error(e.getMessage());
+      return CafeResponse.body(CafeStatus.ERROR, null, "系統錯誤，請找客服人員！");
     }
 
   }
