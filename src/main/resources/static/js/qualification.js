@@ -24,7 +24,7 @@ function saveAdministrator(){
   if(level=="MANAGER"){
     functionChecks[3].checked = false;
   }
-  for(var i=0; functionChecks[i]; ++i){
+  for(var i=0; i<functionChecks.length; i++){
     if(functionChecks[i].checked){
       functionNos.push(parseInt(functionChecks[i].value));
     }
@@ -40,6 +40,7 @@ function saveAdministrator(){
 }
 
 
+// resultDatas 從ajaxFindAdmin的 showResult(result.data);而來
 function showResult(resultDatas){
   var tbody = document.querySelector("#admin_tbody");
   tbody.remove();
@@ -58,7 +59,6 @@ function showResult(resultDatas){
     newTr.appendChild(createNewTd(resultDatas[i].address));
     newTr.appendChild(createNewTd(resultDatas[i].level));
     newTr.appendChild(createFeatureTd(resultDatas[i].features));
-
     newTr.appendChild(createActionTd(i));
 
     tbody.appendChild(newTr);
@@ -75,11 +75,11 @@ function showResult(resultDatas){
 }
 
 function showUpdate(event){
-  var modelTitle = document.getElementById("exampleModalLabel");
+  var modelTitle = document.getElementById("saveModelTitle");
   modelTitle.textContent = "修改管理員";
   document.getElementById("admNo").setAttribute("readonly","true");
   document.getElementById("memNo").setAttribute("readonly","true");
-
+  //取得當下點擊元素的id資料
   var updateButton = document.getElementById(event.target.id);
   var tdNodes = updateButton.parentNode.parentNode.parentNode.childNodes;
   var admNo = tdNodes[0].textContent;
@@ -123,7 +123,7 @@ function showDelete(event){
 }
 
 function showInsert(){
-  var modelTitle = document.getElementById("exampleModalLabel");
+  var modelTitle = document.getElementById("saveModelTitle");
   modelTitle.textContent = "新增管理員";
   document.getElementById("admNo").setAttribute("readonly","true");
   document.getElementById("memNo").removeAttribute("readonly");
@@ -169,17 +169,19 @@ function createFeatureTd(features){
 function createActionTd(number){
 
   var newDiv = document.createElement("div");
+  // inline讓按鈕可以平行對齊
   newDiv.style.display = "inline";
-
+  //create 修改按鈕
   var newUpdateButton = document.createElement("button");
   newUpdateButton.className = "btn btn-info btn-sm admin-update";
   newUpdateButton.id = "admin-update-"+number;
   newUpdateButton.textContent = "修改";
+  //設置觸發的modal
   newUpdateButton.setAttribute("data-bs-toggle", "modal");
-  newUpdateButton.setAttribute("data-bs-target", "#exampleModal");
+  newUpdateButton.setAttribute("data-bs-target", "#saveModel");
 
   newDiv.appendChild(newUpdateButton);
-
+  //設置空格append進去
   var newSpan = document.createElement("span");
   newSpan.innerHTML = "&nbsp;";
   newDiv.appendChild(newSpan);
@@ -236,6 +238,7 @@ function verifyInputSaveData(memNo, level, functionNos){
 
 
 function ajaxFindAdmin(inputKeyWord, inputLevel){
+  //獲取利用window.location.href的變數獲取整個url，要哪一部分的地址，利用substring，indexof等字串處理函式對獲取到的url進行處理，擷取想要的部分。
   var ajaxTargetUri = window.location.href.substring(0, window.location.href.lastIndexOf
   ('/view')) + '/api/administrator/find';
 
@@ -331,10 +334,10 @@ function ajaxDeleteAdmin(admNo){
 
 
 window.addEventListener("load", function () {
-  document.getElementById("findAdmin").onclick = findAdmin;
-  document.getElementById("insert-admin").onclick = showInsert;
-  document.getElementById("saveAdmin").onclick = saveAdministrator;
-  document.getElementById("select-level").onchange = changeLevelFunction;
+  document.getElementById("findAdmin").onclick = findAdmin; //查詢 按鈕
+  document.getElementById("insert-admin").onclick = showInsert; // 新增管理員 按鈕
+  document.getElementById("saveAdmin").onclick = saveAdministrator; // 新增/修改管理員 存檔 按鈕
+  document.getElementById("select-level").onchange = changeLevelFunction; // 等級 下拉式選單
 },false);
 
 /*]]>*/

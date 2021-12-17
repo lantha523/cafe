@@ -73,7 +73,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     Administrator administrator = null;
     List<AdmAuthority> admAuthorities = null;
     List<User> users =null;
-
+    //getAdmNo() == 走新增的方法
     if(adminSaveReqDTO.getAdmNo() == null){
       Optional<User> optUser = userRepository.findByMemberMemNo(adminSaveReqDTO.getMemNo());
       if(optUser.isPresent()){
@@ -111,6 +111,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
 
     }else{
+      //有getAdmNo走修改
       Optional<Administrator> optAdministrator = administratorRepository.findById(adminSaveReqDTO.getAdmNo());
       if(optAdministrator.isPresent()){
         administrator = optAdministrator.get();

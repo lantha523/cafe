@@ -4,12 +4,11 @@ package com.origin.cafe.transfer;
 import com.origin.cafe.dto.AdminFindResDTO;
 import com.origin.cafe.dto.DishDTO;
 import com.origin.cafe.dto.FeatureDTO;
-import com.origin.cafe.entity.AdmAuthority;
-import com.origin.cafe.entity.AdmFunction;
-import com.origin.cafe.entity.Administrator;
-import com.origin.cafe.entity.Dish;
-import com.origin.cafe.entity.User;
+import com.origin.cafe.dto.MemberFindResDTO;
+import com.origin.cafe.entity.*;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DTOTransfer {
@@ -77,6 +76,23 @@ public class DTOTransfer {
     dto.setFunctionName(admFunction.getFunctionDetail());
 
     return dto;
+  }
+
+  public static MemberFindResDTO memberEntityTransferMemberFindResDTO(Member member, User user){
+    MemberFindResDTO dto = new  MemberFindResDTO();
+    dto.setMemNo(member.getMemNo());
+    dto.setCrDate(member.getCrDate());
+    dto.setUserName(user.getUsername());
+    dto.setName(member.getMemName());
+    dto.setMemBirth(String.valueOf(member.getMemBirth()));
+    dto.setPhone(member.getMemPhone());
+    dto.setEmail(member.getMemEmail());
+    dto.setAddress(member.getMemAddress());
+    dto.setMemStatus(String.valueOf(member.getMemStatus()));
+
+
+    return dto;
+
   }
 
 

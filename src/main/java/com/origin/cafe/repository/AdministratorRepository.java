@@ -18,6 +18,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
   @Query(value = "select * from administrator where ( adm_name like %:keyWord% or adm_address like %:keyWord% or adm_phone like %:keyWord% ) and adm_level=:level order by adm_no asc", nativeQuery = true)
   List<Administrator> findByKeywordAndLevel(@Param("level") String admLevel, @Param("keyWord") String keyWord);
+  //@Param 通過命名參數將方法參數綁定到查詢的註釋。
 
 }
 

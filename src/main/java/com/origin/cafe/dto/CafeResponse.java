@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CafeResponse {
 
-  private CafeStatus status;
+  private CafeStatus status;  //自定義狀態 例如200,500
 
-  private Object data;
+  private Object data; //回傳的資料
 
-  private String message;
+  private String message; //自定義錯誤訊息
 
   public static CafeResponse body(CafeStatus status, Object data, String message) {
     CafeResponse cafeResponseDTO = new CafeResponse();
