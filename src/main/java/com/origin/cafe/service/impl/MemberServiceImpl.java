@@ -65,14 +65,18 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public void saveMember(MemberSaveReqDTO memberSaveReqDTO) {
 
-    Member member = null;
+        User user = null;
 
 
-    Optional<Member> optMember = memberRepository.findById((memberSaveReqDTO.getMemNo()));
-    if(optMember.isPresent()){
-        member = optMember.get();
+    Optional<User> optUser = userRepository.findByMemberMemNo(memberSaveReqDTO.getMemNo());
+    if(optUser.isPresent()){
+        user = optUser.get();
+        user.setEnabled(Byte.parseByte(memberSaveReqDTO.getMemberStatus()));
+        userRepository.save(user);
+
+        Member member = user.getMember();
         member.setMemStatus(Byte.parseByte(memberSaveReqDTO.getMemberStatus()));
-        member = memberRepository.save(member);
+        memberRepository.save(member);
 
     }else{
         throw new RuntimeException("該會員不存在喔");
