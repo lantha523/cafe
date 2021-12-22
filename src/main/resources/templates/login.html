@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - Brand</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome-all.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome5-overrides.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" th:href="@{/css/Off-Canvas-Sidebar-Drawer-Navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/Pretty-Search-Form.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search-1.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search.css}">
+    <link rel="stylesheet" th:href="@{/css/vanilla-zoom.min.css}">
+</head>
+
+<body class="bg-gradient-primary" style="background: #80a3bd;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background-image:url(../img/dogs/image3.jpeg);"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                    </div>
+                                    <form th:action="@{/login}" method="POST" class="bg-img">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="username" placeholder="Enter username..." name="username"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password"></div>
+                                        <div class="mb-3">
+                                            <div class="custom-control custom-checkbox small">
+                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-danger col-xs-offset-1 col-xs-10" align="center" th:if="${param.error}">
+                                            帳密無效
+                                        </div>
+
+                                        <div class="alert alert-danger col-xs-offset-1 col-xs-10" align="center" th:if="${param.logout}">
+                                            您已經登出
+                                        </div>
+
+                                        <div align="center">
+                                            <button type="submit" class="btn btn-success">登入</button>
+                                        </div>
+                                        <div>
+                                            <br>會員：
+                                            <input type="button" name="" onclick="login1()"
+                                                   value="choco" style="background-color:#CCEEFF">
+                                            <input type="button" name="" onclick="login2()"
+                                                   value="lalao" style="background-color:#CCEEFF">
+                                            <input type="button" name="" onclick="login3()"
+                                                   value="babap" style="background-color:#CCEEFF">
+                                            <input type="button" name="" onclick="login4()"
+                                                   value="bfbfq" style="background-color:#CCEEFF">
+                                            <br>管理員：
+                                            <input type="button" name="" onclick="login5()"
+                                                   value="fgfgr" style="background-color:#CCEEFF">
+                                            <br>超級管理員：
+                                            <input type="button" name="" onclick="login6()"
+                                                   value="king" style="background-color:#CCEEFF">
+                                        </div>
+                                        <hr><a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Login with Google</a><a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Login with Facebook</a>
+                                        <hr>
+                                    </form>
+                                    <div class="text-center"><a class="small" href="forgot-password.html" style="font-size: larger;">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small" href="register.html" style="color: var(--bs-orange);font-size: larger;">Create an Account!</a></div>
+                                    <div style="text-align: center;"><a class="small" th:href="@{/view/home}" style="font-size: larger;text-align: center;color: #4e565c;">Home</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar.js}"></script>
+    <script th:src="@{/js/agency.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js}"></script>
+    <script th:src="@{/js/Table-With-Search.js}"></script>
+    <script th:src="@{/js/theme.js}"></script>
+
+    <script type="text/javascript">
+        function login1() {
+            document.getElementById("username").value = "choco";
+            document.getElementById("password").value = "8825252";
+        }
+        function login2() {
+            document.getElementById("username").value = "lalao";
+            document.getElementById("password").value = "2225252";
+        }
+        function login3() {
+            document.getElementById("username").value = "babap";
+            document.getElementById("password").value = "4445666";
+        }
+        function login4() {
+            document.getElementById("username").value = "bfbfq";
+            document.getElementById("password").value = "2234234";
+        }
+        function login5() {
+            document.getElementById("username").value = "fgfgr";
+            document.getElementById("password").value = "1234456";
+        }
+        function login6() {
+            document.getElementById("username").value = "king";
+            document.getElementById("password").value = "8785657";
+        }
+    </script>
+</body>
+
+</html>

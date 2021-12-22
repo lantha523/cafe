@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - Brand</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome-all.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome5-overrides.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" th:href="@{/css/Off-Canvas-Sidebar-Drawer-Navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/Pretty-Search-Form.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search-1.css}">
+    <link rel="stylesheet" th:href="@{/css/Table-With-Search.css}">
+    <link rel="stylesheet" th:href="@{/css/vanilla-zoom.min.css}">
+  <!-- 以下兩行為csrf設定 https://blog.csdn.net/Dongguabai/article/details/81150989 -->
+  <meta name="_csrf" th:content="${_csrf.token}" />
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+
+<body id="page-top">
+
+<div th:replace="block/navbar::nav-header"></div>
+
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content" style="margin-top: 15%;margin-left: 10%;width: 80%;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><span>Manger</span></a></li>
+                                <li class="breadcrumb-item"><a href="#"><span>MyMenu</span></a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xxl-12 offset-xxl-0 search-table-col">
+                        <div class="form-group pull-left col-lg-3"><input type="text" class="search form-control" placeholder="Search menu here.."></div>
+                         <span class="counter"><button class="btn btn-success pull-left" type="submit"><i class="fa fa-check" style="font-size: 15px;"></i></button></span><span><i class="fa fa-star" style="color: red;"></i></span><label class="form-label" style="margin-top: 8px;">菜單類型 :&nbsp;</label><select>
+                            <optgroup label="This is a group">
+                                <option value="12" selected="">This is item 1</option>
+                                <option value="13">This is item 2</option>
+                                <option value="14">This is item 3</option>
+                            </optgroup> 
+                            <select id="show"></select>
+                        </select><span><i class="fa fa-star" style="color: red;"></i></span><label class="form-label" style="margin-top: 8px;">上架狀態 :&nbsp;</label><select>
+                            <optgroup label="This is a group">
+                                <option value="0" selected="">下架</option>
+                                <option value="1">上架</option>
+                                <option value="2">售完</option>
+                            </optgroup>
+                        </select><a class="btn btn-success" href="#" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">
+                        serach</a>
+                        <a class="btn btn-info" th:href="@{/view/manager/add}" role="button" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;">
+                        新增菜單</a>
+                        <div class="table-responsive table table-hover table-bordered results">
+                            <table class="table table-hover table-bordered">
+                                <thead class="bill-header cs">
+                                    <tr>
+                                        <th id="trs-hd" class="col-lg-1">DISH. No.</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH_NAME</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH_TYPE</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH_PRICE</th>
+                                        <th id="trs-hd" class="col-lg-1">DISH數量</th>
+                                        <th id="trs-hd-1" class="col-lg-1">DH_STATUS</th>
+                                        <th id="trs-hd" class="col-lg-1">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                             <!--    <tbody id="dishlist"> -->
+                                
+<!--               <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">會員資料修改</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						
+						 <form action="" id="" class="">
+							<div class="modal-body">
+								<label for="">DISH. No.</label><br>
+								<input type="text" id="dishNo" name="dishNo" class="form-control" disabled>
+								<label for="">DISH_NAME</label><br>
+								<input type="text" id="dishName" name="dishName" class="form-control">
+								<label for="">DISH_TYPE</label><br>
+								<input type="radio" name="dishType" value="0" id="status0">
+								<label for="status0">RICE</label>
+								<input type="radio" name="dishType" value="1" id="status1">
+								<label for="status1">NOODLE</label>
+								<input type="radio" name="dishType" value="2" id="status2">
+								<label for="status2">SOUP</label>
+								<input type="radio" name="dishType" value="2" id="status2">
+								<label for="status2">RECOMMEND</label><br>
+								
+								<label for="">DISH_PRICE</label><br> 
+								<input type="text" id="dishPrice" name="dishPrice" class="form-control">
+								<label for="">DISH數量</label><br>
+								<input type="text" id="dishQuantity" name="dishQuantity" class="form-control">
+								
+								<label for="">DH_STATUS</label><br>
+								<input type="radio" name="dishStatus" value="0" id="status0">
+								<label for="status0">下架</label>
+								<input type="radio" name="dishStatus" value="1" id="status1">							
+								<label for="status1">上架</label>
+								<input type="radio" name="dishStatus" value="2" id="status2">
+								<label for="status2">售完</label>
+							</div>
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+								<button type="button" class="btn btn-primary" id="formSubmit">修改</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div> -->
+	
+<!--                                     <tr class="warning no-result">
+                                        <td colspan="12"><i class="fa fa-warning"></i>&nbsp; No Result !!!</td>
+                                    </tr> -->
+                                    <tr th:each="tempDishDTO : ${dishsDTO}">   <!-- ${dishsDTO}"來自theModel.addAttribute("dishsDTO", -->
+                                    
+                                        <td th:text="${tempDishDTO.dishNo}" />
+                                        <td th:text="${tempDishDTO.dishName}" />
+                                        <td th:text="${tempDishDTO.dishType}" />
+                                        <td th:text="${tempDishDTO.dishPrice}" />
+                                        <td th:text="${tempDishDTO.dishQuantity}" />
+                                       <!--  <td th:text="${tempDishDTO.dishStatus}" /> -->
+<!--                                         <td th:switch="${tempDishDTO.dishStatus}"/>
+										<p th:case="'0'">下架</p>
+										<p th:case="'1'">上架</p>
+										<p th:case="'2'">售出</p> -->
+										<td th:switch="${tempDishDTO.dishStatus}">
+											<p th:case="'0'">下架</p>
+											<p th:case="'1'">上架</p>
+											<p th:case="'2'">售完</p> <!-- * for default case -->
+											<p th:case="*">待開發</p> <!--                                    <td>
+                                        <button class="btn btn-success" style="margin-left: 5px;" type="submit" >
+                                        <i class="fa fa-search" style="font-size: 15px;"></i></button>
+                                        <button class="btn btn-primary" type="submit" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-memid="${tempDishDTO.dishNo}">
+                                        <i class="fa fa-wrench"></i></button>
+                                        <button class="btn btn-danger" style="margin-left: 5px;" type="submit" onclick="if(!(confirm('Are you shure you want to delete this dish?'))) return false">
+                                        <i class="fa fa-trash" style="font-size: 15px;"></i></button>
+                                        </td> -->
+										<td>
+										<!-- Add update button/link -->
+										<a th:href="@{/api/showDishFormForUpdate(dishDishNo=${tempDishDTO.dishNo})}" 
+										class="btn btn-info btn-sm">
+										UPDATE
+										</a>
+										<!-- Add delete button/link -->
+										<a th:href="@{/api/delete(dishDishNo=${tempDishDTO.dishNo})}" 
+										class="btn btn-danger btn-sm"
+										onclick="if(!(confirm('Are you shure you want to delete this employee?'))) return false">
+										DELETE
+										</a>
+										</td>
+                                    </tr> 
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+
+
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar.js}"></script>
+    <script th:src="@{/js/agency.js}"></script>
+    <script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js}"></script>
+    <script th:src="@{/js/Table-With-Search.js}"></script>
+    <script th:src="@{/js/theme.js}"></script>
+        <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+ /*      
+    var header = $("meta[name='_csrf_header']").attr("content");
+	var token = $("meta[name='_csrf']").attr("content");
+	
+	AjaxDishs(); //進入點
+
+/*     跟資料庫請求菜單列表 */
+ function AjaxDishs() {
+		$.ajax({
+   	     url: 'http://localhost:8083/orginalcafe/api/dishs',
+   	     type: 'GET',
+   	     dataType: 'json',
+   	     data: '',
+   	     async: true,
+   	     headers: {
+			'X-CSRF-TOKEN': token
+		  },
+
+   	     success: function(res) {
+   	         alert("success");
+   	        for (let i = 0; i<res.length ; i++) {
+   	        	let distypeStr = dishType(res[i].dishStatus);
+   	        	let tmp = `<tr>
+   	        	<td>${res[i].dishNo}</td>
+   	        	<td>${res[i].dishName}</td>
+   	        	<td>${res[i].dishType}</td>
+   	        	<td>${res[i].dishPrice}</td>
+   	        	<td>${res[i].dishQuantity}</td>
+   	        	<td>${distypeStr}</td>
+   	        	<td><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-dishNo="${res[i].dishNo}" >編輯</button></td>
+   	        	<tr>`
+   	        $('#dishlist').append(tmp);
+   	        }
+
+   	         },
+   	     error: function(err) {
+   	    	 alert("error");
+   	         },
+   	 });
+   };
+   
+   /*     跟資料庫請求餐點上下架列表  秀出0,1,2*/
+   
+  /*  $.ajax({
+       url:"" ,
+       type: "GET" ,
+       success: function(data) {
+               showDishStatus(data);
+       }
+   }); */
+   
+   //判斷上下架
+   /*  function dishType(dishStatus){
+	   console.log('dishStatus:'+dishStatus);
+
+	   if(dishStatus=='0'){
+		   return '下架';
+	   }else if(dishStatus=='1'){
+		   return '上架';
+	   }else{
+		   return '售完';
+	   }
+   } 
+   
+   function showDishStatus(data) {
+       var status = data.split(",");
+       var txt ="";
+       for (i in status)
+           txt += "<option value='" + status[i] + "'>" + status[i] +"</option>";
+           $("#show").html(txt);
+   } */
+   /*]]>*/
+    </script>
+</body>
+
+</html>

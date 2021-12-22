@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Profile - Brand</title>
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+<link rel="stylesheet" th:href="@{/fonts/fontawesome-all.min.css}">
+<link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}">
+<link rel="stylesheet"
+	th:href="@{/fonts/fontawesome5-overrides.min.css}">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+<link rel="stylesheet"
+	th:href="@{/css/Off-Canvas-Sidebar-Drawer-Navbar.css}">
+<link rel="stylesheet" th:href="@{/css/Pretty-Search-Form.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/Table-With-Search-1.css}">
+<link rel="stylesheet" th:href="@{/css/Table-With-Search.css}">
+<link rel="stylesheet" th:href="@{/css/vanilla-zoom.min.css}">
+</head>
+
+<body id="page-top">
+
+	<div th:replace="block/navbar::nav-header"></div>
+
+	<div id="wrapper">
+		<div class="d-flex flex-column" id="content-wrapper">
+			<div id="content" style="margin-top: 15%; width: 80%;">
+				<div class="container-fluid">
+					<div class="col-md-12 col-sm-12">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#"><span>Manger</span></a></li>
+							<li class="breadcrumb-item"><a href="#"><span>MyMenu</span></a></li>
+							<li class="breadcrumb-item"><a href="#"><span>modify</span></a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			
+			<hr>
+		
+		<p class="h4 mb-4">Save dish</p>
+		
+		<form action="#" th:action="@{/api/update}"
+						 th:object="${dishDTO}" method="post">
+						 
+				<!-- Add hidden form field to handle update  -->
+				<input type="hidden" th:field="*{dishNo}" />
+						 
+				<input type="text" th:field="*{dishName}"
+					   class="form-control mb-4 col-4" placeholder="dishName">
+						 
+				<input type="text" th:field="*{dishPrice}"
+					   class="form-control mb-4 col-4" placeholder="dishPrice">
+
+				<div class="col">
+					<div class="mb-3">
+						<label class="form-label" for="dish_type"><strong>DISH_TYPE</strong>
+							<br></label><select th:field="*{dishType}" class="form-select">
+							<optgroup label="This is a group">
+								<option value="" selected="">請選擇</option>
+								<option value="RECOMMEND" selected="">RECOMMEND</option>
+								<option value="RICE" selected="">RICE</option>
+								<option value="NOODLE" selected="">NOODLE</option>
+								<option value="SOUP" selected="">SOUP</option>
+							</optgroup>
+						</select>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="mb-3">
+						<label class="form-label" for="dish_status"><strong>dish_status</strong>
+							<br></label><select th:field="*{dishStatus}" class="form-select">
+							<optgroup label="This is a group">
+								<option value="" selected="">請選擇</option>
+								<option value="0" selected="">下架</option>
+								<option value="1" selected="">上架</option>
+								<option value="2" selected="">售完</option>
+							</optgroup>
+						</select>
+					</div>
+				</div>
+	<label class="form-label" for="dishQuantity"><strong>dishQuantity</strong><br></label>
+				<input type="text" th:field="*{dishQuantity}"
+					   class="form-control mb-4 col-4" placeholder="dishQuantity">	
+	<label class="form-label" for="dishNote"><strong>dishNote</strong><br></label>
+				<input type="text" th:field="*{dishNote}"
+					   class="form-control mb-4 col-4" placeholder="dishNote">
+					   		   
+				<button type="submit" class="btn btn-info col-2">SAVE</button>   		 
+						 
+	    </form>
+	
+	<hr>
+			
+<!-- 	修改表單第二版		<div></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 mx-auto">
+						<div class="modal-body">
+							<div>
+							<label class="form-label" for="last_name"><strong>DISH_Type</strong>
+								<select id="DISH_TYPE" name="DISH_TYPE">
+									<optgroup label="This is a group">
+										<option value="" selected="">請選擇</option>
+										<option value="RECOMMEND" selected="">RECOMMEND</option>
+										<option value="RICE" selected="">RICE</option>
+										<option value="NOODLE" selected="">NOODLE</option>
+										<option value="SOUP" selected="">SOUP</option>
+									</optgroup>
+								</select>
+							</div>
+							<div class="col">
+								<div class="mb-3">
+									<label class="form-label" for="last_name"><strong>DISH_QUANTITY</strong>
+									</label><input class="form-control" type="number"
+										 id="dish_quantity" th:field="*{dishQuantity}"
+										placeholder="100" name="dishQuantity">
+								</div>
+							</div>
+							<div>
+							<label class="form-label" for="last_name"><strong>DISH_Name</strong>
+								<input type="text" id="DISH_NAME" class="front-control"
+									name="DISH_NAME" value="RECOMMAND1">
+							</div>
+                            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="https://images.pexels.com/photos/9700895/pexels-photo-9700895.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" width="160" height="160">
+                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">上傳圖片</button></div>
+                            </div>
+								<div class="col col-md-12 col-sm-12">
+									<h4>介紹:</h4>
+								</div>
+								<div class="col form-control">
+									<div>
+										<textarea class="form-control" rows="5" cols="100%"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div>
+									<label class="form-label custom-control-label">price</label><input
+										type="number" id="DISH_PRICE" class="form-control short"
+										value="0" name="DISH_PRICE" style="margin-bottom: 20%;">
+								</div>
+							</div>
+							<button class="btn btn-primary" type="button"
+								data-bs-dismiss="modal">
+								<i class="fa fa-times"></i><span>&nbsp;Close Menu</span>
+							</button>
+						</div>
+					</div>
+				</div> -->
+
+			</div>
+			<a class="border rounded d-inline scroll-to-top" href="#page-top"><i
+				class="fas fa-angle-up"></i></a>
+		</div>
+
+		<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar.js}"></script>
+		<script th:src="@{/js/agency.js}"></script>
+		<script th:src="@{/js/Off-Canvas-Sidebar-Drawer-Navbar-1.js}"></script>
+		<script th:src="@{/js/Table-With-Search.js}"></script>
+		<script th:src="@{/js/theme.js}"></script>
+</body>
+
+</html>

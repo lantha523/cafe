@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--錯誤訊息，及提醒視窗=================================================-->
+<body>
+
+  <div th:fragment="showConfirmMessage">
+    <!-- 訊息視窗 =======================================-->
+    <button class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#showConfirmMessageModel" id="showConfirmMessage" style="display: none">顯示使用者訊息</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="showConfirmMessageModel" tabindex="-1"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-color:white;width: 60%;margin-top: 20%;margin-left: 20%;">
+          <div class="modal-header">
+            <h5 class="modal-title" >使用者訊息</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="labelConfirmClose"></button>
+          </div>
+          <div class="modal-body" id="showConfirmMessageContent">
+          </div>
+          <div class="modal-footer" id="showConfirmMessageFooter">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 訊息視窗 =======================================-->
+  </div>
+
+</body>
+
+</html>
