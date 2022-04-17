@@ -13,6 +13,7 @@ public class HomeViewController {
 	@GetMapping("/home")
 	public String home(Model theModel) {
 		System.out.println("welcome to home page!");
+		System.out.println("welcome to home page2!");
 		return "index";
 	}
 
