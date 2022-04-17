@@ -12,7 +12,8 @@ public class HomeViewController {
 
 	@GetMapping("/home")
 	public String home(Model theModel) {
-			return "index";
+		System.out.println("welcome to home page!");
+		return "index";
 	}
 
 
