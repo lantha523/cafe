@@ -15,6 +15,7 @@ public class HomeViewController {
 		System.out.println("welcome to home page!");
 		System.out.println("welcome to home page!3");
 		System.out.println("welcome to home page2!");
+		System.out.println("welcome to pro!");
 		return "index";
 	}
 
